@@ -1,0 +1,18 @@
+﻿
+@model MasterISS_Agent_Website.ViewModels.SignInViewModel
+@{
+    ViewBag.Title = "SignIn";
+}
+
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.LabelFor(m => m.Username)
+    @Html.EditorFor(m => m.Username)
+    @Html.ValidationMessageFor(m => m.Username)
+
+    @Html.LabelFor(m => m.Password)
+    @Html.EditorFor(m => m.Password)
+    @Html.ValidationMessageFor(m => m.Password)
+    <input type="submit" value="ass"/>
+}

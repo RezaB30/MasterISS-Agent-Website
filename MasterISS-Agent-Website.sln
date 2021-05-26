@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website", "MasterISS-Agent-Website\MasterISS-Agent-Website.csproj", "{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-WebServices", "MasterISS-Agent-Website-WebServices\MasterISS-Agent-Website-WebServices.csproj", "{905CAAF7-D1F5-44F1-B2B7-EED680450832}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Enums", "MasterISS-Agent-Website-Enums\MasterISS-Agent-Website-Enums.csproj", "{1BFAA824-5E98-4610-A142-64439A30E440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Localization", "MasterISS-Agent-Website-Localization\MasterISS-Agent-Website-Localization.csproj", "{D3911F38-24A8-41D4-8C02-3BFAE7821D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Partner-Website-Database", "MasterISS-Partner-Website-Database\MasterISS-Partner-Website-Database.csproj", "{8867B6B4-359D-4751-B0C4-FAB799688708}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{905CAAF7-D1F5-44F1-B2B7-EED680450832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{905CAAF7-D1F5-44F1-B2B7-EED680450832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905CAAF7-D1F5-44F1-B2B7-EED680450832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{905CAAF7-D1F5-44F1-B2B7-EED680450832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BFAA824-5E98-4610-A142-64439A30E440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BFAA824-5E98-4610-A142-64439A30E440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BFAA824-5E98-4610-A142-64439A30E440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BFAA824-5E98-4610-A142-64439A30E440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3911F38-24A8-41D4-8C02-3BFAE7821D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3911F38-24A8-41D4-8C02-3BFAE7821D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3911F38-24A8-41D4-8C02-3BFAE7821D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3911F38-24A8-41D4-8C02-3BFAE7821D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8867B6B4-359D-4751-B0C4-FAB799688708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8867B6B4-359D-4751-B0C4-FAB799688708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8867B6B4-359D-4751-B0C4-FAB799688708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8867B6B4-359D-4751-B0C4-FAB799688708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
