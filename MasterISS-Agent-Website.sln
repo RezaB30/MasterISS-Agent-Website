@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website", "MasterISS-Agent-Website\MasterISS-Agent-Website.csproj", "{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800D76C6-1601-4F8E-BA0D-A66AEB197EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EC1733B-7B31-4971-9151-8C7E4599C74C}
+	EndGlobalSection
+EndGlobal
