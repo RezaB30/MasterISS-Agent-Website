@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,10 +43,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\AgentWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\AgentWebService\AgentWebService.wsdl" />
+    <None Include="Connected Services\AgentWebService\AgentWebService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\AgentWebService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceKeyValueListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceNewCustomerRegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServicePaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceSMSCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceSubscriptionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.CustomerServiceAddressDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.CustomerServiceNameValuePair.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.CustomerServiceServiceAvailabilityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AgentWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AgentWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AgentWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AgentWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

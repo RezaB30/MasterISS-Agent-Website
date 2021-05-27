@@ -41,45 +41,153 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Localization\Model.Designer.cs">
+    <Compile Include="Account\AccountModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.resx</DependentUpon>
+      <DependentUpon>AccountModel.resx</DependentUpon>
     </Compile>
-    <Compile Include="Localization\Model.en-us.Designer.cs">
+    <Compile Include="Account\AccountModel.en-us.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.en-us.resx</DependentUpon>
+      <DependentUpon>AccountModel.en-us.resx</DependentUpon>
     </Compile>
-    <Compile Include="Localization\Validation.Designer.cs">
+    <Compile Include="Account\AccountView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\AccountView.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountView.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AddressInfo\AddressInfoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressInfoModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="AddressInfo\AddressInfoModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressInfoModel.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\NewCustomerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCustomerModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\NewCustomerModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCustomerModel.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\CultureList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\CultureList.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureList.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\HavePSTN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HavePSTN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\HavePSTN.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HavePSTN.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Validation.resx</DependentUpon>
     </Compile>
-    <Compile Include="Localization\Validation.en-us.Designer.cs">
+    <Compile Include="Validation.en-us.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Validation.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>View.resx</DependentUpon>
+    </Compile>
+    <Compile Include="View.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>View.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Model.en-us.resx">
+    <EmbeddedResource Include="Account\AccountModel.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Model.en-us.Designer.cs</LastGenOutput>
+      <LastGenOutput>AccountModel.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization\Model.resx">
+    <EmbeddedResource Include="Account\AccountModel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>AccountModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization\Validation.en-us.resx">
+    <EmbeddedResource Include="Account\AccountView.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountView.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Account\AccountView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddressInfo\AddressInfoModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddressInfoModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddressInfo\AddressInfoModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddressInfoModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\NewCustomerModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewCustomerModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\NewCustomerModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewCustomerModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\CultureList.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CultureList.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\CultureList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CultureList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\HavePSTN.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HavePSTN.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\HavePSTN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HavePSTN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Validation.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Validation.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Localization\Validation.resx">
+    <EmbeddedResource Include="Validation.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Validation.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>View.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>View.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

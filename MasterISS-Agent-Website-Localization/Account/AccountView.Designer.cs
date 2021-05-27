@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterISS_Agent_Website_Localization.Localization {
+namespace MasterISS_Agent_Website_Localization.Account {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MasterISS_Agent_Website_Localization.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Model {
+    public class AccountView {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Model() {
+        internal AccountView() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MasterISS_Agent_Website_Localization.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Localization.Model", typeof(Model).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Account.AccountView", typeof(AccountView).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,11 @@ namespace MasterISS_Agent_Website_Localization.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Şifre.
+        ///   Looks up a localized string similar to Seçiniz.
         /// </summary>
-        public static string Password {
+        public static string Select {
             get {
-                return ResourceManager.GetString("Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Kullanıcı Adı.
-        /// </summary>
-        public static string Username {
-            get {
-                return ResourceManager.GetString("Username", resourceCulture);
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
     }

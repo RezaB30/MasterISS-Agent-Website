@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterISS_Agent_Website_Localization.Localization {
+namespace MasterISS_Agent_Website_Localization {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MasterISS_Agent_Website_Localization.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Validation {
+    public class View {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Validation() {
+        internal View() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MasterISS_Agent_Website_Localization.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Localization.Validation", typeof(Validation).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.View", typeof(View).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,20 @@ namespace MasterISS_Agent_Website_Localization.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} alanı boş bırakılamaz..
+        ///   Looks up a localized string similar to Bir Hata Oluştu. Daha sonra tekrar deneyiniz..
         /// </summary>
-        public static string Required {
+        public static string GenericErrorMessage {
             get {
-                return ResourceManager.GetString("Required", resourceCulture);
+                return ResourceManager.GetString("GenericErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giriş Yap.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
             }
         }
     }

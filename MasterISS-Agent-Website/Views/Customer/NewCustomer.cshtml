@@ -1,0 +1,184 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Customer
+@using MasterISS_Agent_Website_Localization
+@model  NewCustomerViewModel
+@{
+    ViewBag.Title = "NewCustomer";
+}
+
+<div>
+    @using (Html.BeginForm("NewCustomer", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <div>
+                @Html.LabelFor(gi => gi.GeneralInfo.ContactPhoneNo)
+                @Html.EditorFor(gi => gi.GeneralInfo.ContactPhoneNo, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(gi => gi.GeneralInfo.ContactPhoneNo)
+            </div>
+        </div>
+
+        <div>
+            <div>
+                @Html.LabelFor(ic => ic.IDCard.FirstName)
+                @Html.EditorFor(ic => ic.IDCard.FirstName, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ic => ic.IDCard.FirstName)
+            </div>
+
+            <div>
+                @Html.LabelFor(ic => ic.IDCard.LastName)
+                @Html.EditorFor(ic => ic.IDCard.LastName, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ic => ic.IDCard.LastName)
+            </div>
+
+            <div>
+                @Html.LabelFor(gi => gi.GeneralInfo.Email)
+                @Html.EditorFor(gi => gi.GeneralInfo.Email, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(gi => gi.GeneralInfo.Email)
+            </div>
+
+            <div>
+                @Html.LabelFor(ei => ei.ExtraInfo.SubscriptionRegistrationTypeId)
+                @Html.DropDownListFor(ei => ei.ExtraInfo.SubscriptionRegistrationTypeId, (SelectList)ViewBag.SubscriptionRegistrationType, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                @Html.ValidationMessageFor(ei => ei.ExtraInfo.SubscriptionRegistrationTypeId)
+            </div>
+
+            <div>
+                @Html.LabelFor(ei => ei.ExtraInfo.XDSLNo)
+                @Html.EditorFor(ei => ei.ExtraInfo.XDSLNo, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ei => ei.ExtraInfo.XDSLNo)
+            </div>
+
+            <div>
+                @Html.LabelFor(ei => ei.ExtraInfo.HavePSTNId)
+                @Html.DropDownListFor(ei => ei.ExtraInfo.HavePSTNId, (SelectList)ViewBag.HavePSTN, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+            </div>
+
+            <div>
+                @Html.LabelFor(ei => ei.ExtraInfo.PSTN)
+                @Html.EditorFor(ei => ei.ExtraInfo.PSTN, new { htmlAttributes = new { @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ei => ei.ExtraInfo.PSTN)
+            </div>
+
+            <div>
+                @Html.LabelFor(gi => gi.GeneralInfo.CustomerTypeId)
+                @Html.DropDownListFor(gi => gi.GeneralInfo.CustomerTypeId, (SelectList)ViewBag.CustomerTypeList, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                @Html.ValidationMessageFor(gi => gi.GeneralInfo.CustomerTypeId)
+            </div>
+
+            <span>IndividualCustomerInfo</span>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.MothersName)
+                @Html.EditorFor(ii => ii.Individual.MothersName, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.MothersName), @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ii => ii.Individual.MothersName)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.FathersName)
+                @Html.EditorFor(ii => ii.Individual.FathersName, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.FathersName), @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ii => ii.Individual.FathersName)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.SexId)
+                @Html.DropDownListFor(ii => ii.Individual.SexId, (SelectList)ViewBag.SexexListByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                @Html.ValidationMessageFor(ii => ii.Individual.SexId)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.BirthPlace)
+                @Html.EditorFor(ii => ii.Individual.BirthPlace, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.BirthPlace), @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ii => ii.Individual.BirthPlace)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.MothersMaidenName)
+                @Html.EditorFor(ii => ii.Individual.MothersMaidenName, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.BirthPlace), @autocomplete = "off" } })
+                @Html.ValidationMessageFor(ii => ii.Individual.MothersMaidenName)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.NationalityId)
+                @Html.DropDownListFor(ii => ii.Individual.NationalityId, (SelectList)ViewBag.NationalityListByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                @Html.ValidationMessageFor(ii => ii.Individual.NationalityId)
+            </div>
+
+            <div>
+                @Html.LabelFor(ii => ii.Individual.ProfessionId)
+                @Html.DropDownListFor(ii => ii.Individual.ProfessionId, (SelectList)ViewBag.ProfessionListByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                @Html.ValidationMessageFor(ii => ii.Individual.ProfessionId)
+            </div>
+
+            <label class="checkbox mr-2">
+                @Html.EditorFor(m => m.Individual.SameSetupAddressByIndividual, new { htmlAttributes = new { @class = "checkbox" } })
+                <span></span>
+            </label>
+
+            <div>
+                <span>IndividualResidencyAddress</span>
+
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.ProvinceId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.ProvinceId, (SelectList)ViewBag.ProvincesByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.ProvinceId)
+                </div>
+                
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.DistrictId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.DistrictId, (SelectList)ViewBag.DistrictsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.DistrictId)
+                </div>
+                 
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.RuralRegionsId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.RuralRegionsId, (SelectList)ViewBag.RuralRegionsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.RuralRegionsId)
+                </div>
+
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.NeighborhoodId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.NeighborhoodId, (SelectList)ViewBag.NeigboorHoodsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.NeighborhoodId)
+                </div>
+                
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.StreetId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.StreetId, (SelectList)ViewBag.StreetsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.StreetId)
+                </div>
+                    
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.BuildingId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.BuildingId, (SelectList)ViewBag.BuildingsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.BuildingId)
+                </div>
+                      
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.ApartmentId)
+                    @Html.DropDownListFor(ii => ii.Individual.ResidencyAddress.ApartmentId, (SelectList)ViewBag.ApartmentsByIndividual, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.ApartmentId)
+                </div>
+
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.Floor)
+                    @Html.EditorFor(ii => ii.Individual.ResidencyAddress.Floor, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.ResidencyAddress.Floor), @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.Floor)
+                </div>
+
+                <div>
+                    @Html.LabelFor(ii => ii.Individual.ResidencyAddress.PostalCode)
+                    @Html.EditorFor(ii => ii.Individual.ResidencyAddress.PostalCode, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.Individual.ResidencyAddress.PostalCode), @autocomplete = "off" } })
+                    @Html.ValidationMessageFor(ii => ii.Individual.ResidencyAddress.PostalCode)
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+
+        </div>
+
+    }
+
+</div>
