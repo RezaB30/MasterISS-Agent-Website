@@ -1348,6 +1348,10 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServicePaymentRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfSubscriptionCredentialSMSRequestSHA256_S6Bq0k7I))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfIDCardValidationRequestSHA256_S6Bq0k7I))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfBillListRequestSHA256_S6Bq0k7I))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfAuthenticationRequestSHA256_S6Bq0k7I))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationRequest))]
     public partial class BaseRequestOfSHA256o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1665,6 +1669,70 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfIDCardValidationRequestSHA256_S6Bq0k7I", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest))]
+    public partial class BaseRequestOfIDCardValidationRequestSHA256_S6Bq0k7I : MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfSHA256o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AgentServiceIDCardValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class AgentServiceIDCardValidationRequest : MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfIDCardValidationRequestSHA256_S6Bq0k7I {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.IDCardValidationRequest IDCardValidationRequestField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.IDCardValidationRequest IDCardValidationRequest {
+            get {
+                return this.IDCardValidationRequestField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDCardValidationRequestField, value) != true)) {
+                    this.IDCardValidationRequestField = value;
+                    this.RaisePropertyChanged("IDCardValidationRequest");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfBillListRequestSHA256_S6Bq0k7I", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest))]
+    public partial class BaseRequestOfBillListRequestSHA256_S6Bq0k7I : MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfSHA256o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AgentServiceBillListRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class AgentServiceBillListRequest : MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfBillListRequestSHA256_S6Bq0k7I {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.BillListRequest BillListRequestField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.BillListRequest BillListRequest {
+            get {
+                return this.BillListRequestField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillListRequestField, value) != true)) {
+                    this.BillListRequestField = value;
+                    this.RaisePropertyChanged("BillListRequest");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequestOfAuthenticationRequestSHA256_S6Bq0k7I", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationRequest))]
@@ -1834,6 +1902,7 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.ListFromIDRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.PaymentRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.SubscriptionCredentialSMSRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BillListRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.NewCustomerRegisterRequest))]
     public partial class RequestBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1975,6 +2044,30 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((object.ReferenceEquals(this.SubscriberNoField, value) != true)) {
                     this.SubscriberNoField = value;
                     this.RaisePropertyChanged("SubscriberNo");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BillListRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class BillListRequest : MasterISS_Agent_Website_WebServices.AgentWebService.RequestBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerCodeField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerCode {
+            get {
+                return this.CustomerCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerCodeField, value) != true)) {
+                    this.CustomerCodeField = value;
+                    this.RaisePropertyChanged("CustomerCode");
                 }
             }
         }
@@ -3294,6 +3387,132 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="IDCardValidationRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class IDCardValidationRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BirthDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> IDCardTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RegistirationNoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TCKNoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BirthDate {
+            get {
+                return this.BirthDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BirthDateField, value) != true)) {
+                    this.BirthDateField = value;
+                    this.RaisePropertyChanged("BirthDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> IDCardType {
+            get {
+                return this.IDCardTypeField;
+            }
+            set {
+                if ((this.IDCardTypeField.Equals(value) != true)) {
+                    this.IDCardTypeField = value;
+                    this.RaisePropertyChanged("IDCardType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RegistirationNo {
+            get {
+                return this.RegistirationNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RegistirationNoField, value) != true)) {
+                    this.RegistirationNoField = value;
+                    this.RaisePropertyChanged("RegistirationNo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TCKNo {
+            get {
+                return this.TCKNoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TCKNoField, value) != true)) {
+                    this.TCKNoField = value;
+                    this.RaisePropertyChanged("TCKNo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfSHA256o_Pr6u_PMh", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfArrayOfKeyValueOfstringstringSHA256PGu3YCeQ))]
@@ -3308,6 +3527,9 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServicePaymentResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfbooleanSHA256Miy85_SUl))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfBillListResponseSHA2568F1FUdyT))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfAuthenticationResponseSHA2568F1FUdyT))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse))]
     public partial class BaseResponseOfSHA256o_Pr6u_PMh : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -3580,6 +3802,7 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfbooleanSHA256Miy85_SUl", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse))]
     public partial class BaseResponseOfbooleanSHA256Miy85_SUl : MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfSHA256o_Pr6u_PMh {
     }
     
@@ -3602,6 +3825,62 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((this.CredentialSMSResponseField.Equals(value) != true)) {
                     this.CredentialSMSResponseField = value;
                     this.RaisePropertyChanged("CredentialSMSResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AgentServiceIDCardValidationResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses." +
+        "AgentResponses")]
+    [System.SerializableAttribute()]
+    public partial class AgentServiceIDCardValidationResponse : MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfbooleanSHA256Miy85_SUl {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IDCardValidationResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IDCardValidationResponse {
+            get {
+                return this.IDCardValidationResponseField;
+            }
+            set {
+                if ((this.IDCardValidationResponseField.Equals(value) != true)) {
+                    this.IDCardValidationResponseField = value;
+                    this.RaisePropertyChanged("IDCardValidationResponse");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponseOfBillListResponseSHA2568F1FUdyT", Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService")]
+    [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse))]
+    public partial class BaseResponseOfBillListResponseSHA2568F1FUdyT : MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfSHA256o_Pr6u_PMh {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AgentServiceBillListResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses." +
+        "AgentResponses")]
+    [System.SerializableAttribute()]
+    public partial class AgentServiceBillListResponse : MasterISS_Agent_Website_WebServices.AgentWebService.BaseResponseOfBillListResponseSHA2568F1FUdyT {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.BillListResponse BillListResponseField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.BillListResponse BillListResponse {
+            get {
+                return this.BillListResponseField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillListResponseField, value) != true)) {
+                    this.BillListResponseField = value;
+                    this.RaisePropertyChanged("BillListResponse");
                 }
             }
         }
@@ -4061,6 +4340,209 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BillListResponse", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses." +
+        "AgentResponses")]
+    [System.SerializableAttribute()]
+    public partial class BillListResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.BillListResponse.BillInfo[] BillsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SubscriberNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalCreditsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.BillListResponse.BillInfo[] Bills {
+            get {
+                return this.BillsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillsField, value) != true)) {
+                    this.BillsField = value;
+                    this.RaisePropertyChanged("Bills");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SubscriberName {
+            get {
+                return this.SubscriberNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubscriberNameField, value) != true)) {
+                    this.SubscriberNameField = value;
+                    this.RaisePropertyChanged("SubscriberName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal TotalCredits {
+            get {
+                return this.TotalCreditsField;
+            }
+            set {
+                if ((this.TotalCreditsField.Equals(value) != true)) {
+                    this.TotalCreditsField = value;
+                    this.RaisePropertyChanged("TotalCredits");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        
+        [System.Diagnostics.DebuggerStepThroughAttribute()]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="BillListResponse.BillInfo", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses." +
+            "AgentResponses")]
+        [System.SerializableAttribute()]
+        public partial class BillInfo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+            
+            [System.NonSerializedAttribute()]
+            private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string DueDateField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private long IDField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string IssueDateField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string ServiceNameField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private string SubscriberNoField;
+            
+            [System.Runtime.Serialization.OptionalFieldAttribute()]
+            private decimal TotalField;
+            
+            public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+                get {
+                    return this.extensionDataField;
+                }
+                set {
+                    this.extensionDataField = value;
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string DueDate {
+                get {
+                    return this.DueDateField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.DueDateField, value) != true)) {
+                        this.DueDateField = value;
+                        this.RaisePropertyChanged("DueDate");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public long ID {
+                get {
+                    return this.IDField;
+                }
+                set {
+                    if ((this.IDField.Equals(value) != true)) {
+                        this.IDField = value;
+                        this.RaisePropertyChanged("ID");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string IssueDate {
+                get {
+                    return this.IssueDateField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.IssueDateField, value) != true)) {
+                        this.IssueDateField = value;
+                        this.RaisePropertyChanged("IssueDate");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string ServiceName {
+                get {
+                    return this.ServiceNameField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.ServiceNameField, value) != true)) {
+                        this.ServiceNameField = value;
+                        this.RaisePropertyChanged("ServiceName");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public string SubscriberNo {
+                get {
+                    return this.SubscriberNoField;
+                }
+                set {
+                    if ((object.ReferenceEquals(this.SubscriberNoField, value) != true)) {
+                        this.SubscriberNoField = value;
+                        this.RaisePropertyChanged("SubscriberNo");
+                    }
+                }
+            }
+            
+            [System.Runtime.Serialization.DataMemberAttribute()]
+            public decimal Total {
+                get {
+                    return this.TotalField;
+                }
+                set {
+                    if ((this.TotalField.Equals(value) != true)) {
+                        this.TotalField = value;
+                        this.RaisePropertyChanged("Total");
+                    }
+                }
+            }
+            
+            public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+            
+            protected void RaisePropertyChanged(string propertyName) {
+                System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+                if ((propertyChanged != null)) {
+                    propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                }
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AgentWebService.IAgentWebService")]
     public interface IAgentWebService {
@@ -4210,6 +4692,18 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/SendCredentialSMS", ReplyAction="http://tempuri.org/IAgentWebService/SendCredentialSMSResponse")]
         System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse> SendCredentialSMSAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/IDCardValidation", ReplyAction="http://tempuri.org/IAgentWebService/IDCardValidationResponse")]
+        MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse IDCardValidation(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/IDCardValidation", ReplyAction="http://tempuri.org/IAgentWebService/IDCardValidationResponse")]
+        System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse> IDCardValidationAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/GetBills", ReplyAction="http://tempuri.org/IAgentWebService/GetBillsResponse")]
+        MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse GetBills(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/GetBills", ReplyAction="http://tempuri.org/IAgentWebService/GetBillsResponse")]
+        System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse> GetBillsAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -4429,6 +4923,22 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         
         public System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse> SendCredentialSMSAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSRequest request) {
             return base.Channel.SendCredentialSMSAsync(request);
+        }
+        
+        public MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse IDCardValidation(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest request) {
+            return base.Channel.IDCardValidation(request);
+        }
+        
+        public System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse> IDCardValidationAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationRequest request) {
+            return base.Channel.IDCardValidationAsync(request);
+        }
+        
+        public MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse GetBills(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest request) {
+            return base.Channel.GetBills(request);
+        }
+        
+        public System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse> GetBillsAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListRequest request) {
+            return base.Channel.GetBillsAsync(request);
         }
     }
 }

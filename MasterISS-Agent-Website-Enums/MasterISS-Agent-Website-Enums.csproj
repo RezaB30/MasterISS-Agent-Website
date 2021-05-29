@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CultureList.cs" />
+    <Compile Include="Enums\DateType.cs" />
+    <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Enums\HavePSTN.cs" />
     <Compile Include="Enums\NationalityList.cs" />
     <Compile Include="Enums\ProfessionType.cs" />

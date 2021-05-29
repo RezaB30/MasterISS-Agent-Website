@@ -22,19 +22,19 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
     public class ExtraInfoViewModel
     {
-        [Display(Name = "RegistrationType", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "RegistrationType", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? SubscriptionRegistrationTypeId { get; set; }
 
-        [Display(Name = "PSTNNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "PSTNNo", ResourceType = typeof(CustomerModel))]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
         public string PSTN { get; set; }
 
-        [Display(Name = "HavePSTNId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "HavePSTNId", ResourceType = typeof(CustomerModel))]
         public int? HavePSTNId { get; set; }
 
 
-        [Display(Name = "XDSLNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "XDSLNo", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         [MaxLength(10, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "XDSLNoValid")]
         [MinLength(10, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "XDSLNoValid")]
@@ -44,11 +44,11 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
     public class SubscriptionInfoViewModel
     {
-        [Display(Name = "BillingPeriodId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "BillingPeriodId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? BillingPeriodId { get; set; }
 
-        [Display(Name = "PartnerTariffID", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "PartnerTariffID", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? PartnerTariffID { get; set; }
 
@@ -131,37 +131,37 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
     public class IndividualViewModel
     {
-        [Display(Name = "BirthPlace", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "BirthPlace", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string BirthPlace { get; set; }
 
-        [Display(Name = "FathersName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "FathersName", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string FathersName { get; set; }
 
-        [Display(Name = "MothersMaidenName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "MothersMaidenName", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string MothersMaidenName { get; set; }
 
-        [Display(Name = "MothersName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "MothersName", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string MothersName { get; set; }
 
-        [Display(Name = "NationalityId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "NationalityId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int NationalityId { get; set; }
 
-        [Display(Name = "ProfessionId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ProfessionId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? ProfessionId { get; set; }
 
         public AddressInfoViewModel ResidencyAddress { get; set; }
 
-        [Display(Name = "SexId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "SexId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? SexId { get; set; }
 
-        [Display(Name = "CustomerResidanceAddressSameSetupAddress", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CustomerResidanceAddressSameSetupAddress", ResourceType = typeof(CustomerModel))]
         public bool SameSetupAddressByIndividual { get; set; }
     }
 
@@ -172,87 +172,87 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
         public string BirthDate { get; set; }
 
-        [Display(Name = "CardTypeId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CardTypeId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? CardTypeId { get; set; }
 
-        [Display(Name = "FirstName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "FirstName", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string FirstName { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "LastName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "LastName", ResourceType = typeof(CustomerModel))]
         public string LastName { get; set; }
 
-        [Display(Name = "PassportNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "PassportNo", ResourceType = typeof(CustomerModel))]
         public string PassportNo { get; set; }
 
-        [Display(Name = "SerialNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "SerialNo", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string SerialNo { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         [MaxLength(11, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "MaxTCKValid")]
         [MinLength(11, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "MinTCKValid")]
-        [Display(Name = "TCKNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "TCKNo", ResourceType = typeof(CustomerModel))]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
         public string TCKNo { get; set; }
 
-        [Display(Name = "SelectedBirthDay", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "SelectedBirthDay", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? SelectedBirthDay { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "SelectedBirthMonth", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "SelectedBirthMonth", ResourceType = typeof(CustomerModel))]
         public int? SelectedBirthMonth { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "SelectedBirthYear", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "SelectedBirthYear", ResourceType = typeof(CustomerModel))]
         public int? SelectedBirthYear { get; set; }
     }
 
     public class TCBirthCertificate
     {
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "VolumeNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "VolumeNo", ResourceType = typeof(CustomerModel))]
         public string VolumeNo { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Neighbourhood", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "Neighbourhood", ResourceType = typeof(CustomerModel))]
         public string Neighbourhood { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "PageNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "PageNo", ResourceType = typeof(CustomerModel))]
         public string PageNo { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DistrictId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "DistrictId", ResourceType = typeof(AddressInfoModel))]
         public string District { get; set; }
 
         public string DateOfIssue { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DateOfIssueDay", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "DateOfIssueDay", ResourceType = typeof(CustomerModel))]
         public int? DateOfIssueDay { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DateOfIssueMonth", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "DateOfIssueMonth", ResourceType = typeof(CustomerModel))]
         public int? DateOfIssueMonth { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "DateOfIssueYear", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "DateOfIssueYear", ResourceType = typeof(CustomerModel))]
         public int? DateOfIssueYear { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "PlaceOfIssue", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "PlaceOfIssue", ResourceType = typeof(CustomerModel))]
         public string PlaceOfIssue { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ProvinceId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ProvinceId", ResourceType = typeof(AddressInfoModel))]
         public string Province { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "RowNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "RowNo", ResourceType = typeof(CustomerModel))]
         public string RowNo { get; set; }
     }
 
@@ -261,15 +261,15 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
         public string ExpiryDate { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExpiryDay", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExpiryDay", ResourceType = typeof(CustomerModel))]
         public int? ExpiryDay { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExpiryMonth", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExpiryMonth", ResourceType = typeof(CustomerModel))]
         public int? ExpiryMonth { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExpiryYear", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExpiryYear", ResourceType = typeof(CustomerModel))]
         public int? ExpiryYear { get; set; }
     }
 
@@ -282,37 +282,37 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
         public AddressInfoViewModel BillingAddress { get; set; }
 
-        [Display(Name = "ContactPhoneNo", ResourceType = typeof(NewCustomerModel))]//Burada Kaldın
+        [Display(Name = "ContactPhoneNo", ResourceType = typeof(CustomerModel))]//Burada Kaldın
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         //[RegularExpression(@"^((\d{3})(\d{3})(\d{2})(\d{2}))$", ErrorMessageResourceName = "ValidPhoneNumber", ErrorMessageResourceType = typeof(Localization.Validation))]
         public string ContactPhoneNo { get; set; }
 
-        [Display(Name = "CustomerTypeId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CustomerTypeId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? CustomerTypeId { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         [MaxLength(300, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "EmailMaxLenght")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "EmailFormat")]
-        [Display(Name = "Email", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "Email", ResourceType = typeof(CustomerModel))]
         public string Email { get; set; }
 
-        [Display(Name = "OtherPhoneNos", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "OtherPhoneNos", ResourceType = typeof(CustomerModel))]
         [OtherPhoneNoValidation(ErrorMessageResourceName = "ValidPhoneNumber", ErrorMessageResourceType = typeof(Validation))]
         public List<string> OtherPhoneNos { get; set; }
 
-        [Display(Name = "CultureCustomer", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CultureCustomer", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public string Culture { get; set; }
 
-        [Display(Name = "BillingAddressSameSetupAddress", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "BillingAddressSameSetupAddress", ResourceType = typeof(CustomerModel))]
         public bool SameSetupAddressByBilling { get; set; }
     }
 
     public class CorporateInfoViewModel
     {
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "CentralSystemNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CentralSystemNo", ResourceType = typeof(CustomerModel))]
         [MaxLength(16, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "CentralSystemNoValid")]
         [MinLength(16, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "CentralSystemNoValid")]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
@@ -321,61 +321,61 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
         public AddressInfoViewModel CompanyAddress { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExecutiveBirthPlace", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveBirthPlace", ResourceType = typeof(CustomerModel))]
         public string ExecutiveBirthPlace { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "TaxNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "TaxNo", ResourceType = typeof(CustomerModel))]
         [MaxLength(10, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "TaxNoValid")]
         [MinLength(10, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "TaxNoValid")]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
         public string TaxNo { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "TaxOffice", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "TaxOffice", ResourceType = typeof(CustomerModel))]
         public string TaxOffice { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExecutiveFathersName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveFathersName", ResourceType = typeof(CustomerModel))]
         public string ExecutiveFathersName { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExecutiveMothersMaidenName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveMothersMaidenName", ResourceType = typeof(CustomerModel))]
         public string ExecutiveMothersMaidenName { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "ExecutiveMothersName", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveMothersName", ResourceType = typeof(CustomerModel))]
         public string ExecutiveMothersName { get; set; }
 
-        [Display(Name = "ExecutiveNationalityId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveNationalityId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? ExecutiveNationalityId { get; set; }
 
-        [Display(Name = "ExecutiveProfessionId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveProfessionId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public int? ExecutiveProfessionId { get; set; }
 
         public AddressInfoViewModel ExecutiveResidencyAddress { get; set; }
 
-        [Display(Name = "ExecutiveSexId", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "ExecutiveSexId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public short? ExecutiveSexId { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "Title", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "Title", ResourceType = typeof(CustomerModel))]
         public string Title { get; set; }
 
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        [Display(Name = "TradeRegistrationNo", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "TradeRegistrationNo", ResourceType = typeof(CustomerModel))]
         [MaxLength(6, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "TradeRegistrationNoValid")]
         [MinLength(6, ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "TradeRegistrationNoValid")]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
         public string TradeRegistrationNo { get; set; }
 
-        [Display(Name = "CorporativeCompanyAddressSameSetupAddress", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CorporativeCompanyAddressSameSetupAddress", ResourceType = typeof(CustomerModel))]
         public bool SameSetupAddressByCorporativeCompanyAddress { get; set; }
 
-        [Display(Name = "CorporativeResidencyAddressSameSetupAddress", ResourceType = typeof(NewCustomerModel))]
+        [Display(Name = "CorporativeResidencyAddressSameSetupAddress", ResourceType = typeof(CustomerModel))]
         public bool SameSetupAddressByCorporativeResidencyAddress { get; set; }
     }
 }

@@ -25,6 +25,11 @@ namespace MasterISS_Agent_Website
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/new-customer-operations").IncludeDirectory("~/Scripts/Customer/", "*.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/address-query").IncludeDirectory("~/Scripts/QueryAddress/", "*.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/generic-alert").IncludeDirectory("~/Scripts/Alert/", "*.js"));
+
         }
     }
 }

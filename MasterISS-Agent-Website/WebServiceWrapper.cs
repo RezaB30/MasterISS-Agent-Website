@@ -7,6 +7,10 @@ using System.Text;
 using System.Web;
 using MasterISS_Agent_Website_WebServices.AgentWebService;
 using MasterISS_Agent_Website.ViewModels;
+using MasterISS_Agent_Website.ViewModels.Customer;
+using RadiusR.DB.Enums;
+using MasterISS_Agent_Website_Enums.Enums;
+
 namespace MasterISS_Agent_Website
 {
     public class WebServiceWrapper
@@ -62,6 +66,175 @@ namespace MasterISS_Agent_Website
             var response = Client.Authenticate(request);
 
             return response;
+        }
+
+        public AgentServicePaymentResponse PayBills(long[] billsIds)
+        {
+            var request = new AgentServicePaymentRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                PaymentRequest = new PaymentRequest
+                {
+                    BillIDs = billsIds,
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                }
+            };
+
+            var response = Client.PayBills(request);
+
+            return response;
+        }
+
+        public AgentServiceBillListResponse GetBills(string customerCode)
+        {
+            var request = new AgentServiceBillListRequest
+            {
+                Culture = Culture,
+                Rand = Rand,
+                Hash = Hash<SHA256>(),
+                Username = Username,
+                BillListRequest = new BillListRequest
+                {
+                    CustomerCode = customerCode,
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                },
+            };
+
+            var response = Client.GetBills(request);
+
+            return response;
+        }
+
+        public AgentServiceNewCustomerRegisterResponse NewCustomerRegister(NewCustomerViewModel addCustomerViewModel)
+        {
+            var request = new AgentServiceNewCustomerRegisterRequest()
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                CustomerRegisterParameters = new NewCustomerRegisterRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    CorporateCustomerInfo = addCustomerViewModel.GeneralInfo.CustomerTypeId == (int)CustomerType.Individual ? null : new CorporateCustomerInfo
+                    {
+                        CentralSystemNo = addCustomerViewModel.CorporateInfo.CentralSystemNo,
+                        ExecutiveBirthPlace = addCustomerViewModel.CorporateInfo.ExecutiveBirthPlace,
+                        ExecutiveFathersName = addCustomerViewModel.CorporateInfo.ExecutiveFathersName,
+                        ExecutiveMothersMaidenName = addCustomerViewModel.CorporateInfo.ExecutiveMothersMaidenName,
+                        ExecutiveMothersName = addCustomerViewModel.CorporateInfo.ExecutiveMothersName,
+                        ExecutiveNationality = addCustomerViewModel.CorporateInfo.ExecutiveNationalityId,
+                        ExecutiveProfession = addCustomerViewModel.CorporateInfo.ExecutiveProfessionId,
+                        ExecutiveSex = addCustomerViewModel.CorporateInfo.ExecutiveSexId,
+                        TaxNo = addCustomerViewModel.CorporateInfo.TaxNo,
+                        TaxOffice = addCustomerViewModel.CorporateInfo.TaxOffice,
+                        Title = addCustomerViewModel.CorporateInfo.Title,
+                        TradeRegistrationNo = addCustomerViewModel.CorporateInfo.TradeRegistrationNo,
+                        ExecutiveResidencyAddress = NewAddressInfo(addCustomerViewModel.CorporateInfo.ExecutiveResidencyAddress.NewCustomerAddressInfoRequest, (int)addCustomerViewModel.CorporateInfo.ExecutiveResidencyAddress.PostalCode, addCustomerViewModel.CorporateInfo.ExecutiveResidencyAddress.Floor),
+                        CompanyAddress = NewAddressInfo(addCustomerViewModel.CorporateInfo.CompanyAddress.NewCustomerAddressInfoRequest, (int)addCustomerViewModel.CorporateInfo.CompanyAddress.PostalCode, addCustomerViewModel.CorporateInfo.CompanyAddress.Floor)
+                    },
+
+                    CustomerGeneralInfo = new CustomerGeneralInfo()
+                    {
+                        BillingAddress = NewAddressInfo(addCustomerViewModel.GeneralInfo.BillingAddress.NewCustomerAddressInfoRequest, (int)addCustomerViewModel.GeneralInfo.BillingAddress.PostalCode, addCustomerViewModel.GeneralInfo.BillingAddress.Floor),
+                        ContactPhoneNo = addCustomerViewModel.GeneralInfo.ContactPhoneNo,
+                        Email = addCustomerViewModel.GeneralInfo.Email,
+                        CustomerType = addCustomerViewModel.GeneralInfo.CustomerTypeId,
+                        Culture = addCustomerViewModel.GeneralInfo.Culture,
+                        OtherPhoneNos = addCustomerViewModel.GeneralInfo.OtherPhoneNos.Select(phoneNo => new PhoneNoListItem()
+                        {
+                            Number = phoneNo
+                        }).ToArray()
+                    },
+
+                    IDCardInfo = new IDCardInfo()
+                    {
+                        BirthDate = DateParseOperations.ConvertDatetimeByWebService(addCustomerViewModel.IDCard.BirthDate),
+                        CardType = addCustomerViewModel.IDCard.CardTypeId,
+                        DateOfIssue = DateOfIssueValue((int)addCustomerViewModel.IDCard.CardTypeId, addCustomerViewModel.IDCard),
+                        District = addCustomerViewModel.IDCard.TCBirthCertificate?.District,
+                        FirstName = addCustomerViewModel.IDCard.FirstName,
+                        LastName = addCustomerViewModel.IDCard.LastName,
+                        Neighbourhood = addCustomerViewModel.IDCard.TCBirthCertificate?.Neighbourhood,
+                        PageNo = addCustomerViewModel.IDCard.TCBirthCertificate?.PageNo,
+                        PassportNo = addCustomerViewModel.IDCard.PassportNo,
+                        PlaceOfIssue = addCustomerViewModel.IDCard.TCBirthCertificate?.PlaceOfIssue,
+                        Province = addCustomerViewModel.IDCard.TCBirthCertificate?.Province,
+                        RowNo = addCustomerViewModel.IDCard.TCBirthCertificate?.RowNo,
+                        SerialNo = addCustomerViewModel.IDCard.SerialNo,
+                        TCKNo = addCustomerViewModel.IDCard.TCKNo,
+                        VolumeNo = addCustomerViewModel.IDCard.TCBirthCertificate?.VolumeNo,
+                    },
+
+                    IndividualCustomerInfo = addCustomerViewModel.GeneralInfo.CustomerTypeId != (int)CustomerType.Individual ? null : new IndividualCustomerInfo()
+                    {
+                        BirthPlace = addCustomerViewModel.Individual.BirthPlace,
+                        FathersName = addCustomerViewModel.Individual.FathersName,
+                        MothersMaidenName = addCustomerViewModel.Individual.MothersMaidenName,
+                        MothersName = addCustomerViewModel.Individual.MothersName,
+                        Nationality = addCustomerViewModel.Individual.NationalityId,
+                        Profession = addCustomerViewModel.Individual.ProfessionId,
+                        Sex = addCustomerViewModel.Individual.SexId,
+                        ResidencyAddress = NewAddressInfo(addCustomerViewModel.Individual.ResidencyAddress.NewCustomerAddressInfoRequest, (int)addCustomerViewModel.Individual.ResidencyAddress.PostalCode, addCustomerViewModel.Individual.ResidencyAddress.Floor)
+                    },
+
+                    SubscriptionInfo = new SubscriptionRegistrationInfo()
+                    {
+                        BillingPeriod = addCustomerViewModel.SubscriptionInfo.BillingPeriodId,
+                        ServiceID = addCustomerViewModel.SubscriptionInfo.PartnerTariffID,
+                        SetupAddress = NewAddressInfo(addCustomerViewModel.SubscriptionInfo.SetupAddress.NewCustomerAddressInfoRequest, (int)addCustomerViewModel.SubscriptionInfo.SetupAddress.PostalCode, addCustomerViewModel.SubscriptionInfo.SetupAddress.Floor)
+                    },
+                    ExtraInfo = new ExtraInfo()
+                    {
+                        ApplicationType = addCustomerViewModel.ExtraInfo.SubscriptionRegistrationTypeId,
+                        PSTN = addCustomerViewModel.ExtraInfo.PSTN,
+                        XDSLNo = addCustomerViewModel.ExtraInfo.XDSLNo
+                    }
+                },
+            };
+
+            var response = Client.NewCustomerRegister(request);
+
+            return response;
+        }
+        private string DateOfIssueValue(int cardTypeId, IDCardViewModel IDCardViewModel)
+        {
+
+            if (cardTypeId == (int)CardType.TCBirthCertificate)
+            {
+                var dateOfIssue = DateParseOperations.ConvertDatetimeByWebService(IDCardViewModel.TCBirthCertificate.DateOfIssue);
+                return dateOfIssue;
+            }
+            var expiryDate = DateParseOperations.ConvertDatetimeByExpiryDate(IDCardViewModel.TCIDCardWithChip.ExpiryDate);
+            return expiryDate;
+        }
+
+        private MasterISS_Agent_Website_WebServices.AgentWebService.AddressInfo NewAddressInfo(NewCustomerAddressInfoRequest addressInfoRequest, int postalCode, string floor)
+        {
+            var request = new MasterISS_Agent_Website_WebServices.AgentWebService.AddressInfo()
+            {
+                AddressNo = addressInfoRequest.AddressNo,
+                AddressText = addressInfoRequest.AddressText,
+                ApartmentID = addressInfoRequest.ApartmentId,
+                ApartmentNo = addressInfoRequest.ApartmentNo,
+                DistrictID = addressInfoRequest.DistrictId,
+                DistrictName = addressInfoRequest.DistrictName,
+                DoorID = addressInfoRequest.DoorId,
+                DoorNo = addressInfoRequest.DoorNo,
+                NeighbourhoodID = addressInfoRequest.NeighbourhoodID,
+                NeighbourhoodName = addressInfoRequest.NeighbourhoodName,
+                ProvinceID = addressInfoRequest.ProvinceId,
+                ProvinceName = addressInfoRequest.ProvinceName,
+                RuralCode = addressInfoRequest.RuralCode,
+                StreetID = addressInfoRequest.StreetId,
+                StreetName = addressInfoRequest.StreetName,
+                PostalCode = postalCode,
+                Floor = floor
+            };
+            return request;
         }
 
         public AgentServiceSubscriptionsResponse GetAgentSubscriptions()
@@ -153,12 +326,13 @@ namespace MasterISS_Agent_Website
 
         public CustomerServiceNameValuePair GetProvinces()
         {
+            var usernam = Username;
             var request = new CustomerServiceProvincesRequest
             {
                 Username = Username,
                 Culture = Culture,
                 Rand = Rand,
-                Hash = Hash<SHA256>(),
+                Hash = Hash<SHA1>(),
             };
             var response = Client.GetProvinces(request);
 
@@ -207,13 +381,33 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
-        public CustomerServiceAddressDetailsResponse GetAddress(long BBK)
+        public AgentServiceSMSCodeResponse SendConfirmationSMS(string phoneNo)
+        {
+            var request = new AgentServiceSMSCodeRequest
+            {
+                Culture = Culture,
+                SMSCodeRequest = new SMSCodeRequest
+                {
+                    PhoneNo = phoneNo,
+                    UserEmail = AgentClaimInfo.UserEmail()
+                },
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+            };
+
+            var response = Client.SendConfirmationSMS(request);
+
+            return response;
+        }
+
+        public CustomerServiceAddressDetailsResponse GetApartmentAddress(long BBK)
         {
             var request = new CustomerServiceAddressDetailsRequest
             {
                 BBK = BBK,
                 Culture = Culture,
-                Hash = Hash<SHA256>(),
+                Hash = Hash<SHA1>(),
                 Rand = Rand,
                 Username = Username,
             };
@@ -223,7 +417,28 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
+        public AgentServiceIDCardValidationResponse IDCardValidation(IDCardValidationViewModel IDCardValidationModel)
+        {
+            var request = new AgentServiceIDCardValidationRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                IDCardValidationRequest = new IDCardValidationRequest
+                {
+                    BirthDate = IDCardValidationModel.BirtDate,
+                    FirstName = IDCardValidationModel.FirstName,
+                    IDCardType = IDCardValidationModel.IdCardType,
+                    LastName = IDCardValidationModel.LastName,
+                    RegistirationNo = IDCardValidationModel.RegistirationNo,
+                    TCKNo = IDCardValidationModel.TCKNo,
+                },
+            };
+            var response = Client.IDCardValidation(request);
 
+            return response;
+        }
 
 
         CustomerServiceNameValuePairRequest CustomerServiceNameValuePairRequest(long itemCode)
@@ -231,7 +446,7 @@ namespace MasterISS_Agent_Website
             var request = new CustomerServiceNameValuePairRequest
             {
                 Culture = Culture,
-                Hash = Hash<SHA256>(),
+                Hash = Hash<SHA1>(),
                 ItemCode = itemCode,
                 Rand = Rand,
                 Username = Username,
@@ -245,7 +460,7 @@ namespace MasterISS_Agent_Website
             var request = new AgentServiceNewCustomerRegisterRequest
             {
                 Culture = Culture,
-                Hash = Hash<SHA256>(),
+                Hash = Hash<SHA1>(),
                 Rand = Rand,
                 Username = Username,
                 CustomerRegisterParameters = new NewCustomerRegisterRequest

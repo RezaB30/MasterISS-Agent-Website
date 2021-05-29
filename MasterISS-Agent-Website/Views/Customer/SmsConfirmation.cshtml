@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "SmsConfirmation";
+}
+
+<div>
+    @ViewBag.ErrorMessage
+</div>
+
+@using (Html.BeginForm("SmsConfirmation", "Customer", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.TextBox("inputCode", null, new { @class = "form-control h-auto p-3  rounded-lg font-weight-bolder text-info font-size-lg", @placeholder = "SMS Şİfresi", @autocomplete = "off" })
+        <input type="submit" class="btn btn-block font-weight-bolder btn-danger btn-hover-warning mt-12" value="Onayla" />
+    </div>
+}
+
+@*@section Javascript{
+        <script>
+            function SMSConfirmationResult(data, status) {
+                if (status = "success") {
+                    var responseStatus = data.responseJSON.status;
+                    if (responseStatus == "Success") {
+                        var message = data.responseJSON.message;
+                        var url='@Url.Action("NewCustomer", "Customer")';
+                        GetAlert(message, "true",url);
+                    }
+                    else if (responseStatus =="FailedAndRedirect") {
+                        var redirectMessage = data.responseJSON.ErrorMessage;
+                        var urlHome='@Url.Action("NewCustomer", "Customer")';
+                        GetAlert(redirectMessage, "false", urlHome);
+                    }
+                    else {
+                        var errorMessage = data.responseJSON.ErrorMessage;
+                        GetAlert(errorMessage, "false", null);
+                    }
+                }
+                else {
+                    console.log("Error");
+                }
+            }
+        </script>
+    }*@

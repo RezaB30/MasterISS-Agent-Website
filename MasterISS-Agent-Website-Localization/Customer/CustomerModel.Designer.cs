@@ -22,14 +22,14 @@ namespace MasterISS_Agent_Website_Localization.Customer {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class NewCustomerModel {
+    public class CustomerModel {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NewCustomerModel() {
+        internal CustomerModel() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Customer.NewCustomerModel", typeof(NewCustomerModel).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Customer.CustomerModel", typeof(CustomerModel).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -142,11 +142,29 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Müşteri Adı.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Müşteri İkamet Adresi, Kurulum Adresi ile Aynı.
         /// </summary>
         public static string CustomerResidanceAddressSameSetupAddress {
             get {
                 return ResourceManager.GetString("CustomerResidanceAddressSameSetupAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Müşteri Durumu.
+        /// </summary>
+        public static string CustomerState {
+            get {
+                return ResourceManager.GetString("CustomerState", resourceCulture);
             }
         }
         
@@ -358,6 +376,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kayıt Tarihi.
+        /// </summary>
+        public static string MembershipDate {
+            get {
+                return ResourceManager.GetString("MembershipDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anne Kızlık Soyadı.
         /// </summary>
         public static string MothersMaidenName {
@@ -516,6 +543,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static string SexId {
             get {
                 return ResourceManager.GetString("SexId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abone Numarası.
+        /// </summary>
+        public static string SubscriberNo {
+            get {
+                return ResourceManager.GetString("SubscriberNo", resourceCulture);
             }
         }
         

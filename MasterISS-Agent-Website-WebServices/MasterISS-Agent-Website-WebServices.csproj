@@ -80,7 +80,13 @@
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceKeyValueListResponse.datasource">

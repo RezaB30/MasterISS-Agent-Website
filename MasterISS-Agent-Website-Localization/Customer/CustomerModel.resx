@@ -118,177 +118,189 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BillingAddressSameSetupAddress" xml:space="preserve">
-    <value>Billing Address is the same as the Setup Address</value>
+    <value>Fatura Adresi, Kurulum Adresi ile Aynı</value>
   </data>
   <data name="BillingPeriodId" xml:space="preserve">
-    <value>Billing Period</value>
+    <value>Fatura Dönemi</value>
   </data>
   <data name="BirthPlace" xml:space="preserve">
-    <value>Birth Place</value>
+    <value>Doğum Yeri</value>
   </data>
   <data name="CardTypeId" xml:space="preserve">
-    <value>Select ID Card Type</value>
+    <value>Kimlik Tipini Seçiniz</value>
   </data>
   <data name="CentralSystemNo" xml:space="preserve">
-    <value>Central System No</value>
+    <value>Merkezi Sistem Numarası</value>
   </data>
   <data name="ContactPhoneNo" xml:space="preserve">
-    <value>Enter Your Customer GSM Number</value>
+    <value>Müşteri GSM Numaranızı Yazınız</value>
   </data>
   <data name="CorporativeCompanyAddressSameSetupAddress" xml:space="preserve">
-    <value>The Corporative Address is the same as the Setup Address</value>
+    <value>Şirket Adresi, Kurulum Adresi ile Aynı</value>
   </data>
   <data name="CorporativeResidencyAddressSameSetupAddress" xml:space="preserve">
-    <value>The Executive Residence Address is the same as the Setup Address</value>
+    <value>Yetkili İkamet Adresi, Kurulum Adresi ile Aynı</value>
   </data>
   <data name="CultureCustomer" xml:space="preserve">
-    <value>Language Selection for Online Operation Center</value>
+    <value>Online işlem merkezi için Dil Seçimi</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Müşteri Adı</value>
   </data>
   <data name="CustomerResidanceAddressSameSetupAddress" xml:space="preserve">
-    <value>The Customer Residence Address is the same as the Setup Address</value>
+    <value>Müşteri İkamet Adresi, Kurulum Adresi ile Aynı</value>
+  </data>
+  <data name="CustomerState" xml:space="preserve">
+    <value>Müşteri Durumu</value>
   </data>
   <data name="CustomerTypeId" xml:space="preserve">
-    <value>Customer Type</value>
+    <value>Müşteri Tipi</value>
   </data>
   <data name="DateOfIssueDay" xml:space="preserve">
-    <value>Date Of Issue (Day)</value>
+    <value>Veriliş Tarihi (Gün)</value>
   </data>
   <data name="DateOfIssueMonth" xml:space="preserve">
-    <value>Date Of Issue (Month)</value>
+    <value>Veriliş Tarihi (Ay)</value>
   </data>
   <data name="DateOfIssueYear" xml:space="preserve">
-    <value>Date Of Issue (Year)</value>
+    <value>Veriliş Tarihi (Yıl)</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="ExecutiveBirthPlace" xml:space="preserve">
-    <value>Executive Birth Place</value>
+    <value>Yetkili Doğum Yeri</value>
   </data>
   <data name="ExecutiveFathersName" xml:space="preserve">
-    <value>Executive Fathers Name</value>
+    <value>Yetkili Baba Adı</value>
   </data>
   <data name="ExecutiveMothersMaidenName" xml:space="preserve">
-    <value>Executive Mothers Maiden Surname</value>
+    <value>Yetkili Anne Kızlık Soyadı</value>
   </data>
   <data name="ExecutiveMothersName" xml:space="preserve">
-    <value>Executive Mothers Name</value>
+    <value>Yetkili Anne Adı</value>
   </data>
   <data name="ExecutiveName" xml:space="preserve">
-    <value>Executive Name</value>
+    <value>Yetkili Adı</value>
   </data>
   <data name="ExecutiveNationalityId" xml:space="preserve">
-    <value>Executive Nationality</value>
+    <value>Yetkili Uyruğu</value>
   </data>
   <data name="ExecutivePhoneNo" xml:space="preserve">
-    <value>Executive Phone No</value>
+    <value>Yetkili Telefon No</value>
   </data>
   <data name="ExecutiveProfessionId" xml:space="preserve">
-    <value>Executive Profession</value>
+    <value>Yetkili Mesleği</value>
   </data>
   <data name="ExecutiveResidencyAddress" xml:space="preserve">
-    <value>Executive Residency Address</value>
+    <value>Yetkili İkamet Adresi</value>
   </data>
   <data name="ExecutiveSexId" xml:space="preserve">
-    <value>Executive Sex</value>
+    <value>Yetkili Cinsiyeti</value>
   </data>
   <data name="ExecutiveSurname" xml:space="preserve">
-    <value>Executive Surname</value>
+    <value>Yetkili Soyadı</value>
   </data>
   <data name="ExpiryDay" xml:space="preserve">
-    <value>Expiry Date (Day)</value>
+    <value>Kimlik Geçerlilik Tarihi (Gün)</value>
   </data>
   <data name="ExpiryMonth" xml:space="preserve">
-    <value>Expiry Date (Month)</value>
+    <value>Kimlik Geçerlilik Tarihi (Ay)</value>
   </data>
   <data name="ExpiryYear" xml:space="preserve">
-    <value>Expiry Date (Year)</value>
+    <value>Kimlik Geçerlilik Tarihi (Yıl)</value>
   </data>
   <data name="FathersName" xml:space="preserve">
-    <value>Fathers Name</value>
+    <value>Baba Adı</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>Adı</value>
   </data>
   <data name="HavePSTNId" xml:space="preserve">
-    <value>Do You Have a Home Phone?</value>
+    <value>Ev Telefonunuz Var mı?</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Soyadı</value>
+  </data>
+  <data name="MembershipDate" xml:space="preserve">
+    <value>Kayıt Tarihi</value>
   </data>
   <data name="MothersMaidenName" xml:space="preserve">
-    <value>Mothers Maiden Name</value>
+    <value>Anne Kızlık Soyadı</value>
   </data>
   <data name="MothersName" xml:space="preserve">
-    <value>Mothers Name</value>
+    <value>Anne Adı</value>
   </data>
   <data name="NationalityId" xml:space="preserve">
-    <value>Nationality</value>
+    <value>Uyruk</value>
   </data>
   <data name="Neighbourhood" xml:space="preserve">
-    <value>Neighbourhood</value>
+    <value>Köy/Mahalle</value>
   </data>
   <data name="OtherPhoneNos" xml:space="preserve">
-    <value>Other Phone Numbers</value>
+    <value>Diğer Telefon Numaraları</value>
   </data>
   <data name="PageNo" xml:space="preserve">
-    <value>Page No</value>
+    <value>Aile Sıra No</value>
   </data>
   <data name="PartnerTariffID" xml:space="preserve">
-    <value>Choise Tariff</value>
+    <value>Tarife Seçimi</value>
   </data>
   <data name="PassportNo" xml:space="preserve">
-    <value>Passport No</value>
+    <value>Pasaport No</value>
   </data>
   <data name="PlaceOfIssue" xml:space="preserve">
-    <value>Place Of Issue</value>
+    <value>Verildiği Yer</value>
   </data>
   <data name="ProfessionId" xml:space="preserve">
-    <value>Profession</value>
+    <value>Meslek</value>
   </data>
   <data name="PSTNNo" xml:space="preserve">
-    <value>Home Phone Number</value>
+    <value>Ev Telefonu Numarası</value>
   </data>
   <data name="RegistrationType" xml:space="preserve">
-    <value>Registration Type</value>
+    <value>Başvuru Türü</value>
   </data>
   <data name="RowNo" xml:space="preserve">
-    <value>Row No</value>
+    <value>Sıra Numarası</value>
   </data>
   <data name="SelectedBirthDay" xml:space="preserve">
-    <value>Birth Day</value>
+    <value>Doğum Günü</value>
   </data>
   <data name="SelectedBirthMonth" xml:space="preserve">
-    <value>Birth Month</value>
+    <value>Doğum Ayı</value>
   </data>
   <data name="SelectedBirthYear" xml:space="preserve">
-    <value>Birth Year</value>
+    <value>Doğum Yılı</value>
   </data>
   <data name="SerialNo" xml:space="preserve">
-    <value>Serial No</value>
+    <value>Seri No</value>
   </data>
   <data name="SexId" xml:space="preserve">
-    <value>Sex</value>
+    <value>Cinsiyet</value>
+  </data>
+  <data name="SubscriberNo" xml:space="preserve">
+    <value>Abone Numarası</value>
   </data>
   <data name="TaxNo" xml:space="preserve">
-    <value>Tax No</value>
+    <value>Vergi No</value>
   </data>
   <data name="TaxOffice" xml:space="preserve">
-    <value>Tax Office</value>
+    <value>Vergi Dairesi</value>
   </data>
   <data name="TCKNo" xml:space="preserve">
-    <value>Turkish Identity Number</value>
+    <value>TC Kimlik Numarası</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Company Title</value>
+    <value>Şirket Ünvanı</value>
   </data>
   <data name="TradeRegistrationNo" xml:space="preserve">
-    <value>Trade Registration No</value>
+    <value>Ticaret Sicil Numarası</value>
   </data>
   <data name="VolumeNo" xml:space="preserve">
-    <value>Volume Number</value>
+    <value>Cilt Numarası</value>
   </data>
   <data name="XDSLNo" xml:space="preserve">
-    <value>Current Service Number</value>
+    <value>Mevcut Hizmet Numarası</value>
   </data>
 </root>

@@ -1,0 +1,51 @@
+﻿@using PagedList.Mvc
+@using MasterISS_Agent_Website.ViewModels.Customer
+@model PagedList.StaticPagedList<ListAgentSubscriptionViewModel>
+@{
+    ViewBag.Title = "GetAgentSubscriptions";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerState)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().MembershipDate)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                <td>@Html.DisplayFor(modelItem => item.CustomerState)</td>
+                <td>@Html.DisplayFor(modelItem => item.MembershipDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model != null && Model.TotalItemCount > 0)
+{
+    <div class="card card-custom">
+        <div class="card-body py-7">
+            <!--begin::Pagination-->
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="d-flex flex-wrap mr-3">
+                    @Html.PagedListPager(Model, page => Url.Action("GetAgentSubscriptions", "Customer", new
+               {
+                   page = page,
+               }),
+               new PagedListRenderOptions
+               {
+               })
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="text-muted"> Toplam @Model.TotalItemCount kayıt bulundu. Bu sayfada @Model.FirstItemOnPage ile  @Model.LastItemOnPage gösteriliyor</span>
+                </div>
+            </div>
+            <!--end:: Pagination-->
+        </div>
+    </div>
+}

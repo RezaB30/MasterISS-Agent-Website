@@ -32,11 +32,12 @@ namespace MasterISS_Agent_Website.Controllers
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Email,signInViewModel.Username),
-                            new Claim("AgentId",response.AuthenticationResponse.AgentId.ToString())
+                            new Claim("AgentId",response.AuthenticationResponse.AgentId.ToString()),
+                            new Claim(ClaimTypes.NameIdentifier,response.AuthenticationResponse.AgentId.ToString())
                         };
 
-                        var authManager =Request.GetOwinContext().Authentication;
-                        var identity= new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                        var authManager = Request.GetOwinContext().Authentication;
+                        var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
                         authManager.SignIn(identity);
 
                         return RedirectToAction("Index", "Home");
@@ -47,6 +48,13 @@ namespace MasterISS_Agent_Website.Controllers
                 return View(signInViewModel);
             }
             return View(signInViewModel);
+        }
+
+        public ActionResult SignOut()
+        {
+            var authManager = Request.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("SignIn","Account");
         }
     }
 }

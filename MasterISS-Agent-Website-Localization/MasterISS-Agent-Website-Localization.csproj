@@ -71,15 +71,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddressInfoModel.en-us.resx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\NewCustomerModel.Designer.cs">
+    <Compile Include="Customer\CustomerModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewCustomerModel.resx</DependentUpon>
+      <DependentUpon>CustomerModel.resx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\NewCustomerModel.en-us.Designer.cs">
+    <Compile Include="Customer\CustomerModel.en-us.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewCustomerModel.en-us.resx</DependentUpon>
+      <DependentUpon>CustomerModel.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\NewCustomerView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCustomerView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\NewCustomerView.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewCustomerView.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="Generic\CultureList.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -91,6 +101,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CultureList.en-us.resx</DependentUpon>
     </Compile>
+    <Compile Include="Generic\ErrorCodeList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorCodeList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\ErrorCodeList.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorCodeList.en-us.resx</DependentUpon>
+    </Compile>
     <Compile Include="Generic\HavePSTN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +120,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HavePSTN.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\HomeModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\HomeModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeModel.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -149,13 +179,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddressInfoModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\NewCustomerModel.en-us.resx">
+    <EmbeddedResource Include="Customer\CustomerModel.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NewCustomerModel.en-us.Designer.cs</LastGenOutput>
+      <LastGenOutput>CustomerModel.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\NewCustomerModel.resx">
+    <EmbeddedResource Include="Customer\CustomerModel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NewCustomerModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CustomerModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\NewCustomerView.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewCustomerView.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\NewCustomerView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NewCustomerView.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Generic\CultureList.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -165,6 +203,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CultureList.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generic\ErrorCodeList.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorCodeList.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\ErrorCodeList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorCodeList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generic\HavePSTN.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HavePSTN.en-us.Designer.cs</LastGenOutput>
@@ -172,6 +218,14 @@
     <EmbeddedResource Include="Generic\HavePSTN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HavePSTN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\HomeModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\HomeModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

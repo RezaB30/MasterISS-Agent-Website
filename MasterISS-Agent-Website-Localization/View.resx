@@ -120,7 +120,16 @@
   <data name="GenericErrorMessage" xml:space="preserve">
     <value>Bir Hata Oluştu. Daha sonra tekrar deneyiniz.</value>
   </data>
+  <data name="InvalidCredentials" xml:space="preserve">
+    <value>Geçersiz Kimlik Bilgileri</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>Giriş Yap</value>
+  </data>
+  <data name="Successful" xml:space="preserve">
+    <value>Başarılı</value>
   </data>
 </root>
