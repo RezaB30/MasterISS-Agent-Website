@@ -13,6 +13,6 @@ namespace MasterISS_Agent_Website.ViewModels.Home
         [Display(Name = "GetBillsParameter", ResourceType = typeof(HomeModel))]
         [Required(ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "Required")]
         [RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "OnlyNumeric")]
-        public string GetBillsInputParameter { get; set; }
+        public string CustomerCode { get; set; }
     }
 }

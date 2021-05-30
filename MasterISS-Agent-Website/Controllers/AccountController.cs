@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         public ActionResult SignIn()
         {
@@ -33,6 +33,7 @@ namespace MasterISS_Agent_Website.Controllers
                         {
                             new Claim(ClaimTypes.Email,signInViewModel.Username),
                             new Claim("AgentId",response.AuthenticationResponse.AgentId.ToString()),
+                            new Claim(ClaimTypes.Name,response.AuthenticationResponse.DisplayName),
                             new Claim(ClaimTypes.NameIdentifier,response.AuthenticationResponse.AgentId.ToString())
                         };
 
@@ -54,7 +55,7 @@ namespace MasterISS_Agent_Website.Controllers
         {
             var authManager = Request.GetOwinContext().Authentication;
             authManager.SignOut();
-            return RedirectToAction("SignIn","Account");
+            return RedirectToAction("SignIn", "Account");
         }
     }
 }

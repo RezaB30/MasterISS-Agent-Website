@@ -131,6 +131,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeModel.en-us.resx</DependentUpon>
     </Compile>
+    <Compile Include="Home\HomeView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\HomeView.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeView.en-us.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +236,14 @@
     <EmbeddedResource Include="Home\HomeModel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\HomeView.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeView.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\HomeView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>HomeView.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

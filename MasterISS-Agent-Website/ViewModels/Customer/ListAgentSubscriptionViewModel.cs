@@ -18,6 +18,7 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
         public long SubscriptionId { get; set; }
 
         [Display(Name = "MembershipDate", ResourceType = typeof(CustomerModel))]
+        [UIHint("ShortDateTimeConverted")]
         public DateTime MembershipDate { get; set; }
 
         [Display(Name = "SubscriberNo", ResourceType = typeof(CustomerModel))]

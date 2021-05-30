@@ -22,11 +22,11 @@ namespace MasterISS_Agent_Website.ViewModels.Home
         public decimal Cost { get; set; }
 
         [Display(Name = "IssueDate", ResourceType = typeof(HomeModel))]
-        //[UIHint("DatetimeFormat")]
+        [UIHint("DateTimeFormat")]
         public string IssueDate { get; set; }
 
         [Display(Name = "DueDate", ResourceType = typeof(HomeModel))]
-        //[UIHint("DatetimeFormat")]
+        [UIHint("DateTimeFormat")]
         public string DueDate { get; set; }
 
         [Display(Name = "BillName", ResourceType = typeof(HomeModel))]

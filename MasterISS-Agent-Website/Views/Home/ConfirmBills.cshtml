@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmBills";
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+}
+
+<div>
+    <span>Toplam Tutar: @ViewBag.SumCount</span>
+</div>
+<div>
+    @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-light-primary font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3" })
+    @using (Ajax.BeginForm("PayBill", "Home", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
+    {
+        <button type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3 pay-button">Öde</button>
+    }
+</div>
+
+@section Javascript{
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/Scripts/generic-alert")
+
+    <script>
+        function GenericResult(data, status) {
+            if (status = "success") {
+                var responseStatus = data.responseJSON.status;
+                if (responseStatus == "Success") {
+                    var message = data.responseJSON.message;
+                    var url='@Url.Action("Index", "Home")';
+                    GetAlert(message, "true",url);
+                }
+                else  {
+                    var redirectMessage = data.responseJSON.ErrorMessage;
+                    var urlHome='@Url.Action("Index", "Home")';
+                    GetAlert(redirectMessage, "false", urlHome);
+                }
+
+            }
+            else {
+                console.log("Error");
+            }
+        }
+    </script>
+}

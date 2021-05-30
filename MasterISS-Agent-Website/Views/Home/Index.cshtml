@@ -1,4 +1,79 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using MasterISS_Agent_Website.ViewModels.Home
+@model  CustomerBillCollectionViewModel
+@{
+    //ViewBag.Title = "Fatura Ödeme Sayfası";
+    var search = ViewBag.Search as GetSubcriberBillsViewModel ?? new GetSubcriberBillsViewModel();
+    var counter = 0;
 }
 
+<div>
+    @ViewBag.ResponseError
+</div>
+
+<div >
+    <h1>Fatura Sorgulama & Ödeme</h1>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post,new { @class="m-2"}))
+    {
+        <div>
+            @Html.AntiForgeryToken()
+            @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo",  @placeholder = "TC ya da Telefon Numarası", @autocomplete = "off" })
+            <input type="submit" class="btn-primary mt-2" value="Sorgula" />
+        </div>
+    }
+</div>
+
+@if (ViewBag.Error == null)
+{
+    using (Html.BeginForm("ConfirmBills", "Home", FormMethod.Post, new { @class = "m-2 pt-5" }))
+    {
+        <span class="text-danger">Abone Adı: @Html.DisplayFor(m => m.SubscriberName)</span>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().BillName)</th>
+                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().IssueDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().DueDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().Cost)</th>
+                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().SubscriptionNo)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Bills)
+                {
+                    counter++;
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="selectedBills" value="@item.BillID" dataValue="@counter" subsNo="@item.SubscriptionNo">
+                                <span></span>
+                            </label>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.BillName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SubscriptionNo)</td>
+                    </tr>
+                }
+                @Html.Hidden("customerCode", search.CustomerCode)
+                @Html.Hidden("subscriberNo")
+            </tbody>
+        </table>
+        <input type="submit" value="Fatura Öde" />
+    }
+}
+<div class="text-danger">
+    @ViewBag.PayOldBillError
+    @ViewBag.PayBillError
+</div>
+
+@section Javascript{
+    @Scripts.Render("~/Scripts/home-operations")
+
+    <script>
+        var validationUrl = '@Url.Action("ValidBillsBySubcriberNo", "Home")';
+        ValidBillsBySubscriberNo(validationUrl);
+    </script>
+}

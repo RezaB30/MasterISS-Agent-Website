@@ -16,6 +16,14 @@ namespace MasterISS_Agent_Website
             return email;
         }
 
+        public static string UserDisplayName()
+        {
+            var displayName = CurrentClaims().Where(c => c.Type == ClaimTypes.Name)
+                  .Select(c => c.Value).SingleOrDefault();
+
+            return displayName;
+        }
+
         private static List<Claim> CurrentClaims()
         {
             var currentClaims = ClaimsPrincipal.Current.Identities.First().Claims.ToList();

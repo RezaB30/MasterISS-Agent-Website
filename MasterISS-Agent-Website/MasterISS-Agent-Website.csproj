@@ -119,6 +119,9 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -154,6 +157,9 @@
     </Reference>
     <Reference Include="RezaB.Files.Local, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RezaB.Files.Local.1.0.1\lib\net472\RezaB.Files.Local.dll</HintPath>
+    </Reference>
+    <Reference Include="RezaB.Web, Version=1.1.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RezaB.Web.1.1.6\lib\net472\RezaB.Web.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -240,9 +246,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -265,6 +268,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="AgentClaimInfo.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryInfrastructureController.cs" />
@@ -285,26 +289,47 @@
     <Compile Include="ViewModels\Customer\ListAgentSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\Customer\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\Home\CustomerBillCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Home\CustomerBillIdAndCost.cs" />
     <Compile Include="ViewModels\Home\GetSubcriberBillsViewModel.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\PagedList.css" />
-    <Content Include="Content\sweetalert2.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\images\icons\add-client.svg" />
+    <Content Include="Content\images\icons\client-list.svg" />
+    <Content Include="Content\images\icons\down-chevron.svg" />
+    <Content Include="Content\images\icons\payment.svg" />
+    <Content Include="Content\images\icons\power-off.svg" />
+    <Content Include="Content\images\icons\search.svg" />
+    <Content Include="Content\images\icons\user.svg" />
+    <Content Include="Content\images\logo\Master ISS.svg" />
+    <Content Include="Content\css\PagedList.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\sweetalert2.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\Alert\sweet-alert.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\Prompt-Black.ttf" />
+    <Content Include="fonts\Prompt-BlackItalic.ttf" />
+    <Content Include="fonts\Prompt-Bold.ttf" />
+    <Content Include="fonts\Prompt-BoldItalic.ttf" />
+    <Content Include="fonts\Prompt-ExtraBold.ttf" />
+    <Content Include="fonts\Prompt-ExtraBoldItalic.ttf" />
+    <Content Include="fonts\Prompt-ExtraLight.ttf" />
+    <Content Include="fonts\Prompt-ExtraLightItalic.ttf" />
+    <Content Include="fonts\Prompt-Italic.ttf" />
+    <Content Include="fonts\Prompt-Light.ttf" />
+    <Content Include="fonts\Prompt-LightItalic.ttf" />
+    <Content Include="fonts\Prompt-Medium.ttf" />
+    <Content Include="fonts\Prompt-MediumItalic.ttf" />
+    <Content Include="fonts\Prompt-Regular.ttf" />
+    <Content Include="fonts\Prompt-SemiBold.ttf" />
+    <Content Include="fonts\Prompt-SemiBoldItalic.ttf" />
+    <Content Include="fonts\Prompt-Thin.ttf" />
+    <Content Include="fonts\Prompt-ThinItalic.ttf" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -312,14 +337,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\AllPages\error-messages.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Home\home-index-operations.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\AllPages\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\AllPages\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -327,7 +352,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Customer\new-customer-operations.js" />
     <Content Include="Scripts\QueryAddress\address-query.js" />
-    <Content Include="Scripts\sweetalert2.min.js" />
+    <Content Include="Scripts\AllPages\sweetalert2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -347,24 +372,19 @@
     <Content Include="Views\Customer\SmsConfirmation.cshtml" />
     <Content Include="Views\Customer\Successful.cshtml" />
     <Content Include="Views\Customer\GetAgentSubscriptions.cshtml" />
+    <Content Include="Views\Home\ConfirmBills.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTimeConverted.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTimeFormat.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ShortDateTimeConverted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\QueryInfrastructure\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MasterISS-Agent-Website-Enums\MasterISS-Agent-Website-Enums.csproj">

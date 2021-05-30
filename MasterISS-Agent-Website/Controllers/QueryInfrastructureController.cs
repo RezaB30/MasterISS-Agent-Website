@@ -8,7 +8,8 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    public class QueryInfrastructureController : Controller
+    [Authorize]
+    public class QueryInfrastructureController : BaseController
     {
         // GET: QueryInfrastructure
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");

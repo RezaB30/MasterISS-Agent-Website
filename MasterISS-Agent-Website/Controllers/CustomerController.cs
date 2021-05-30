@@ -16,7 +16,8 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    public class CustomerController : Controller
+    [Authorize]
+    public class CustomerController : BaseController
     {
         private static Logger Logger = LogManager.GetLogger("AppLogger");
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
@@ -239,6 +240,11 @@ namespace MasterISS_Agent_Website.Controllers
                             if (smsConfirmation.ResponseMessage.ErrorCode == 0)
                             {
                                 Session["CustomerApplicationInfo"] = addCustomerViewModel;
+
+                                //LOG
+                                Logger.Info($"SMS Code : {smsConfirmation.SMSCodeResponse.Code}");
+                                //LOG
+
                                 Session["SMSCode"] = smsConfirmation.SMSCodeResponse.Code;
                                 return View("SmsConfirmation");
                             }
@@ -441,7 +447,7 @@ namespace MasterISS_Agent_Website.Controllers
                     MembershipDate = Convert.ToDateTime(asl.MembershipDate),
                     SubscriberNo = asl.SubscriberNo,
                     SubscriptionId = asl.ID
-                });
+                }).OrderByDescending(asl => asl.MembershipDate);
 
                 var totalCount = list.Count();
 

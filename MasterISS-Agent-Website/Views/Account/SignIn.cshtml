@@ -1,13 +1,14 @@
 ﻿@using MasterISS_Agent_Website_Localization
 @model MasterISS_Agent_Website.ViewModels.SignInViewModel
 @{
-    ViewBag.Title = "SignIn";
+    <title>Giriş Yap</title>
 }
 
-@using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class="center"}))
 {
+    <h2 style="text-align:center">Giriş Yap</h2>
     @Html.AntiForgeryToken()
-    <div>
+    <div class="mb-3">
         @Html.LabelFor(m => m.Username)
         @Html.EditorFor(m => m.Username)
         @Html.ValidationMessageFor(m => m.Username)
@@ -19,6 +20,8 @@
         @Html.ValidationMessageFor(m => m.Password)
     </div>
 
-    <input type="submit" value="@View.SignIn" />
+    <input type="submit" class="btn-primary mt-2" value="@View.SignIn" />
 }
-@ViewBag.ErrorMessage
+<div>
+    @ViewBag.ErrorMessage
+</div>
