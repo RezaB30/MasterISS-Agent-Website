@@ -3,11 +3,13 @@
 @model  NewCustomerViewModel
 @{
     ViewBag.Title = "Yeni Müşteri Ekle";
+    <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
 }
 
 <div style="font-size:2em" class="text-danger">
     <span class="text-danger">@ViewBag.NewCustomerError</span>
     <span class="text-danger">@Html.Raw(TempData["SMSConfirmationError"])</span>
+    <span class="text-danger">@Html.Raw(TempData["SMSConfirmationSuccess"])</span>
     <span class="text-danger">@ViewBag.InvalidCredentials</span>
 </div>
 
@@ -383,7 +385,7 @@
                         @Html.ValidationMessageFor(ci => ci.CorporateInfo.CompanyAddress.Floor)
                     </div>
 
-                    <div class="pt-1"> 
+                    <div class="pt-1">
                         @Html.LabelFor(ci => ci.CorporateInfo.CompanyAddress.PostalCode)
                         @Html.EditorFor(ci => ci.CorporateInfo.CompanyAddress.PostalCode, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.CorporateInfo.CompanyAddress.PostalCode), @autocomplete = "off" } })
                         @Html.ValidationMessageFor(ci => ci.CorporateInfo.CompanyAddress.PostalCode)
@@ -494,7 +496,7 @@
                     @Html.ValidationMessageFor(m => m.IDCard.SelectedBirthDay)
                 </div>
 
-                <div class="pt-3"> 
+                <div class="pt-3">
                     @Html.LabelFor(m => m.IDCard.SelectedBirthMonth)
                     @Html.DropDownListFor(m => m.IDCard.SelectedBirthMonth, (SelectList)ViewBag.MonthList, MasterISS_Agent_Website_Localization.Account.AccountView.Select, null)
                     @Html.ValidationMessageFor(m => m.IDCard.SelectedBirthMonth)
@@ -670,6 +672,7 @@
 </div>
 
 @section Javascript{
+    <script src="~/Scripts/AllPages/sweetalert2.min.js"></script>
     @Scripts.Render("~/Scripts/new-customer-operations")
     @Scripts.Render("~/Scripts/address-query")
 

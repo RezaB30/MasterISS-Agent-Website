@@ -380,7 +380,7 @@ namespace MasterISS_Agent_Website.Controllers
                             //LOG
                             Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.UserEmail());
                             //LOG
-
+                            TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
                             return RedirectToAction("NewCustomer", "Customer");
 
                             //return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
