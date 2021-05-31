@@ -4,14 +4,17 @@
     ViewBag.Title = "ConfirmBills";
 }
 
-<div>
+<div class="mb-2">
     <span>Toplam Tutar: @ViewBag.SumCount</span>
 </div>
-<div>
-    @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-light-primary font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3" })
+
+<div class="btn-group">
+    @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
     @using (Ajax.BeginForm("PayBill", "Home", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
     {
-        <button type="submit" class="btn btn-info font-weight-bolder font-size-h8 px-8 py-3 my-3 mr-3 pay-button">Öde</button>
+        <div>
+            <button type="submit" class="btn btn-info pay-button">Öde</button>
+        </div>
     }
 </div>
 

@@ -1,0 +1,41 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Home
+@model IEnumerable<ListAgentPaidBillsViewModel>
+@{
+    ViewBag.Title = "GetAgentsPaidBills";
+}
+
+@if (ViewBag.NotFoundPaidBills == null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberName)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerBillIdsAndCosts.FirstOrDefault().BillName)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerBillIdsAndCosts.FirstOrDefault().Cost)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.SubscriberName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+                    @foreach (var billItems in item.CustomerBillIdsAndCosts)
+                    {
+                        <td>@Html.DisplayFor(billItem => billItems.BillName)</td>
+                        <td>@Html.DisplayFor(billItem => billItems.Cost)</td>
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else
+{
+    <div class="text-danger">
+        @ViewBag.NotFoundPaidBills
+    </div>
+}

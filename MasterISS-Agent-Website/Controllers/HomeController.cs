@@ -3,12 +3,14 @@ using MasterISS_Agent_Website_Enums.Enums;
 using MasterISS_Agent_Website_Localization.Generic;
 using MasterISS_Agent_Website_Localization.Home;
 using MasterISS_Agent_Website_WebServices.AgentWebService;
+using Microsoft.Extensions.Caching.Memory;
 using NLog;
 using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Web;
 using System.Web.Mvc;
 
@@ -75,7 +77,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var response = wrapper.GetBills(customerCode);
                 if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    var userBillList = response.BillListResponse.Bills.Where(blr => blr.SubscriberNo == subscriberNo).OrderBy(blr => blr.IssueDate).Take(selectedBills.Length).Select(blr => new { blr.ID, blr.Total });
+                    var userBillList = response.BillListResponse.Bills.Where(blr => blr.SubscriberNo == subscriberNo).OrderBy(blr => blr.IssueDate).Take(selectedBills.Length).Select(blr => new { blr.ID, blr.Total, billName = blr.ServiceName });
 
                     if (ValidBills(selectedBills, customerCode, subscriberNo) == false)
                     {
@@ -85,7 +87,7 @@ namespace MasterISS_Agent_Website.Controllers
                     }
 
                     var billTotalCount = userBillList.Select(ubl => ubl.Total).Sum();
-                    var billList = userBillList.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total }).ToArray();
+                    var billList = userBillList.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total, BillName = ubl.billName }).ToArray();
                     Session["BillsSumCount"] = billTotalCount;
                     Session["BillList"] = billList;
                     Session["SubsNo"] = customerCode;
@@ -98,7 +100,7 @@ namespace MasterISS_Agent_Website.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        public MemoryCache cache = MemoryCache.Default;
         public ActionResult PayBill()
         {
             var wrapper = new WebServiceWrapper();
@@ -115,6 +117,42 @@ namespace MasterISS_Agent_Website.Controllers
                 if (responsePayBill.ResponseMessage.ErrorCode == 0)
                 {
                     RemoveSessionsByBillOperations();
+
+                    var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
+
+                    var paidBillsViewModel = new List<ListAgentPaidBillsViewModel>();
+
+                    var cacheItemPolicy = new CacheItemPolicy
+                    {
+                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(2)
+                    };
+
+                    if (cache.Get(agentBills) == null)
+                    {
+                        paidBillsViewModel.Add(new ListAgentPaidBillsViewModel
+                        {
+                            SubscriberName = billSubscriberName,
+                            SubscriberNo = billSubscriberNo,
+                            CustomerBillIdsAndCosts = selectedBills
+                        });
+
+                        var result = cache.Add(agentBills, paidBillsViewModel, cacheItemPolicy);
+                    }
+                    else
+                    {
+                        var data = cache.Get(agentBills);
+                        var results = (List<ListAgentPaidBillsViewModel>)data;
+
+                        results.Add(new ListAgentPaidBillsViewModel
+                        {
+                            SubscriberName = billSubscriberName,
+                            SubscriberNo = billSubscriberNo,
+                            CustomerBillIdsAndCosts = selectedBills
+                        });
+
+                        var resultCache = cache.Add(agentBills, results, cacheItemPolicy);
+                    }
+
 
                     var message = MasterISS_Agent_Website_Localization.View.Successful;
                     return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
@@ -142,6 +180,20 @@ namespace MasterISS_Agent_Website.Controllers
                 var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
                 return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult GetAgentsPaidBills()
+        {
+            var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
+            var data = cache.Get(agentBills);
+            var results = (List<ListAgentPaidBillsViewModel>)data;
+            if (results != null)
+            {
+                return View(results);
+            }
+
+            ViewBag.NotFoundPaidBills = "Ödenmiş Fatura Bulunamadı";
+            return View();
         }
 
         private void RemoveSessionsByBillOperations()

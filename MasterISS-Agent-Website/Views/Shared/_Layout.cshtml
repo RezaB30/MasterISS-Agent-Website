@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasterISS Agents</title>
+    <title>MasterISS Acentalar</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
     @Styles.Render("~/Content/all-page-css")
@@ -61,6 +61,9 @@
                         </li>
                         <li>
                             <a href="@Url.Action("GetAgentSubscriptions","Customer")" class="side-nav-item"><div class="inline-icon client-list"></div> Abone Listesi</a>
+                        </li> 
+                        <li>
+                            <a href="@Url.Action("GetAgentsPaidBills","Home")" class="side-nav-item"><div class="inline-icon payment"></div> Ödenmiş Fatura Listesi</a>
                         </li>
                     </ul>
                 </nav>

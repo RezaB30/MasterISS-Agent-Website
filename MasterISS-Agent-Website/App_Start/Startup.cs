@@ -13,6 +13,8 @@ namespace MasterISS_Agent_Website.App_Start
 {
     public class Startup
     {
+        
+
         public void Configuration(IAppBuilder app)
         {
             UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
