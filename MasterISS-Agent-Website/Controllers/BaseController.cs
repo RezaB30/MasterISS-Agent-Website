@@ -42,10 +42,20 @@ namespace MasterISS_Agent_Website.Controllers
             //            CultureInfo.GetCultureInfo(lang);
             //    }
 
+            //This is shit
+            Thread.CurrentThread.CurrentUICulture =
+                        Thread.CurrentThread.CurrentCulture =
+                        CultureInfo.GetCultureInfo("tr-tr");
+            //This is shit
+
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             ViewBag.Version = version.ToString(3);
             ViewBag.Username = AgentClaimInfo.UserDisplayName();
             return base.BeginExecuteCore(callback, state);
+            //}
+
+          
+
         }
 
         [AllowAnonymous]

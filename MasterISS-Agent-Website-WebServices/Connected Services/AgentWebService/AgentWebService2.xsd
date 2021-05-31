@@ -249,6 +249,7 @@
       <xs:extension base="tns:RequestBase">
         <xs:sequence>
           <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BillIDs" nillable="true" type="q8:ArrayOflong" />
+          <xs:element minOccurs="0" name="PrePaidSubscription" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

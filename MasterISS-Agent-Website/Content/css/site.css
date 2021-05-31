@@ -24,6 +24,7 @@ a {
     text-decoration: none;
 }
 
+
 label {
     color: var(--black-text-color);
 }
@@ -40,6 +41,7 @@ button, input, optgroup, select, textarea {
     border: 1px solid var(--light-border-color);
     width: 100%;
     box-sizing: border-box;
+    border-radius:0.2em;
 }
 
     button:focus, input:focus, optgroup:focus, select:focus, textarea:focus {

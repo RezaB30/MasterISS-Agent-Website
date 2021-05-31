@@ -380,8 +380,8 @@ namespace MasterISS_Agent_Website.Controllers
                             //LOG
                             Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.UserEmail());
                             //LOG
-                            TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
-                            return RedirectToAction("NewCustomer", "Customer");
+                            //TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
+                            return RedirectToAction("Successful", "Customer");
 
                             //return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
                         }
@@ -395,9 +395,10 @@ namespace MasterISS_Agent_Website.Controllers
                             LoggerError.Fatal($"An error occurred while NewCustomerRegister, ErrorCode:  {response.ResponseMessage.ErrorCode}, ErrorMessage : {response.ResponseMessage.ErrorMessage}, NameValuePair :{string.Join(",", response.NewCustomerRegisterResponse)}  by: {AgentClaimInfo.UserEmail()}");
                             //LOG
 
-                            ViewBag.ErrorMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
+                            TempData["SMSConfirmationError"] = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
 
-                            return View();
+                            return RedirectToAction("NewCustomer", "Customer");
+
                             //return Json(new { status = "Failed", ErrorMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture) }, JsonRequestBehavior.AllowGet);
                         }
                     }
@@ -428,7 +429,9 @@ namespace MasterISS_Agent_Website.Controllers
             }
             Session.Remove("CustomerApplicationInfo");
 
-            return RedirectToAction("Successful", "Customer");
+            TempData["SMSConfirmationError"] = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+
+            return RedirectToAction("NewCustomer", "Customer");
 
             //return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
         }

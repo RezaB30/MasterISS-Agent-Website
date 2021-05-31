@@ -108,9 +108,9 @@
   <xs:element name="KeyValueItem" nillable="true" type="tns:KeyValueItem" />
   <xs:complexType name="AgentServicePaymentResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseResponseOfArrayOflongSHA256PGu3YCeQ">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
-          <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PaymentResponse" nillable="true" type="q8:ArrayOflong" />
+          <xs:element minOccurs="0" name="PaymentResponse" type="xs:boolean" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -118,7 +118,7 @@
   <xs:element name="AgentServicePaymentResponse" nillable="true" type="tns:AgentServicePaymentResponse" />
   <xs:complexType name="AgentServiceCredentialSMSResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q8:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
           <xs:element minOccurs="0" name="CredentialSMSResponse" type="xs:boolean" />
         </xs:sequence>
@@ -128,7 +128,7 @@
   <xs:element name="AgentServiceCredentialSMSResponse" nillable="true" type="tns:AgentServiceCredentialSMSResponse" />
   <xs:complexType name="AgentServiceIDCardValidationResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
           <xs:element minOccurs="0" name="IDCardValidationResponse" type="xs:boolean" />
         </xs:sequence>
@@ -138,7 +138,7 @@
   <xs:element name="AgentServiceIDCardValidationResponse" nillable="true" type="tns:AgentServiceIDCardValidationResponse" />
   <xs:complexType name="AgentServiceBillListResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseResponseOfBillListResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfBillListResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="BillListResponse" nillable="true" type="tns:BillListResponse" />
         </xs:sequence>
@@ -149,6 +149,7 @@
   <xs:complexType name="BillListResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="Bills" nillable="true" type="tns:ArrayOfBillListResponse.BillInfo" />
+      <xs:element minOccurs="0" name="PrePaidSubscriptionInfoes" nillable="true" type="tns:ArrayOfBillListResponse.PrePaidSubscriptionInfo" />
       <xs:element minOccurs="0" name="SubscriberName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TotalCredits" type="xs:decimal" />
     </xs:sequence>
@@ -171,4 +172,18 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BillListResponse.BillInfo" nillable="true" type="tns:BillListResponse.BillInfo" />
+  <xs:complexType name="ArrayOfBillListResponse.PrePaidSubscriptionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillListResponse.PrePaidSubscriptionInfo" nillable="true" type="tns:BillListResponse.PrePaidSubscriptionInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillListResponse.PrePaidSubscriptionInfo" nillable="true" type="tns:ArrayOfBillListResponse.PrePaidSubscriptionInfo" />
+  <xs:complexType name="BillListResponse.PrePaidSubscriptionInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ServiceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubscriberNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillListResponse.PrePaidSubscriptionInfo" nillable="true" type="tns:BillListResponse.PrePaidSubscriptionInfo" />
 </xs:schema>

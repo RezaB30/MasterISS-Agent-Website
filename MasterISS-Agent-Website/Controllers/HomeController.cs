@@ -100,6 +100,42 @@ namespace MasterISS_Agent_Website.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult ConfirmPrePaid(string subscriberNo, string customerCode)
+        {
+            var wrapper = new WebServiceWrapper();
+
+            var response = wrapper.GetBills(customerCode);
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var validSubscriber = response.BillListResponse.PrePaidSubscriptionInfoes.Where(pps => pps.SubscriberNo == subscriberNo).FirstOrDefault();
+
+                if (validSubscriber != null)
+                {
+                    var billTotalCount = validSubscriber.Total;
+                    var billList = response.BillListResponse.PrePaidSubscriptionInfoes.Select(ubl => new CustomerBillIdAndCost { Cost = ubl.Total, BillName = ubl.ServiceName }).ToArray();
+                    Session["BillsSumCount"] = billTotalCount;
+                    Session["BillList"] = billList;
+                    Session["SubsNo"] = subscriberNo;
+                    Session["SubsName"] = response.BillListResponse.SubscriberName;
+
+                    ViewBag.SumCount = billTotalCount;
+
+                    ViewBag.PrePaid = "Pre Paid";
+
+                    return View("ConfirmBills");
+                }
+
+                ViewBag.ResponseError = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+                return View("Index", CustomerBills(response));
+            }
+
+            ViewBag.ResponseError = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
+            return View("Index");
+        }
+
         public MemoryCache cache = MemoryCache.Default;
         public ActionResult PayBill()
         {
@@ -124,7 +160,7 @@ namespace MasterISS_Agent_Website.Controllers
 
                     var cacheItemPolicy = new CacheItemPolicy
                     {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(2)
+                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(18)
                     };
 
                     if (cache.Get(agentBills) == null)
@@ -182,6 +218,80 @@ namespace MasterISS_Agent_Website.Controllers
             }
         }
 
+        public ActionResult PayBillPrePaid()
+        {
+            var wrapper = new WebServiceWrapper();
+            var selectedBills = Session["BillList"] as CustomerBillIdAndCost[];
+            var billSubscriberName = Session["SubsName"].ToString();
+            var billSubscriberNo = Session["SubsNo"].ToString();
+
+            if (selectedBills != null && selectedBills.Count() > 0)
+            {
+                var response = wrapper.PayBillsPrePaid(billSubscriberNo);
+                if (response.ResponseMessage.ErrorCode == 0)
+                {
+                    RemoveSessionsByBillOperations();
+
+                    var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
+
+                    var paidBillsViewModel = new List<ListAgentPaidBillsViewModel>();
+
+                    var cacheItemPolicy = new CacheItemPolicy
+                    {
+                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(18)
+                    };
+
+                    if (cache.Get(agentBills) == null)
+                    {
+                        paidBillsViewModel.Add(new ListAgentPaidBillsViewModel
+                        {
+                            SubscriberName = billSubscriberName,
+                            SubscriberNo = billSubscriberNo,
+                            CustomerBillIdsAndCosts = selectedBills
+                        });
+
+                        var result = cache.Add(agentBills, paidBillsViewModel, cacheItemPolicy);
+                    }
+                    else
+                    {
+                        var data = cache.Get(agentBills);
+                        var results = (List<ListAgentPaidBillsViewModel>)data;
+
+                        results.Add(new ListAgentPaidBillsViewModel
+                        {
+                            SubscriberName = billSubscriberName,
+                            SubscriberNo = billSubscriberNo,
+                            CustomerBillIdsAndCosts = selectedBills
+                        });
+
+                        var resultCache = cache.Add(agentBills, results, cacheItemPolicy);
+                    }
+
+
+                    var message = MasterISS_Agent_Website_Localization.View.Successful;
+                    return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    LoggerError.Fatal($"An error occurred while PrePaidPayBill, PayBillErrorCode: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+                    //LOG
+
+                    RemoveSessionsByBillOperations();
+
+                    var errorMessage = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
+                    return Json(new { status = "FailedAndRedirect", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            RemoveSessionsByBillOperations();
+            //LOG
+            LoggerError.Fatal($"An error occurred while PrePaidPayBill => Selected Bills Null,  by: {AgentClaimInfo.UserEmail()}");
+            //LOG
+
+            var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+            return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetAgentsPaidBills()
         {
             var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
@@ -223,10 +333,20 @@ namespace MasterISS_Agent_Website.Controllers
                     IssueDate = b.IssueDate,
                     BillID = b.ID,
                     DueDate = b.DueDate,
-                    Cost = b.Total,
-                    BillName = b.ServiceName,
-                    SubscriptionNo = b.SubscriberNo,
-                }).OrderBy(bl => bl.SubscriptionNo).ThenBy(bl => bl.IssueDate)
+                    GenericBillInfoViewModel = new GenericBillInfoViewModel
+                    {
+                        Cost = b.Total,
+                        BillName = b.ServiceName,
+                        SubscriptionNo = b.SubscriberNo,
+                    },
+                }).OrderBy(bl => bl.GenericBillInfoViewModel.SubscriptionNo).ThenBy(bl => bl.IssueDate),
+                PrePaidSubscriberInfos = response.BillListResponse.PrePaidSubscriptionInfoes == null ? Enumerable.Empty<GenericBillInfoViewModel>() : response.BillListResponse.PrePaidSubscriptionInfoes
+                .Select(pps => new GenericBillInfoViewModel
+                {
+                    BillName = pps.ServiceName,
+                    Cost = pps.Total,
+                    SubscriptionNo = pps.SubscriberNo
+                })
             };
             return billList;
         }

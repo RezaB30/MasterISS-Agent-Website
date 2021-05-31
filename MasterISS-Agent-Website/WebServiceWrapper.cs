@@ -80,13 +80,36 @@ namespace MasterISS_Agent_Website
                 {
                     BillIDs = billsIds,
                     UserEmail = AgentClaimInfo.UserEmail(),
-                }
+                    PrePaidSubscription = null
+                },
             };
 
             var response = Client.PayBills(request);
 
             return response;
         }
+
+        public AgentServicePaymentResponse PayBillsPrePaid(string subscriberNo)
+        {
+            var request = new AgentServicePaymentRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                PaymentRequest = new PaymentRequest
+                {
+                    BillIDs = null,
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    PrePaidSubscription = subscriberNo
+                },
+            };
+
+            var response = Client.PayBills(request);
+
+            return response;
+        }
+
 
         public AgentServiceBillListResponse GetBills(string customerCode)
         {
@@ -104,7 +127,6 @@ namespace MasterISS_Agent_Website
             };
 
             var response = Client.GetBills(request);
-
             return response;
         }
 

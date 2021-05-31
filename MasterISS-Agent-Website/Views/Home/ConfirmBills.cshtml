@@ -1,22 +1,37 @@
 ﻿
 @{
     <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
-    ViewBag.Title = "ConfirmBills";
+    ViewBag.Title = "Fatura Öde";
 }
 
 <div class="mb-2">
     <span>Toplam Tutar: @ViewBag.SumCount</span>
 </div>
+@Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
 
-<div class="btn-group">
-    @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
-    @using (Ajax.BeginForm("PayBill", "Home", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
-    {
-        <div>
-            <button type="submit" class="btn btn-info pay-button">Öde</button>
-        </div>
-    }
-</div>
+@if (ViewBag.PrePaid != null)
+{
+    <div class="btn-group">
+        @using (Ajax.BeginForm("PayBillPrePaid", "Home", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
+        {
+            <div>
+                <button type="submit" class="btn btn-info pay-button">Öde</button>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="btn-group">
+        @using (Ajax.BeginForm("PayBill", "Home", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
+        {
+            <div>
+                <button type="submit" class="btn btn-info pay-button">Öde</button>
+            </div>
+        }
+    </div>
+}
+
 
 @section Javascript{
     <script src="~/Scripts/AllPages/sweetalert2.min.js"></script>

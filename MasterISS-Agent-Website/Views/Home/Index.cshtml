@@ -6,21 +6,20 @@
     var counter = 0;
 }
 
-<div>
-    @ViewBag.ResponseError
-</div>
 
-<div >
+<div>
     <h1>Fatura Sorgulama & Ödeme</h1>
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post,new { @class="m-2"}))
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "m-2" }))
     {
         <div>
             @Html.AntiForgeryToken()
-            @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo",  @placeholder = "TC ya da Telefon Numarası", @autocomplete = "off" })
+            @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo", @placeholder = "TC ya da Telefon Numarası", @autocomplete = "off" })
             <input type="submit" class="btn-primary mt-2" value="Sorgula" />
         </div>
     }
 </div>
+
 
 @if (ViewBag.Error == null)
 {
@@ -28,44 +27,90 @@
     {
         <span class="text-danger">Abone Adı: @Html.DisplayFor(m => m.SubscriberName)</span>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().BillName)</th>
-                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().IssueDate)</th>
-                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().DueDate)</th>
-                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().Cost)</th>
-                    <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().SubscriptionNo)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Bills)
-                {
-                    counter++;
+        if (Model.Bills.Count() != 0)
+        {
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            <label>
-                                <input type="checkbox" name="selectedBills" value="@item.BillID" dataValue="@counter" subsNo="@item.SubscriptionNo">
-                                <span></span>
-                            </label>
-                        </td>
+                        <th></th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.BillName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().IssueDate)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().DueDate)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.Cost)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.SubscriptionNo)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Bills)
+                    {
+                        counter++;
+                        <tr>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="selectedBills" value="@item.BillID" dataValue="@counter" subsNo="@item.GenericBillInfoViewModel.SubscriptionNo">
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.GenericBillInfoViewModel.BillName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                            <td>@Html.DisplayFor(modelItem => item.GenericBillInfoViewModel.Cost)</td>
+                            <td>@Html.DisplayFor(modelItem => item.GenericBillInfoViewModel.SubscriptionNo)</td>
+                        </tr>
+                    }
+                    @Html.Hidden("customerCode", search.CustomerCode)
+                    @Html.Hidden("subscriberNo")
+                </tbody>
+            </table>
+            <input type="submit" class="btn btn-success" value="Fatura Öde" />
+        }
+    }
+
+    if (Model.PrePaidSubscriberInfos.Count() != 0)
+    {
+        foreach (var item in Model.PrePaidSubscriberInfos)
+        {
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.BillName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.Cost)</th>
+                        <th>@Html.DisplayNameFor(m => m.Bills.FirstOrDefault().GenericBillInfoViewModel.SubscriptionNo)</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
                         <td>@Html.DisplayFor(modelItem => item.BillName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
                         <td>@Html.DisplayFor(modelItem => item.Cost)</td>
                         <td>@Html.DisplayFor(modelItem => item.SubscriptionNo)</td>
+                        <td>
+                            @using (Html.BeginForm("ConfirmPrePaid", "Home", FormMethod.Post))
+                            {
+                                @Html.Hidden("customerCode", search.CustomerCode)
+                                @Html.Hidden("subscriberNo", item.SubscriptionNo)
+                                <input value="Tarife Uzat" class="btn btn-info" type="submit" />
+                            }
+                        </td>
                     </tr>
-                }
-                @Html.Hidden("customerCode", search.CustomerCode)
-                @Html.Hidden("subscriberNo")
-            </tbody>
-        </table>
-        <input type="submit" class="btn btn-success" value="Fatura Öde" />
+
+                </tbody>
+            </table>
+        }
+    }
+
+    if (Model.PrePaidSubscriberInfos.Count() != 0 && Model.Bills.Count() != 0)
+    {
+        <div class="text-danger">
+            <span>Fatura Bulunamadı</span>
+        </div>
+
     }
 }
+
 <div class="text-danger">
     @ViewBag.PayOldBillError
+    @ViewBag.ResponseError
     @ViewBag.PayBillError
 </div>
 

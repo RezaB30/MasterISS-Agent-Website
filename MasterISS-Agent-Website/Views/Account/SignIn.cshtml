@@ -4,19 +4,19 @@
     <title>Giriş Yap</title>
 }
 
-@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class="center"}))
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post, new { @class = "center" }))
 {
     <h2 style="text-align:center">Giriş Yap</h2>
     @Html.AntiForgeryToken()
     <div class="mb-3">
         @Html.LabelFor(m => m.Username)
-        @Html.EditorFor(m => m.Username)
+        @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @autocomplete = "off", @class = "radius" } })
         @Html.ValidationMessageFor(m => m.Username)
     </div>
 
     <div>
         @Html.LabelFor(m => m.Password)
-        @Html.EditorFor(m => m.Password)
+        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @autocomplete = "off", @class = "radius" } })
         @Html.ValidationMessageFor(m => m.Password)
     </div>
 

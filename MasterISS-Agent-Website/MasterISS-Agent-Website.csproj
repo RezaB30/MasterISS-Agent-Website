@@ -271,7 +271,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="AgentClaimInfo.cs" />
-    <Compile Include="CacheCast.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -336,6 +335,7 @@
     <Content Include="fonts\Prompt-SemiBoldItalic.ttf" />
     <Content Include="fonts\Prompt-Thin.ttf" />
     <Content Include="fonts\Prompt-ThinItalic.ttf" />
+    <Content Include="WebConfigSettings.txt" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -370,8 +370,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\SignIn.cshtml" />
     <Content Include="Views\Customer\NewCustomer.cshtml" />
