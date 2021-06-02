@@ -335,6 +335,7 @@
     <Content Include="fonts\Prompt-SemiBoldItalic.ttf" />
     <Content Include="fonts\Prompt-Thin.ttf" />
     <Content Include="fonts\Prompt-ThinItalic.ttf" />
+    <Content Include="Scripts\AllPages\input-uppercase.js" />
     <Content Include="WebConfigSettings.txt" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
