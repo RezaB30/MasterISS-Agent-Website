@@ -367,4 +367,32 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddWorkOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.AgentRequests" minOccurs="0" name="request" nillable="true" type="q51:AgentServiceAddWorkOrderRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddWorkOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses.AgentResponses" minOccurs="0" name="AddWorkOrderResult" nillable="true" type="q52:AgentServiceAddWorkOrderResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceOperators">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.AgentRequests" minOccurs="0" name="request" nillable="true" type="q53:AgentServiceServiceOperatorsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceOperatorsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses.AgentResponses" minOccurs="0" name="ServiceOperatorsResult" nillable="true" type="q54:AgentServiceServiceOperatorsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

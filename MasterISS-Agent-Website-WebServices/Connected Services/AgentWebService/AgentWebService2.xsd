@@ -316,4 +316,50 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BillListRequest" nillable="true" type="tns:BillListRequest" />
+  <xs:complexType name="AgentServiceAddWorkOrderRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseRequestOfAddWorkOrderRequestSHA256_S6Bq0k7I">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AddWorkOrder" nillable="true" type="tns:AddWorkOrderRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentServiceAddWorkOrderRequest" nillable="true" type="tns:AgentServiceAddWorkOrderRequest" />
+  <xs:complexType name="AddWorkOrderRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasModem" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ModemName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SetupUserId" type="xs:int" />
+          <xs:element minOccurs="0" name="SubscriptionId" type="xs:long" />
+          <xs:element minOccurs="0" name="TaskType" type="xs:short" />
+          <xs:element minOccurs="0" name="XDSLType" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddWorkOrderRequest" nillable="true" type="tns:AddWorkOrderRequest" />
+  <xs:complexType name="AgentServiceServiceOperatorsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseRequestOfServiceOperatorsRequestSHA256_S6Bq0k7I">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ServiceOperatorsParameters" nillable="true" type="tns:ServiceOperatorsRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentServiceServiceOperatorsRequest" nillable="true" type="tns:AgentServiceServiceOperatorsRequest" />
+  <xs:complexType name="ServiceOperatorsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SubscriptionId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ServiceOperatorsRequest" nillable="true" type="tns:ServiceOperatorsRequest" />
 </xs:schema>

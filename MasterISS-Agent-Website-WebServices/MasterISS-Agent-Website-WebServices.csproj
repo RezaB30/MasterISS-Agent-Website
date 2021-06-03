@@ -77,6 +77,9 @@
     <None Include="Connected Services\AgentWebService\AgentWebService6.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAddWorkOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -96,6 +99,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServicePaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceServiceOperatorsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceSMSCodeResponse.datasource">

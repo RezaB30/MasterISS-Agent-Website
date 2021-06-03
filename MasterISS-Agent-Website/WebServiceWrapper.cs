@@ -306,6 +306,52 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
+        public AgentServiceServiceOperatorsResponse ServiceOperators(long subsciptionId)
+        {
+            var request = new AgentServiceServiceOperatorsRequest
+            {
+                Username = Username,
+                Culture = Culture,
+                Rand = Rand,
+                Hash = Hash<SHA256>(),
+                ServiceOperatorsParameters = new ServiceOperatorsRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    SubscriptionId = subsciptionId
+                }
+            };
+
+            var response = Client.ServiceOperators(request);
+
+            return response;
+        }
+
+        public AgentServiceAddWorkOrderResponse AddWorkOrder(AddWorkOrderViewModel addWorkOrderViewModel)
+        {
+            var request = new AgentServiceAddWorkOrderRequest
+            {
+                Hash = Hash<SHA256>(),
+                Culture = Culture,
+                Rand = Rand,
+                Username = Username,
+                AddWorkOrder = new AddWorkOrderRequest
+                {
+                    Description = addWorkOrderViewModel.Description,
+                    SubscriptionId = addWorkOrderViewModel.SubscriptionId,
+                    XDSLType = (short)addWorkOrderViewModel.XDSLTypes,
+                    TaskType = (short)addWorkOrderViewModel.TaskTypes,
+                    SetupUserId = addWorkOrderViewModel.SetupUserId,
+                    ModemName = addWorkOrderViewModel.ModemName,
+                    HasModem = addWorkOrderViewModel.HasModem,
+                    UserEmail = AgentClaimInfo.UserEmail()
+                }
+            };
+
+            var response = Client.AddWorkOrder(request);
+
+            return response;
+        }
+
         public AgentServiceKeyValueListResponse GetPaymentDays(long Id)
         {
             var request = new AgentServiceListFromIDRequest

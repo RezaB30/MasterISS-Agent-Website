@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using NLog;
 using PagedList;
 using RadiusR.DB.Enums;
+using RadiusR.DB.Enums.CustomerSetup;
 using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,15 @@ namespace MasterISS_Agent_Website.Controllers
         private static Logger Logger = LogManager.GetLogger("AppLogger");
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
         // GET: Customer
+
+        private readonly WebServiceWrapper _wrapper;
+
+        public CustomerController(WebServiceWrapper wrapper)
+        {
+            _wrapper = wrapper;
+        }
+
+
         public ActionResult NewCustomer()
         {
             ViewBag.SubscriptionRegistrationType = SubscriptionRegistrationType(null);
@@ -475,6 +485,20 @@ namespace MasterISS_Agent_Website.Controllers
                 return Json(new { list = list }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { errorMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(paymentDayListResponse.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture) }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult AddWorkOrder(long subscriptionId)
+        {
+            ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>(null);
+            ViewBag.XDSLTypes = ExtensionMethods.EnumSelectList<XDSLTypes, RadiusR.Localization.Lists.CustomerSetup.XDSLTypes>(null);
+
+            var addWorkOrderViewModel = new AddWorkOrderViewModel
+            {
+                SubscriptionId = subscriptionId
+            };
+
+            return View(addWorkOrderViewModel);
         }
 
         public ActionResult DateValidation(int? year, int? month, int? day)

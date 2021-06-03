@@ -278,6 +278,7 @@
     <Compile Include="Controllers\QueryInfrastructureController.cs" />
     <Compile Include="DateParseOperations.cs" />
     <Compile Include="DateTimeValidation.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,6 +290,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
+    <Compile Include="ViewModels\Customer\AddWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\Customer\IDCardValidationViewModel.cs" />
     <Compile Include="ViewModels\Customer\ListAgentSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\Customer\NewCustomerViewModel.cs" />
@@ -382,6 +384,7 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTimeFormat.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDateTimeConverted.cshtml" />
     <Content Include="Views\Home\GetAgentsPaidBills.cshtml" />
+    <Content Include="Views\Customer\AddWorkOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
