@@ -117,14 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Details" xml:space="preserve">
+    <value>Detaylar</value>
+  </data>
   <data name="GenericErrorMessage" xml:space="preserve">
     <value>Bir Hata Oluştu. Daha sonra tekrar deneyiniz.</value>
   </data>
   <data name="InvalidCredentials" xml:space="preserve">
     <value>Geçersiz Kimlik Bilgileri</value>
   </data>
+  <data name="NoRecordsFound" xml:space="preserve">
+    <value>Kayıt Bulunamadı</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>Kaldır</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seçiniz</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Giriş Yap</value>

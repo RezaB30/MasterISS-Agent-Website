@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detaylar.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bir Hata Oluştu. Daha sonra tekrar deneyiniz..
         /// </summary>
         public static string GenericErrorMessage {
@@ -79,11 +88,29 @@ namespace MasterISS_Agent_Website_Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kayıt Bulunamadı.
+        /// </summary>
+        public static string NoRecordsFound {
+            get {
+                return ResourceManager.GetString("NoRecordsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kaldır.
         /// </summary>
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seçiniz.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
         

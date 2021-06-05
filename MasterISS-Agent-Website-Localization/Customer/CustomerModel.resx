@@ -165,6 +165,9 @@
   <data name="DateOfIssueYear" xml:space="preserve">
     <value>Veriliş Tarihi (Yıl)</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="FirstName" xml:space="preserve">
     <value>Adı</value>
   </data>
+  <data name="HasModem" xml:space="preserve">
+    <value>Modem Var Mı?</value>
+  </data>
   <data name="HavePSTNId" xml:space="preserve">
     <value>Ev Telefonunuz Var mı?</value>
   </data>
@@ -224,6 +230,9 @@
   </data>
   <data name="MembershipDate" xml:space="preserve">
     <value>Kayıt Tarihi</value>
+  </data>
+  <data name="ModemName" xml:space="preserve">
+    <value>Modem Modeli</value>
   </data>
   <data name="MothersMaidenName" xml:space="preserve">
     <value>Anne Kızlık Soyadı</value>
@@ -276,11 +285,17 @@
   <data name="SerialNo" xml:space="preserve">
     <value>Seri No</value>
   </data>
+  <data name="SetupUserId" xml:space="preserve">
+    <value>Kurulum Servis Sağlayıcı</value>
+  </data>
   <data name="SexId" xml:space="preserve">
     <value>Cinsiyet</value>
   </data>
   <data name="SubscriberNo" xml:space="preserve">
     <value>Abone Numarası</value>
+  </data>
+  <data name="TaskTypes" xml:space="preserve">
+    <value>Task Tipi</value>
   </data>
   <data name="TaxNo" xml:space="preserve">
     <value>Vergi No</value>
@@ -302,5 +317,8 @@
   </data>
   <data name="XDSLNo" xml:space="preserve">
     <value>Mevcut Hizmet Numarası</value>
+  </data>
+  <data name="XDSLTypes" xml:space="preserve">
+    <value>XDSL Tipi</value>
   </data>
 </root>

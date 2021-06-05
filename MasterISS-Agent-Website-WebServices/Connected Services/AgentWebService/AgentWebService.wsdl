@@ -186,6 +186,36 @@
   <wsdl:message name="IAgentWebService_ServiceOperators_OutputMessage">
     <wsdl:part name="parameters" element="tns:ServiceOperatorsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetCustomerTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerTasks" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetCustomerTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetAgentClientForms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentClientForms" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetAgentClientForms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentClientFormsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_SaveClientAttachment_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClientAttachment" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_SaveClientAttachment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClientAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetBillReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetBillReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBillReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetRelatedPayments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRelatedPayments" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetRelatedPayments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRelatedPaymentsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAgentWebService">
     <wsdl:operation name="GetProvinces">
       <wsdl:input wsaw:Action="http://tempuri.org/ITelekomInfrastructureService/GetProvinces" message="tns:IAgentWebService_GetProvinces_InputMessage" />
@@ -298,6 +328,26 @@
     <wsdl:operation name="ServiceOperators">
       <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/ServiceOperators" message="tns:IAgentWebService_ServiceOperators_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/ServiceOperatorsResponse" message="tns:IAgentWebService_ServiceOperators_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerTasks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetCustomerTasks" message="tns:IAgentWebService_GetCustomerTasks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetCustomerTasksResponse" message="tns:IAgentWebService_GetCustomerTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentClientForms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentClientForms" message="tns:IAgentWebService_GetAgentClientForms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentClientFormsResponse" message="tns:IAgentWebService_GetAgentClientForms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveClientAttachment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/SaveClientAttachment" message="tns:IAgentWebService_SaveClientAttachment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/SaveClientAttachmentResponse" message="tns:IAgentWebService_SaveClientAttachment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBillReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetBillReceipt" message="tns:IAgentWebService_GetBillReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetBillReceiptResponse" message="tns:IAgentWebService_GetBillReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedPayments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetRelatedPayments" message="tns:IAgentWebService_GetRelatedPayments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetRelatedPaymentsResponse" message="tns:IAgentWebService_GetRelatedPayments_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IAgentWebService" type="tns:IAgentWebService">
@@ -548,6 +598,51 @@
     </wsdl:operation>
     <wsdl:operation name="ServiceOperators">
       <soap12:operation soapAction="http://tempuri.org/IAgentWebService/ServiceOperators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerTasks">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetCustomerTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentClientForms">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetAgentClientForms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveClientAttachment">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/SaveClientAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBillReceipt">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetBillReceipt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelatedPayments">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetRelatedPayments" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

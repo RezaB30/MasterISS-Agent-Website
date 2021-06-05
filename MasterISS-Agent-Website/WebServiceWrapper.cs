@@ -259,7 +259,7 @@ namespace MasterISS_Agent_Website
             return request;
         }
 
-        public AgentServiceSubscriptionsResponse GetAgentSubscriptions()
+        public AgentServiceSubscriptionsResponse GetAgentSubscriptions(int pageNo)
         {
             var request = new AgentServiceSubscriptionsRequest
             {
@@ -267,10 +267,15 @@ namespace MasterISS_Agent_Website
                 Hash = Hash<SHA256>(),
                 Rand = Rand,
                 Username = Username,
-                SubscriptionsRequestParameters = new RequestBase
+                SubscriptionsRequestParameters = new AgentSubscriptionsRequest
                 {
                     UserEmail = AgentClaimInfo.UserEmail(),
-                },
+                    Pagination = new PaginationRequest
+                    {
+                        ItemPerPage = 20,
+                        PageNo = pageNo - 1
+                    }
+                }
             };
 
             var response = Client.GetAgentSubscriptions(request);
@@ -348,6 +353,70 @@ namespace MasterISS_Agent_Website
             };
 
             var response = Client.AddWorkOrder(request);
+
+            return response;
+        }
+
+        public AgentServiceClientFormsResponse GetAgentClientForms(int formTypeId, long subscriptionId)
+        {
+            var request = new AgentServiceClientFormsRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                ClientFormsParameters = new AgentClientFormsRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    FormType = formTypeId,
+                    SubscriptionId = subscriptionId
+                }
+            };
+
+            var response = Client.GetAgentClientForms(request);
+
+            return response;
+        }
+
+        public AgentServiceSaveClientAttachmentResponse SaveClientAttachment(AddClientAttachmentViewModel addClientAttachmentViewModel)
+        {
+            var request = new AgentServiceSaveClientAttachmentRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                SaveClientAttachmentParameters = new SaveAgentClientAttachmentRequest
+                {
+                    AttachmentType = addClientAttachmentViewModel.AttachmentId,
+                    FileContent = addClientAttachmentViewModel.FileContect,
+                    FileExtention = addClientAttachmentViewModel.FileExtention,
+                    SubscriptionId = addClientAttachmentViewModel.SubscriptionId,
+                    UserEmail = AgentClaimInfo.UserEmail()
+                }
+            };
+
+            var response = Client.SaveClientAttachment(request);
+
+            return response;
+        }
+
+        public AgentServiceCustomerSetupTaskResponse GetCustomerTasks(long subscriptionId)
+        {
+            var request = new AgentServiceCustomerSetupTaskRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                CustomerTaskParameters = new CustomerSetupTaskRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    SubscriptionId = subscriptionId
+                }
+            };
+
+            var response = Client.GetCustomerTasks(request);
 
             return response;
         }

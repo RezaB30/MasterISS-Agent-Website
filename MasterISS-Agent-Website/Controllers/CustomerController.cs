@@ -24,13 +24,11 @@ namespace MasterISS_Agent_Website.Controllers
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
         // GET: Customer
 
-        private readonly WebServiceWrapper _wrapper;
-
-        public CustomerController(WebServiceWrapper wrapper)
+        WebServiceWrapper _wrapper;
+        public CustomerController()
         {
-            _wrapper = wrapper;
+            _wrapper = new WebServiceWrapper();
         }
-
 
         public ActionResult NewCustomer()
         {
@@ -391,7 +389,7 @@ namespace MasterISS_Agent_Website.Controllers
                             Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.UserEmail());
                             //LOG
                             //TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
-                            return RedirectToAction("Successful", "Customer");
+                            return View("Successful");
 
                             //return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
                         }
@@ -405,7 +403,7 @@ namespace MasterISS_Agent_Website.Controllers
                             LoggerError.Fatal($"An error occurred while NewCustomerRegister, ErrorCode:  {response.ResponseMessage.ErrorCode}, ErrorMessage : {response.ResponseMessage.ErrorMessage}, NameValuePair :{string.Join(",", response.NewCustomerRegisterResponse)}  by: {AgentClaimInfo.UserEmail()}");
                             //LOG
 
-                            TempData["SMSConfirmationError"] = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
+                            TempData["SMSConfirmationError"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
 
                             return RedirectToAction("NewCustomer", "Customer");
 
@@ -448,12 +446,11 @@ namespace MasterISS_Agent_Website.Controllers
 
         public ActionResult GetAgentSubscriptions(int page = 1, int pageSize = 20)
         {
-            var wrapper = new WebServiceWrapper();
-            var response = wrapper.GetAgentSubscriptions();
+            var response = _wrapper.GetAgentSubscriptions(page);
 
             if (response.ResponseMessage.ErrorCode == 0)
             {
-                var list = response.AgentSubscriptionList.Select(asl => new ListAgentSubscriptionViewModel
+                var list = response.AgentSubscriptionList.AgentSubscriptionList.Select(asl => new ListAgentSubscriptionViewModel
                 {
                     CustomerName = asl.DisplayName,
                     CustomerState = asl.CustomerState.Name,
@@ -462,13 +459,20 @@ namespace MasterISS_Agent_Website.Controllers
                     SubscriptionId = asl.ID
                 }).OrderByDescending(asl => asl.MembershipDate);
 
-                var totalCount = list.Count();
+                var totalPageCount = response.AgentSubscriptionList.TotalPageCount;
 
-                var pagedList = new StaticPagedList<ListAgentSubscriptionViewModel>(list.Skip((page - 1) * pageSize).Take(pageSize), page, pageSize, totalCount);
+                var totalItemCount = response.AgentSubscriptionList.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
+
+                var pagedList = new StaticPagedList<ListAgentSubscriptionViewModel>(list, page, pageSize, totalItemCount);
 
                 return View(pagedList);
             }
-            return View(Enumerable.Empty<ListAgentSubscriptionViewModel>());
+            else
+            {
+                ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+                LoggerError.Fatal($"An error occurred while GetAgentSubscriptions(HttpGet) GetAgentSubscriptions , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                return View();
+            }
         }
 
         [HttpPost]
@@ -488,17 +492,119 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
 
-        public ActionResult AddWorkOrder(long subscriptionId)
+        public ActionResult AddWorkOrder(long subscriptionId, string subscriberName)
         {
-            ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>(null);
-            ViewBag.XDSLTypes = ExtensionMethods.EnumSelectList<XDSLTypes, RadiusR.Localization.Lists.CustomerSetup.XDSLTypes>(null);
+            var response = _wrapper.ServiceOperators(subscriptionId);
 
-            var addWorkOrderViewModel = new AddWorkOrderViewModel
+            if (response.ResponseMessage.ErrorCode == 0)
             {
-                SubscriptionId = subscriptionId
-            };
+                ViewBag.ServiceServiceOperators = ExtensionMethods.NameValuePairSelectList(response.ServiceOperators.Select(so => new KeyValuePair<int, string>(so.Value, so.Name)), null);
+                ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>(null);
+                ViewBag.XDSLTypes = ExtensionMethods.EnumSelectList<XDSLTypes, RadiusR.Localization.Lists.CustomerSetup.XDSLTypes>(null);
+                var addWorkOrderViewModel = new AddWorkOrderViewModel
+                {
+                    SubscriptionId = subscriptionId,
+                    SubscriberName = subscriberName
+                };
 
+                return View(addWorkOrderViewModel);
+            }
+            else
+            {
+                ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+                LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpGet) ServiceOperators , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                return View();
+            }
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult AddWorkOrder(AddWorkOrderViewModel addWorkOrderViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var wrapper = new WebServiceWrapper();
+                var response = wrapper.AddWorkOrder(addWorkOrderViewModel);
+
+                if (response.ResponseMessage.ErrorCode == 0)
+                {
+                    return View("Successful");
+                }
+                else
+                {
+                    LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpPost) AddWorkOrder , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+                    ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+                    return View(addWorkOrderViewModel);
+                }
+            }
             return View(addWorkOrderViewModel);
+
+        }
+
+        public ActionResult GetCustomerTasks(long subscriptionId, string subscriberName)
+        {
+            var response = _wrapper.GetCustomerTasks(subscriptionId);
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                ViewBag.CustomerName = subscriberName;
+                var listCustomerTasks = response.CustomerTaskList.Select(ctl => new ListCustomersTasksViewModel
+                {
+                    AllowenceState = ctl.AllowanceState.Name,
+                    CompletionDate = Convert.ToDateTime(ctl.CompletionDate),
+                    Details = ctl.Details,
+                    Id = ctl.ID,
+                    SetupUserName = ctl.SetupUser.Name,
+                    SubscriptionID = ctl.SubscriptionID,
+                    TaskIssueDate = Convert.ToDateTime(ctl.TaskIssueDate),
+                    TaskStatus = ctl.TaskStatus.Name,
+                    TaskType = ctl.TaskType.Name,
+                });
+                return View(listCustomerTasks);
+            }
+
+            LoggerError.Fatal($"An error occurred while GetCustomerTasks(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+            ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+            return View();
+        }
+
+        public ActionResult GetCustomerTaskDetails(long subscriptionId, long taskId)
+        {
+            var response = _wrapper.GetCustomerTasks(subscriptionId);
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var selectedTask = response.CustomerTaskList.Where(ctl => ctl.ID == taskId).FirstOrDefault();
+
+                if (selectedTask != null)
+                {
+                    var list = new ListCustomersTaskDetailsViewModel
+                    {
+                        Allowence = selectedTask.Allowance,
+                        HasModem = selectedTask.HasModem,
+                        ModemName = selectedTask.ModemName,
+                        SubscriptionID = selectedTask.SubscriptionID,
+                        TaskUpdates = selectedTask.TaskStatus
+                    };
+
+                    return PartialView("GetCustomerTaskDetails", list);
+                }
+                else
+                {
+                    LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) selectedTask , selectedTaskNotFound by:{AgentClaimInfo.UserEmail()}");
+
+                    ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+                    return PartialView("GetCustomerTaskDetails");
+                }
+            }
+
+            LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+            ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+
+            return PartialView("GetCustomerTaskDetails");
         }
 
         public ActionResult DateValidation(int? year, int? month, int? day)

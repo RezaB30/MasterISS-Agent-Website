@@ -86,7 +86,16 @@
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillListResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceBillReceiptResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceClientFormsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCredentialSMSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceCustomerSetupTaskResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceIDCardValidationResponse.datasource">
@@ -99,6 +108,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServicePaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceRelatedPaymentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceSaveClientAttachmentResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceServiceOperatorsResponse.datasource">

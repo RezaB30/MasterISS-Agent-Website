@@ -1,0 +1,50 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Customer
+@model  IEnumerable<ListCustomersTasksViewModel>
+@{
+    ViewBag.Title = "Müşteriye Ait İş Emirleri";
+}
+
+@if (ViewBag.ErrorMessage == null)
+{
+    if (Model.Count() != 0)
+    {
+        <span class="text-danger">@ViewBag.CustomerName</span>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskIssueDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskType)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SetupUserName)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Details)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CompletionDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().AllowenceState)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TaskIssueDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TaskType)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SetupUserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Details)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CompletionDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AllowenceState)</td>
+                        <th>@Html.ActionLink(MasterISS_Agent_Website_Localization.View.Details, "GetCustomerTaskDetails", "Customer", new { subscriptionId = item.SubscriptionID, taskId = item.Id })</th>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <span class="text-danger">@MasterISS_Agent_Website_Localization.View.NoRecordsFound</span>
+    }
+
+}
+else
+{
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+}

@@ -205,6 +205,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Açıklama.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
@@ -358,6 +367,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modem Var Mı?.
+        /// </summary>
+        public static string HasModem {
+            get {
+                return ResourceManager.GetString("HasModem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ev Telefonunuz Var mı?.
         /// </summary>
         public static string HavePSTNId {
@@ -381,6 +399,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static string MembershipDate {
             get {
                 return ResourceManager.GetString("MembershipDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modem Modeli.
+        /// </summary>
+        public static string ModemName {
+            get {
+                return ResourceManager.GetString("ModemName", resourceCulture);
             }
         }
         
@@ -538,6 +565,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kurulum Servis Sağlayıcı.
+        /// </summary>
+        public static string SetupUserId {
+            get {
+                return ResourceManager.GetString("SetupUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cinsiyet.
         /// </summary>
         public static string SexId {
@@ -552,6 +588,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static string SubscriberNo {
             get {
                 return ResourceManager.GetString("SubscriberNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task Tipi.
+        /// </summary>
+        public static string TaskTypes {
+            get {
+                return ResourceManager.GetString("TaskTypes", resourceCulture);
             }
         }
         
@@ -615,6 +660,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static string XDSLNo {
             get {
                 return ResourceManager.GetString("XDSLNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XDSL Tipi.
+        /// </summary>
+        public static string XDSLTypes {
+            get {
+                return ResourceManager.GetString("XDSLTypes", resourceCulture);
             }
         }
     }
