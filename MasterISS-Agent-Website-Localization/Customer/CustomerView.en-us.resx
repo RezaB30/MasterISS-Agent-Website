@@ -117,40 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
+  <data name="DateFormatIsNotCorrect" xml:space="preserve">
+    <value>Date Format is Not Correct</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
+  <data name="FaultyFormat" xml:space="preserve">
+    <value>Send a file in '.jpg','.png','.jpeg','.pdf' format.</value>
   </data>
-  <data name="GenericErrorMessage" xml:space="preserve">
-    <value>An Error Has Occurred. Try again later.</value>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>File size must be maximum 10 MB.</value>
   </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>Invalid ID Information</value>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Please Select File</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
+  <data name="SMSCode3TimesIncorrectlyError" xml:space="preserve">
+    <value>You have logged in incorrectly 3 times. Please try again.</value>
   </data>
-  <data name="NoRecordsFound" xml:space="preserve">
-    <value>No Records Found</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Sign In</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="Successful" xml:space="preserve">
-    <value>Successful</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong SMS Password</value>
   </data>
 </root>

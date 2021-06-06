@@ -81,15 +81,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerModel.en-us.resx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\NewCustomerView.Designer.cs">
+    <Compile Include="Customer\CustomerView.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewCustomerView.resx</DependentUpon>
+      <DependentUpon>CustomerView.resx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\NewCustomerView.en-us.Designer.cs">
+    <Compile Include="Customer\CustomerView.en-us.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NewCustomerView.en-us.resx</DependentUpon>
+      <DependentUpon>CustomerView.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\AttachmentType.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttachmentType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\AttachmentType.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttachmentType.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="Generic\CultureList.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -197,13 +207,21 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CustomerModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\NewCustomerView.en-us.resx">
+    <EmbeddedResource Include="Customer\CustomerView.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NewCustomerView.en-us.Designer.cs</LastGenOutput>
+      <LastGenOutput>CustomerView.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\NewCustomerView.resx">
+    <EmbeddedResource Include="Customer\CustomerView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NewCustomerView.Designer.cs</LastGenOutput>
+      <LastGenOutput>CustomerView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\AttachmentType.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AttachmentType.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\AttachmentType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AttachmentType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Generic\CultureList.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

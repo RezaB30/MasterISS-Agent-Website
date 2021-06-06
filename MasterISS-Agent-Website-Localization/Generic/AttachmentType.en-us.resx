@@ -117,40 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
+  <data name="Cancellation" xml:space="preserve">
+    <value>Cancellation Form</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
+  <data name="CHURN" xml:space="preserve">
+    <value>CHURN Form</value>
   </data>
-  <data name="GenericErrorMessage" xml:space="preserve">
-    <value>An Error Has Occurred. Try again later.</value>
+  <data name="Contract" xml:space="preserve">
+    <value>Subscription Contract</value>
   </data>
-  <data name="InvalidCredentials" xml:space="preserve">
-    <value>Invalid ID Information</value>
+  <data name="IDCard" xml:space="preserve">
+    <value>ID Card</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
   </data>
-  <data name="NoRecordsFound" xml:space="preserve">
-    <value>No Records Found</value>
+  <data name="PSTN" xml:space="preserve">
+    <value>PSTN Form</value>
   </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
+  <data name="Setup" xml:space="preserve">
+    <value>Setup Fom</value>
   </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
+  <data name="Transfer" xml:space="preserve">
+    <value>Transfer Form</value>
   </data>
-  <data name="SignIn" xml:space="preserve">
-    <value>Sign In</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
-  </data>
-  <data name="Successful" xml:space="preserve">
-    <value>Successful</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+  <data name="Transport" xml:space="preserve">
+    <value>Transport Form</value>
   </data>
 </root>

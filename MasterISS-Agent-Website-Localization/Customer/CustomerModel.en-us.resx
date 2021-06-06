@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Allowence" xml:space="preserve">
+    <value>Allowence Amount</value>
+  </data>
+  <data name="AllowenceState" xml:space="preserve">
+    <value>Allowence State</value>
+  </data>
+  <data name="AttachmentType" xml:space="preserve">
+    <value>Attachment Type</value>
+  </data>
   <data name="BillingAddressSameSetupAddress" xml:space="preserve">
     <value>Billing Address is the same as the Setup Address</value>
   </data>
@@ -132,6 +141,9 @@
   <data name="CentralSystemNo" xml:space="preserve">
     <value>Central System No</value>
   </data>
+  <data name="CompletionDate" xml:space="preserve">
+    <value>Completion Date</value>
+  </data>
   <data name="ContactPhoneNo" xml:space="preserve">
     <value>Enter Your Customer GSM Number</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="CorporativeResidencyAddressSameSetupAddress" xml:space="preserve">
     <value>The Executive Residence Address is the same as the Setup Address</value>
+  </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Creation Date</value>
   </data>
   <data name="CultureCustomer" xml:space="preserve">
     <value>Language Selection for Online Operation Center</value>
@@ -216,6 +231,9 @@
   <data name="FathersName" xml:space="preserve">
     <value>Fathers Name</value>
   </data>
+  <data name="FaultCodes" xml:space="preserve">
+    <value>Fault State</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
   </data>
@@ -270,6 +288,9 @@
   <data name="RegistrationType" xml:space="preserve">
     <value>Registration Type</value>
   </data>
+  <data name="ReservationDate" xml:space="preserve">
+    <value>Reservation Date</value>
+  </data>
   <data name="RowNo" xml:space="preserve">
     <value>Row No</value>
   </data>
@@ -294,8 +315,20 @@
   <data name="SubscriberNo" xml:space="preserve">
     <value>Subscriber No</value>
   </data>
+  <data name="TaskIssueDate" xml:space="preserve">
+    <value>Issue Date</value>
+  </data>
+  <data name="TaskStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TaskType" xml:space="preserve">
+    <value>Task Type</value>
+  </data>
   <data name="TaskTypes" xml:space="preserve">
     <value>Task Type</value>
+  </data>
+  <data name="TaskUpdates" xml:space="preserve">
+    <value>Stages</value>
   </data>
   <data name="TaxNo" xml:space="preserve">
     <value>Tax No</value>

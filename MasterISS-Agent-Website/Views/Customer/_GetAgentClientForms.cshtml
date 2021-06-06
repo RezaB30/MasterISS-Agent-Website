@@ -1,0 +1,26 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Customer
+@model GetPartnerClientFormsViewModel
+
+<span class="text-danger">@ViewBag.UploadDocumentError</span>
+
+<div class="modal-header">
+    <div class="py-2">
+        <span class="text-dark-75 font-weight-bolder d-block font-size-h5">Müşteriye ait formlar</span>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        @foreach (var item in Model.FormTypes)
+        {
+            <div class="col-12 mb-4">
+                @Html.ActionLink(item.Value, "GetSelectedPartnerClientForms", "Customer", new { SubscriptionId = Model.SubscriptionId, FormTypeId = item.Key }, new { @class = "btn btn-block btn-outline-info" })
+            </div>
+        }
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+</div>
+
+

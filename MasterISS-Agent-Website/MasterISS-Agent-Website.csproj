@@ -279,6 +279,7 @@
     <Compile Include="DateParseOperations.cs" />
     <Compile Include="DateTimeValidation.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FileOperations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -292,6 +293,7 @@
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddClientAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddWorkOrderViewModel.cs" />
+    <Compile Include="ViewModels\Customer\GetPartnerClientFormsViewModel.cs" />
     <Compile Include="ViewModels\Customer\IDCardValidationViewModel.cs" />
     <Compile Include="ViewModels\Customer\ListAgentSubscriptionViewModel.cs" />
     <Compile Include="ViewModels\Customer\ListCustomersTaskDetailsViewModel.cs" />
@@ -340,13 +342,14 @@
     <Content Include="fonts\Prompt-SemiBoldItalic.ttf" />
     <Content Include="fonts\Prompt-Thin.ttf" />
     <Content Include="fonts\Prompt-ThinItalic.ttf" />
+    <Content Include="Scripts\AllPages\ajax-operations.js" />
     <Content Include="Scripts\AllPages\input-uppercase.js" />
     <Content Include="WebConfigSettings.txt" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Scripts\AllPages\error-messages.js" />
@@ -355,8 +358,8 @@
     <Content Include="Scripts\Home\home-index-operations.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\AllPages\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\AllPages\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -364,7 +367,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Customer\new-customer-operations.js" />
     <Content Include="Scripts\QueryAddress\address-query.js" />
-    <Content Include="Scripts\AllPages\sweetalert2.min.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -390,6 +393,9 @@
     <Content Include="Views\Customer\AddWorkOrder.cshtml" />
     <Content Include="Views\Customer\GetCustomerTasks.cshtml" />
     <Content Include="Views\Customer\_GetCustomerTaskDetails.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\BoolFormat.cshtml" />
+    <Content Include="Views\Customer\_GetAgentClientForms.cshtml" />
+    <Content Include="Views\Customer\_UploadDocumentCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

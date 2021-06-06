@@ -118,12 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DateFormatIsNotCorrect" xml:space="preserve">
-    <value>Date Format is Not Correct</value>
+    <value>Geçersiz Tarih Biçimi</value>
+  </data>
+  <data name="FaultyFormat" xml:space="preserve">
+    <value>Lütfen '.jpg','.png','.pdf','.jpeg' formatında dosya gönderiniz</value>
+  </data>
+  <data name="MaxFileSizeError" xml:space="preserve">
+    <value>Dosya Boyutu Maksimum 10 MB olmalı.</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Lütfen Dosya Seçiniz</value>
   </data>
   <data name="SMSCode3TimesIncorrectlyError" xml:space="preserve">
-    <value>You have logged in incorrectly 3 times. Please try again.</value>
+    <value>3 kere hatalı giriş yaptınız. Lütfen tekrar deneyiniz.</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
-    <value>Wrong SMS Password</value>
+    <value>Yanlış SMS Şifresi</value>
   </data>
 </root>

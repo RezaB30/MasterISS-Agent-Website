@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterISS_Agent_Website_Localization.Customer {
+namespace MasterISS_Agent_Website_Localization.Generic {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MasterISS_Agent_Website_Localization.Customer {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class NewCustomerView {
+    public class AttachmentType {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal NewCustomerView() {
+        internal AttachmentType() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Customer.NewCustomerView", typeof(NewCustomerView).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MasterISS_Agent_Website_Localization.Generic.AttachmentType", typeof(AttachmentType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,83 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Geçersiz Tarih Biçimi.
+        ///   Looks up a localized string similar to İptal Formu.
         /// </summary>
-        public static string DateFormatIsNotCorrect {
+        public static string Cancellation {
             get {
-                return ResourceManager.GetString("DateFormatIsNotCorrect", resourceCulture);
+                return ResourceManager.GetString("Cancellation", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3 kere hatalı giriş yaptınız. Lütfen tekrar deneyiniz..
+        ///   Looks up a localized string similar to CHURN Formu.
         /// </summary>
-        public static string SMSCode3TimesIncorrectlyError {
+        public static string CHURN {
             get {
-                return ResourceManager.GetString("SMSCode3TimesIncorrectlyError", resourceCulture);
+                return ResourceManager.GetString("CHURN", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yanlış SMS Şifresi.
+        ///   Looks up a localized string similar to Abonelik Sözleşmesi.
         /// </summary>
-        public static string WrongPassword {
+        public static string Contract {
             get {
-                return ResourceManager.GetString("WrongPassword", resourceCulture);
+                return ResourceManager.GetString("Contract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kimlik Kartı.
+        /// </summary>
+        public static string IDCard {
+            get {
+                return ResourceManager.GetString("IDCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diğer.
+        /// </summary>
+        public static string Others {
+            get {
+                return ResourceManager.GetString("Others", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PSTN Formu.
+        /// </summary>
+        public static string PSTN {
+            get {
+                return ResourceManager.GetString("PSTN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kurulum Formu.
+        /// </summary>
+        public static string Setup {
+            get {
+                return ResourceManager.GetString("Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Devir Formu.
+        /// </summary>
+        public static string Transfer {
+            get {
+                return ResourceManager.GetString("Transfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nakil Formu.
+        /// </summary>
+        public static string Transport {
+            get {
+                return ResourceManager.GetString("Transport", resourceCulture);
             }
         }
     }

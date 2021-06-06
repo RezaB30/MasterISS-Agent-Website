@@ -16,6 +16,10 @@
                 <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
                 <th></th>
                 <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +32,16 @@
                     <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
                     <td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
                     <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>
+                    <td>
+                        <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
+                            <input type="button" class="btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
+                        </span>
+                    </td>
+                    <td>
+                        <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
+                            <input type="button" class="btn btn-info add-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye Form Yükle" />
+                        </span>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -59,4 +73,56 @@
 else
 {
     <span class="text-danger">@ViewBag.ErrorMessage</span>
+}
+<div class="modal fade" id="modalCenterGeneric" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div id="generic-container">
+            </div>
+        </div>
+    </div>
+</div>
+@section Javascript{
+    <script>
+        $(".get-customer-forms").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { subscriptionId: dataValue }
+            var url = '@Url.Action("GetAgentClientForms", "Customer")';
+            var container = $("#generic-container");
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+
+        $(".add-customer-forms").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { subscriptionId: dataValue }
+            var url = '@Url.Action("UploadDocumentCustomer", "Customer")';
+            var container = $("#generic-container");
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+
+        function UploadDocumentResult(data, status) {
+            if (status = "success") {
+                var responseStatus = data.responseJSON.status;
+                if (responseStatus == "Success") {
+                    var message = data.responseJSON.message;
+                    var url='@Url.Action("GetAgentSubscriptions","Customer")'
+                    GetAlert(message, "true",url);
+                }
+                else if (responseStatus == "FailedAndRedirect") {
+                    var redirectMessage = data.responseJSON.ErrorMessage;
+                    var url='@Url.Action("Index","Home")'
+                    GetAlert(redirectMessage, "false", errorURL);
+                }
+                else {
+                    $(".error-codes-container").show();
+                    $(".error-codes").html(data.responseJSON.ErrorMessage);
+                }
+            }
+            else {
+                console.log("Error");
+            }
+        }
+
+    </script>
+
 }

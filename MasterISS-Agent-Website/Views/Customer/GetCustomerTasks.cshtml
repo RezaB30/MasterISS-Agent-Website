@@ -8,7 +8,6 @@
 {
     if (Model.Count() != 0)
     {
-        <span class="text-danger">@ViewBag.CustomerName</span>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -31,7 +30,12 @@
                         <td>@Html.DisplayFor(modelItem => item.Details)</td>
                         <td>@Html.DisplayFor(modelItem => item.CompletionDate)</td>
                         <td>@Html.DisplayFor(modelItem => item.AllowenceState)</td>
-                        <th>@Html.ActionLink(MasterISS_Agent_Website_Localization.View.Details, "GetCustomerTaskDetails", "Customer", new { subscriptionId = item.SubscriptionID, taskId = item.Id })</th>
+                        <th>
+                            <span data-bs-target="#modalCenterTaskDetails" data-bs-toggle="modal" >
+                                <input value="@MasterISS_Agent_Website_Localization.View.Details" class="btn btn-info get-task-details" dataValueSubsId="@item.SubscriptionID" dataValueTaskId="@item.Id" />
+                            </span>
+                            @*@Html.ActionLink(MasterISS_Agent_Website_Localization.View.Details, "GetCustomerTaskDetails", "Customer", new { subscriptionId = item.SubscriptionID, taskId = item.Id })*@
+                        </th>
                     </tr>
                 }
 
@@ -47,4 +51,26 @@
 else
 {
     <span class="text-danger">@ViewBag.ErrorMessage</span>
+}
+
+<div class="modal fade" id="modalCenterTaskDetails" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div id="task-detail-container">
+            </div>
+        </div>
+    </div>
+</div>
+@section Javascript{
+    <script>
+        $(".get-task-details").click(function () {
+            var dataValueSubsId = $(this).attr("dataValueSubsId");
+            var dataValueTaskId = $(this).attr("dataValueTaskId");
+            var postData = { subscriptionId: dataValueSubsId , taskId:dataValueTaskId}
+            var url = '@Url.Action("GetCustomerTaskDetails", "Customer")';
+            var container = $("#task-detail-container");
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+    </script>
+
 }

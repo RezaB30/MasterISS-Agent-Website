@@ -1,0 +1,33 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Customer
+@model  AddClientAttachmentViewModel
+
+<span class="text-danger">@ViewBag.UploadDocumentError</span>
+
+<div class="modal-header">
+    <div class="py-2">
+        <span class="text-dark-75 font-weight-bolder d-block font-size-h5">Belge Yükle</span>
+    </div>
+</div>
+
+@using (Ajax.BeginForm("UploadDocumentCustomer", "Customer", new AjaxOptions { HttpMethod = "POST", OnComplete = "UploadDocumentResult" }, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+
+    <div class="modal-body">
+        @Html.DropDownListFor(m => m.AttachmentId, (SelectList)ViewBag.AttachmentTypes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.SubscriptionId)
+
+        <div class="error-codes-container" style="display:none">
+            <div class="separator separator-dashed mt-2 my-4"></div>
+            <div class="text-danger error-codes" align="center"></div>
+            <div class="separator separator-dashed mt-2 my-4"></div>
+        </div>
+        <br />
+        <input type="file" name="uploadingFiles" multiple />
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+        <input type="submit" id="Submit" name="SubmitAjax" class="btn btn-info m-t-5" value="@MasterISS_Agent_Website_Localization.View.Submit" />
+    </div>
+}

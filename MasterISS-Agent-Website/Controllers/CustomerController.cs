@@ -11,6 +11,7 @@ using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -414,7 +415,7 @@ namespace MasterISS_Agent_Website.Controllers
                     {
                         Session["Counter"] = Convert.ToInt32(Session["Counter"]) + 1;
 
-                        ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.Customer.NewCustomerView.WrongPassword;
+                        ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.Customer.CustomerView.WrongPassword;
 
                         return View();
 
@@ -427,7 +428,7 @@ namespace MasterISS_Agent_Website.Controllers
                     Session.Remove("CustomerApplicationInfo");
                     Session.Remove("SMSCode");
 
-                    TempData["SMSConfirmationError"] = MasterISS_Agent_Website_Localization.Customer.NewCustomerView.SMSCode3TimesIncorrectlyError;
+                    TempData["SMSConfirmationError"] = MasterISS_Agent_Website_Localization.Customer.CustomerView.SMSCode3TimesIncorrectlyError;
 
                     return RedirectToAction("NewCustomer", "Customer");
 
@@ -542,6 +543,100 @@ namespace MasterISS_Agent_Website.Controllers
 
         }
 
+        public ActionResult GetAgentClientForms(long subscriptionId)
+        {
+            var getPartnerClientFormsViewModel = new GetPartnerClientFormsViewModel
+            {
+                SubscriptionId = subscriptionId,
+                FormTypes = GetFormTypes(null)
+            };
+            return PartialView("_GetAgentClientForms", getPartnerClientFormsViewModel);
+        }
+
+        public ActionResult GetSelectedPartnerClientForms(int FormTypeId, long SubscriptionId)
+        {
+            var response = _wrapper.GetAgentClientForms(FormTypeId, SubscriptionId);
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                return File(response.AgentClientForms.FileContent, response.AgentClientForms.FileName, response.AgentClientForms.FileName);
+            }
+            else
+            {
+                TempData["GenericErrorMessage"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+                LoggerError.Fatal($"An error occurred while GetSelectedPartnerClientForms(HttpGet) GetAgentClientForms , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult UploadDocumentCustomer(long subscriptionId)
+        {
+            var addClientAttachmentViewModel = new AddClientAttachmentViewModel
+            {
+                SubscriptionId = subscriptionId,
+            };
+
+            ViewBag.AttachmentTypes = ExtensionMethods.EnumSelectList<MasterISS_Agent_Website_Enums.Enums.AttachmentType, MasterISS_Agent_Website_Localization.Generic.AttachmentType>(null);
+
+            return PartialView("_UploadDocumentCustomer", addClientAttachmentViewModel);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult UploadDocumentCustomer(AddClientAttachmentViewModel addClientAttachmentViewModel, IEnumerable<HttpPostedFileBase> uploadingFiles)
+        {
+            if (ModelState.IsValid)
+            {
+                var isValidAttachmentType = Enum.IsDefined(typeof(MasterISS_Agent_Website_Enums.Enums.AttachmentType), addClientAttachmentViewModel.AttachmentId);
+                if (isValidAttachmentType)
+                {
+                    var validFiles = FileOperations.ValidFiles(uploadingFiles);
+                    if (validFiles.Key)
+                    {
+                        var wrapper = new WebServiceWrapper();
+                        foreach (var item in uploadingFiles)
+                        {
+                            using (Stream inputStream = item.InputStream)
+                            {
+                                MemoryStream memoryStream = inputStream as MemoryStream;
+                                if (memoryStream == null)
+                                {
+                                    memoryStream = new MemoryStream();
+                                    inputStream.CopyTo(memoryStream);
+                                }
+                                var fileContect = memoryStream.ToArray();
+                                addClientAttachmentViewModel.FileContect = fileContect;
+                                addClientAttachmentViewModel.FileExtention = new FileInfo(item.FileName).Extension.Replace(".", "");
+
+                                var response = _wrapper.SaveClientAttachment(addClientAttachmentViewModel);
+                                if (response.ResponseMessage.ErrorCode != 0)
+                                {
+                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+                                    return Json(new { status = "Failed", ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode) }, JsonRequestBehavior.AllowGet);
+                                }
+                                if (response.SaveClientAttachmentResult == false)
+                                {
+                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachmentResult return false , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+                                    return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
+                                }
+                            }
+                        }
+
+                        return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { status = "Failed", ErrorMessage = validFiles.Value }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
+            }
+
+            var errorMessage = string.Join("<br/>", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+            return Json(new { status = "Failed", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetCustomerTasks(long subscriptionId, string subscriberName)
         {
             var response = _wrapper.GetCustomerTasks(subscriptionId);
@@ -586,17 +681,24 @@ namespace MasterISS_Agent_Website.Controllers
                         HasModem = selectedTask.HasModem,
                         ModemName = selectedTask.ModemName,
                         SubscriptionID = selectedTask.SubscriptionID,
-                        TaskUpdates = selectedTask.TaskStatus
+                        TaskUpdates = selectedTask.CustomerTaskUpdates == null ? Enumerable.Empty<TaskUpdatesDetailListViewModel>() : selectedTask.CustomerTaskUpdates.Select(tu => new TaskUpdatesDetailListViewModel
+                        {
+                            CreationDate = Convert.ToDateTime(tu.Date),
+                            Description = tu.Description,
+                            FaultCodes = tu.FaultCode.Name,
+                            ReservationDate = Convert.ToDateTime(tu.ReservationDate)
+                        }),
+                        CustomerName = selectedTask.ValidDisplayName,
                     };
 
-                    return PartialView("GetCustomerTaskDetails", list);
+                    return PartialView("_GetCustomerTaskDetails", list);
                 }
                 else
                 {
                     LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) selectedTask , selectedTaskNotFound by:{AgentClaimInfo.UserEmail()}");
 
                     ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-                    return PartialView("GetCustomerTaskDetails");
+                    return PartialView("_GetCustomerTaskDetails");
                 }
             }
 
@@ -604,7 +706,7 @@ namespace MasterISS_Agent_Website.Controllers
 
             ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
 
-            return PartialView("GetCustomerTaskDetails");
+            return PartialView("_GetCustomerTaskDetails");
         }
 
         public ActionResult DateValidation(int? year, int? month, int? day)
@@ -614,7 +716,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var validation = DateTimeValidation.TryParseDate(year.Value, month.Value, day.Value, null);
                 if (validation == null)
                 {
-                    return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.NewCustomerView.DateFormatIsNotCorrect }, JsonRequestBehavior.AllowGet);
+                    return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.CustomerView.DateFormatIsNotCorrect }, JsonRequestBehavior.AllowGet);
                 }
             }
             return Json(new { status = "Success" }, JsonRequestBehavior.AllowGet);

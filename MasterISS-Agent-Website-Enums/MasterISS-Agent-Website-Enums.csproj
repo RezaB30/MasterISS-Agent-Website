@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AttachmentType.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CultureList.cs" />
     <Compile Include="Enums\DateType.cs" />

@@ -1919,6 +1919,22 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         "gentRequests")]
     [System.SerializableAttribute()]
     public partial class AgentServiceBillReceiptRequest : MasterISS_Agent_Website_WebServices.AgentWebService.BaseRequestOfBillReceiptRequestSHA256_S6Bq0k7I {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.BillReceiptRequest BillReceiptParametersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.BillReceiptRequest BillReceiptParameters {
+            get {
+                return this.BillReceiptParametersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillReceiptParametersField, value) != true)) {
+                    this.BillReceiptParametersField = value;
+                    this.RaisePropertyChanged("BillReceiptParameters");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2131,6 +2147,7 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.CustomerSetupTaskRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.AgentClientFormsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.SaveAgentClientAttachmentRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.BillReceiptRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.RelatedPaymentsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(MasterISS_Agent_Website_WebServices.AgentWebService.NewCustomerRegisterRequest))]
     public partial class RequestBase : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2617,6 +2634,30 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((this.SubscriptionIdField.Equals(value) != true)) {
                     this.SubscriptionIdField = value;
                     this.RaisePropertyChanged("SubscriptionId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="BillReceiptRequest", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class BillReceiptRequest : MasterISS_Agent_Website_WebServices.AgentWebService.RequestBase {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> BillIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> BillId {
+            get {
+                return this.BillIdField;
+            }
+            set {
+                if ((this.BillIdField.Equals(value) != true)) {
+                    this.BillIdField = value;
+                    this.RaisePropertyChanged("BillId");
                 }
             }
         }

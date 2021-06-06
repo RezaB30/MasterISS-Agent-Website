@@ -401,6 +401,48 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
+        public AgentServiceBillReceiptResponse GetBillReceipt(long billId)
+        {
+            var request = new AgentServiceBillReceiptRequest
+            {
+                Username = Username,
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                BillReceiptParameters = new BillReceiptRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    BillId = billId,
+                },
+                Rand = Rand
+            };
+            var response = Client.GetBillReceipt(request);
+
+            return response;
+        }
+
+        public AgentServiceRelatedPaymentsResponse GetRelatedPayments(int pageNo)
+        {
+            var request = new AgentServiceRelatedPaymentsRequest
+            {
+                Username = Username,
+                Rand = Rand,
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                RelatedPaymentsParameters = new RelatedPaymentsRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    Pagination = new PaginationRequest
+                    {
+                        ItemPerPage = 20,
+                        PageNo = pageNo - 1,
+                    }
+                }
+            };
+            var response = Client.GetRelatedPayments(request);
+
+            return response;
+        }
+
         public AgentServiceCustomerSetupTaskResponse GetCustomerTasks(long subscriptionId)
         {
             var request = new AgentServiceCustomerSetupTaskRequest
@@ -463,7 +505,6 @@ namespace MasterISS_Agent_Website
 
         public CustomerServiceNameValuePair GetProvinces()
         {
-            var usernam = Username;
             var request = new CustomerServiceProvincesRequest
             {
                 Username = Username,

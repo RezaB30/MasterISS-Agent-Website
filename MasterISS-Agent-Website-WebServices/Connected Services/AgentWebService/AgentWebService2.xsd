@@ -446,11 +446,23 @@
   <xs:complexType name="AgentServiceBillReceiptRequest">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q17:BaseRequestOfBillReceiptRequestSHA256_S6Bq0k7I">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BillReceiptParameters" nillable="true" type="tns:BillReceiptRequest" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="AgentServiceBillReceiptRequest" nillable="true" type="tns:AgentServiceBillReceiptRequest" />
+  <xs:complexType name="BillReceiptRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BillId" nillable="true" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BillReceiptRequest" nillable="true" type="tns:BillReceiptRequest" />
   <xs:complexType name="AgentServiceRelatedPaymentsRequest">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q18:BaseRequestOfRelatedPaymentsRequestSHA256_S6Bq0k7I">
