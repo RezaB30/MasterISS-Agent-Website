@@ -79,6 +79,15 @@ namespace MasterISS_Agent_Website_Localization.Home {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Açıklama.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Son Ödeme Tarihi.
         /// </summary>
         public static string DueDate {
@@ -102,6 +111,15 @@ namespace MasterISS_Agent_Website_Localization.Home {
         public static string IssueDate {
             get {
                 return ResourceManager.GetString("IssueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ödeme Tarihi.
+        /// </summary>
+        public static string PayDate {
+            get {
+                return ResourceManager.GetString("PayDate", resourceCulture);
             }
         }
         

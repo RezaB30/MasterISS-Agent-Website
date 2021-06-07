@@ -5,6 +5,7 @@ using MasterISS_Agent_Website_Localization.Home;
 using MasterISS_Agent_Website_WebServices.AgentWebService;
 using Microsoft.Extensions.Caching.Memory;
 using NLog;
+using PagedList;
 using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace MasterISS_Agent_Website.Controllers
     public class HomeController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
+
+        WebServiceWrapper _wrapper;
+
+        public HomeController()
+        {
+            _wrapper = new WebServiceWrapper();
+        }
 
         public ActionResult Index()
         {
@@ -87,7 +95,7 @@ namespace MasterISS_Agent_Website.Controllers
                     }
 
                     var billTotalCount = userBillList.Select(ubl => ubl.Total).Sum();
-                    var billList = userBillList.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total, BillName = ubl.billName }).ToArray();
+                    var billList = userBillList.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total }).ToArray();
                     Session["BillsSumCount"] = billTotalCount;
                     Session["BillList"] = billList;
                     Session["SubsNo"] = customerCode;
@@ -115,7 +123,7 @@ namespace MasterISS_Agent_Website.Controllers
                 if (validSubscriber != null)
                 {
                     var billTotalCount = validSubscriber.Total;
-                    var billList = response.BillListResponse.PrePaidSubscriptionInfoes.Select(ubl => new CustomerBillIdAndCost { Cost = ubl.Total, BillName = ubl.ServiceName }).ToArray();
+                    var billList = response.BillListResponse.PrePaidSubscriptionInfoes.Select(ubl => new CustomerBillIdAndCost { Cost = ubl.Total }).ToArray();
                     Session["BillsSumCount"] = billTotalCount;
                     Session["BillList"] = billList;
                     Session["SubsNo"] = subscriberNo;
@@ -149,55 +157,16 @@ namespace MasterISS_Agent_Website.Controllers
                 var billsId = selectedBills.Select(sb => sb.BillId).ToArray();
                 var responsePayBill = wrapper.PayBills(billsId);
 
-
                 if (responsePayBill.ResponseMessage.ErrorCode == 0)
                 {
                     RemoveSessionsByBillOperations();
-
-                    var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
-
-                    var paidBillsViewModel = new List<ListAgentPaidBillsViewModel>();
-
-                    var cacheItemPolicy = new CacheItemPolicy
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(18)
-                    };
-
-                    if (cache.Get(agentBills) == null)
-                    {
-                        paidBillsViewModel.Add(new ListAgentPaidBillsViewModel
-                        {
-                            SubscriberName = billSubscriberName,
-                            SubscriberNo = billSubscriberNo,
-                            CustomerBillIdsAndCosts = selectedBills
-                        });
-
-                        var result = cache.Add(agentBills, paidBillsViewModel, cacheItemPolicy);
-                    }
-                    else
-                    {
-                        var data = cache.Get(agentBills);
-                        var results = (List<ListAgentPaidBillsViewModel>)data;
-
-                        results.Add(new ListAgentPaidBillsViewModel
-                        {
-                            SubscriberName = billSubscriberName,
-                            SubscriberNo = billSubscriberNo,
-                            CustomerBillIdsAndCosts = selectedBills
-                        });
-
-                        var resultCache = cache.Add(agentBills, results, cacheItemPolicy);
-                    }
-
 
                     var message = MasterISS_Agent_Website_Localization.View.Successful;
                     return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    //LOG
                     LoggerError.Fatal($"An error occurred while PayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-                    //LOG
 
                     RemoveSessionsByBillOperations();
 
@@ -209,9 +178,7 @@ namespace MasterISS_Agent_Website.Controllers
             {
                 RemoveSessionsByBillOperations();
 
-                //LOG
                 LoggerError.Fatal($"An error occurred while PayBill => Selected Bills Null,  by: {AgentClaimInfo.UserEmail()}");
-                //LOG
 
                 var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
                 return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
@@ -232,49 +199,12 @@ namespace MasterISS_Agent_Website.Controllers
                 {
                     RemoveSessionsByBillOperations();
 
-                    var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
-
-                    var paidBillsViewModel = new List<ListAgentPaidBillsViewModel>();
-
-                    var cacheItemPolicy = new CacheItemPolicy
-                    {
-                        AbsoluteExpiration = DateTimeOffset.Now.AddHours(18)
-                    };
-
-                    if (cache.Get(agentBills) == null)
-                    {
-                        paidBillsViewModel.Add(new ListAgentPaidBillsViewModel
-                        {
-                            SubscriberName = billSubscriberName,
-                            SubscriberNo = billSubscriberNo,
-                            CustomerBillIdsAndCosts = selectedBills
-                        });
-
-                        var result = cache.Add(agentBills, paidBillsViewModel, cacheItemPolicy);
-                    }
-                    else
-                    {
-                        var data = cache.Get(agentBills);
-                        var results = (List<ListAgentPaidBillsViewModel>)data;
-
-                        results.Add(new ListAgentPaidBillsViewModel
-                        {
-                            SubscriberName = billSubscriberName,
-                            SubscriberNo = billSubscriberNo,
-                            CustomerBillIdsAndCosts = selectedBills
-                        });
-
-                        var resultCache = cache.Add(agentBills, results, cacheItemPolicy);
-                    }
-
-
                     var message = MasterISS_Agent_Website_Localization.View.Successful;
                     return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     LoggerError.Fatal($"An error occurred while PrePaidPayBill, PayBillErrorCode: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-                    //LOG
 
                     RemoveSessionsByBillOperations();
 
@@ -284,26 +214,61 @@ namespace MasterISS_Agent_Website.Controllers
             }
 
             RemoveSessionsByBillOperations();
-            //LOG
+
             LoggerError.Fatal($"An error occurred while PrePaidPayBill => Selected Bills Null,  by: {AgentClaimInfo.UserEmail()}");
-            //LOG
 
             var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
             return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetAgentsPaidBills()
+        public ActionResult GetAgentsPaidBills(int pageNo = 1, int pageSize = 20)
         {
-            var agentBills = string.Format("AgentBills+{0}", AgentClaimInfo.UserEmail());
-            var data = cache.Get(agentBills);
-            var results = (List<ListAgentPaidBillsViewModel>)data;
-            if (results != null)
-            {
-                return View(results);
-            }
+            var response = _wrapper.GetRelatedPayments(pageNo, pageSize);
 
-            ViewBag.NotFoundPaidBills = "Ödenmiş Fatura Bulunamadı";
-            return View();
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var list = response.RelatedPayments.RelatedPaymentList.Select(rpl => new ListAgentPaidBillsViewModel
+                {
+                    SubscriberNo = rpl.SubscriberNo,
+                    SubscriberName = rpl.ValidDisplayName,
+                    BillId = rpl.BillID,
+                    Cost = rpl.Cost,
+                    Description = rpl.Description,
+                    IssueDate = Convert.ToDateTime(rpl.IssueDate),
+                    PayDate = Convert.ToDateTime(rpl.PayDate),
+                });
+
+                var totalPageCount = response.RelatedPayments.TotalPageCount;
+                var totalItemCount = response.RelatedPayments.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
+                var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, pageNo, pageSize, totalItemCount);
+
+                return View(pagedList);
+            }
+            else
+            {
+                LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+
+                ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+
+                return View();
+            }
+        }
+
+        public ActionResult GetBillReceipt(long billId)
+        {
+            var response = _wrapper.GetBillReceipt(billId);
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                return File(response.BillReceiptResult.FileContent, response.BillReceiptResult.FileName, response.BillReceiptResult.FileName);
+            }
+            else
+            {
+                LoggerError.Fatal($"An error occurred while GetBillReceipt, GetBillReceipt ErrorCode: {response.ResponseMessage.ErrorCode}, GetBillReceipt ErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+
+                TempData["GenericErrorMessage"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         private void RemoveSessionsByBillOperations()

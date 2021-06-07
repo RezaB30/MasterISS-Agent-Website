@@ -34,7 +34,9 @@ namespace MasterISS_Agent_Website.Controllers
                             new Claim(ClaimTypes.Email,signInViewModel.Username),
                             new Claim("AgentId",response.AuthenticationResponse.AgentId.ToString()),
                             new Claim(ClaimTypes.Name,response.AuthenticationResponse.DisplayName),
-                            new Claim(ClaimTypes.NameIdentifier,response.AuthenticationResponse.AgentId.ToString())
+                            new Claim(ClaimTypes.NameIdentifier,response.AuthenticationResponse.AgentId.ToString()),
+                            new Claim("SetupServiceUser",response.AuthenticationResponse.SetupServiceUser),
+                            new Claim("SetupServiceHash",response.AuthenticationResponse.SetupServiceHash)
                         };
 
                         var authManager = Request.GetOwinContext().Authentication;

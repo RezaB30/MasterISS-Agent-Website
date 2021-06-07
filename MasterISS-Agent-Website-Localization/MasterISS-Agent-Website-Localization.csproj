@@ -151,6 +151,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeView.en-us.resx</DependentUpon>
     </Compile>
+    <Compile Include="Setup\SetupModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetupModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\SetupModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetupModel.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\SetupView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetupView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\SetupView.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetupView.en-us.resx</DependentUpon>
+    </Compile>
     <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -262,6 +282,22 @@
     <EmbeddedResource Include="Home\HomeView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\SetupModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SetupModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\SetupModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SetupModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\SetupView.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SetupView.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\SetupView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SetupView.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

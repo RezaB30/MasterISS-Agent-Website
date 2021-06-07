@@ -259,7 +259,7 @@ namespace MasterISS_Agent_Website
             return request;
         }
 
-        public AgentServiceSubscriptionsResponse GetAgentSubscriptions(int pageNo)
+        public AgentServiceSubscriptionsResponse GetAgentSubscriptions(int pageNo,int pageSize)
         {
             var request = new AgentServiceSubscriptionsRequest
             {
@@ -272,7 +272,7 @@ namespace MasterISS_Agent_Website
                     UserEmail = AgentClaimInfo.UserEmail(),
                     Pagination = new PaginationRequest
                     {
-                        ItemPerPage = 20,
+                        ItemPerPage = pageSize,
                         PageNo = pageNo - 1
                     }
                 }
@@ -420,7 +420,7 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
-        public AgentServiceRelatedPaymentsResponse GetRelatedPayments(int pageNo)
+        public AgentServiceRelatedPaymentsResponse GetRelatedPayments(int pageNo,int pageSize)
         {
             var request = new AgentServiceRelatedPaymentsRequest
             {
@@ -433,7 +433,7 @@ namespace MasterISS_Agent_Website
                     UserEmail = AgentClaimInfo.UserEmail(),
                     Pagination = new PaginationRequest
                     {
-                        ItemPerPage = 20,
+                        ItemPerPage = pageSize,
                         PageNo = pageNo - 1,
                     }
                 }

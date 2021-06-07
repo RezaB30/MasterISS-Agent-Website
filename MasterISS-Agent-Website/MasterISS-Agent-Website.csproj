@@ -271,11 +271,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="AgentClaimInfo.cs" />
+    <Compile Include="Binders\DateBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryInfrastructureController.cs" />
+    <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="DateParseOperations.cs" />
     <Compile Include="DateTimeValidation.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -290,6 +292,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ServiceResponse.cs" />
+    <Compile Include="SetupServiceWrapper.cs" />
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddClientAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddWorkOrderViewModel.cs" />
@@ -303,6 +307,11 @@
     <Compile Include="ViewModels\Home\CustomerBillIdAndCost.cs" />
     <Compile Include="ViewModels\Home\GetSubcriberBillsViewModel.cs" />
     <Compile Include="ViewModels\Home\ListAgentPaidBillsViewModel.cs" />
+    <Compile Include="ViewModels\Setup\AddCustomerAttachmentViewModel.cs" />
+    <Compile Include="ViewModels\Setup\AddTaskStatusUpdateViewModel.cs" />
+    <Compile Include="ViewModels\Setup\GetTaskDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Setup\GetTaskListViewModel.cs" />
+    <Compile Include="ViewModels\Setup\ListTasksViewModel.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -396,6 +405,9 @@
     <Content Include="Views\Shared\DisplayTemplates\BoolFormat.cshtml" />
     <Content Include="Views\Customer\_GetAgentClientForms.cshtml" />
     <Content Include="Views\Customer\_UploadDocumentCustomer.cshtml" />
+    <Content Include="Views\Setup\Index.cshtml" />
+    <Content Include="Views\Setup\_GetTaskDetails.cshtml" />
+    <Content Include="Views\Setup\_UpdateTaskStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

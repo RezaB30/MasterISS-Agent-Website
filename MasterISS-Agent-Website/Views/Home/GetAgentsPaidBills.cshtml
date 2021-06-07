@@ -1,18 +1,23 @@
 ﻿@using MasterISS_Agent_Website.ViewModels.Home
-@model IEnumerable<ListAgentPaidBillsViewModel>
+@using PagedList.Mvc
+@using PagedList
+@model StaticPagedList<ListAgentPaidBillsViewModel>
 @{
     ViewBag.Title = "Ödenmiş Faturalar";
 }
 
-@if (ViewBag.NotFoundPaidBills == null)
+@if (ViewBag.ErrorMessage == null)
 {
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberName)</th>
                 <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerBillIdsAndCosts.FirstOrDefault().BillName)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerBillIdsAndCosts.FirstOrDefault().Cost)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IssueDate)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PayDate)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Cost)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,21 +26,42 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.SubscriberName)</td>
                     <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                    @foreach (var billItems in item.CustomerBillIdsAndCosts)
-                    {
-                        <td>@Html.DisplayFor(billItem => billItems.BillName)</td>
-                        <td>@Html.DisplayFor(billItem => billItems.Cost)</td>
-
-                    }
+                    <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PayDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt","Home",new { billId=item.BillId},new { @class="btn btn-info"})</td>
                 </tr>
             }
         </tbody>
     </table>
-
+    if (Model != null && Model.TotalItemCount > 0)
+    {
+        <div class="card card-custom">
+            <div class="card-body py-7">
+                <!--begin::Pagination-->
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex flex-wrap mr-3">
+                        @Html.PagedListPager(Model, page => Url.Action("GetAgentSubscriptions", "Customer", new
+                   {
+                       page = page,
+                   }),
+                   new PagedListRenderOptions
+                   {
+                   })
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="text-muted"> Toplam @Model.TotalItemCount kayıt bulundu. Bu sayfada @Model.FirstItemOnPage ile  @Model.LastItemOnPage gösteriliyor</span>
+                    </div>
+                </div>
+                <!--end:: Pagination-->
+            </div>
+        </div>
+    }
 }
 else
 {
     <div class="text-danger">
-        @ViewBag.NotFoundPaidBills
+        @ViewBag.ErrorMessage
     </div>
 }

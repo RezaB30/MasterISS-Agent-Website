@@ -24,6 +24,23 @@ namespace MasterISS_Agent_Website
             return displayName;
         }
 
+        public static string SetupServiceUser()
+        {
+            var setupServiceUser = CurrentClaims().Where(c => c.Type == "SetupServiceUser")
+                  .Select(c => c.Value).SingleOrDefault();
+
+            return setupServiceUser;
+        }
+        
+        public static string SetupServiceHash()
+        {
+            var setupServiceHash = CurrentClaims().Where(c => c.Type == "SetupServiceHash")
+                  .Select(c => c.Value).SingleOrDefault();
+
+            return setupServiceHash;
+        }
+
+
         private static List<Claim> CurrentClaims()
         {
             var currentClaims = ClaimsPrincipal.Current.Identities.First().Claims.ToList();

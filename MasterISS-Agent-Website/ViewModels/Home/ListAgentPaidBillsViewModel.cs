@@ -14,6 +14,22 @@ namespace MasterISS_Agent_Website.ViewModels.Home
 
         [Display(Name = "SubscriberName", ResourceType = typeof(HomeModel))]
         public string SubscriberName { get; set; }
-        public CustomerBillIdAndCost[] CustomerBillIdsAndCosts { get; set; }
+        public long BillId { get; set; }
+        [Display(Name = "Amount", ResourceType = typeof(HomeModel))]
+        public decimal Cost { get; set; }
+
+        //[Display(Name = "BillName", ResourceType = typeof(HomeModel))]
+        //public string BillName { get; set; }
+
+        [Display(Name = "Description", ResourceType = typeof(HomeModel))]
+        public string Description { get; set; }
+
+        [Display(Name = "IssueDate", ResourceType = typeof(HomeModel))]
+        [UIHint("DateTimeConverted")]
+        public DateTime IssueDate { get; set; }
+
+        [Display(Name = "PayDate", ResourceType = typeof(HomeModel))]
+        [UIHint("DateTimeConverted")]
+        public DateTime PayDate { get; set; }
     }
 }

@@ -115,6 +115,24 @@ namespace MasterISS_Agent_Website_Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bu sayfada.
+        /// </summary>
+        public static string OnThisPage {
+            get {
+                return ResourceManager.GetString("OnThisPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to kayıt bulundu..
+        /// </summary>
+        public static string RecordFound {
+            get {
+                return ResourceManager.GetString("RecordFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kaldır.
         /// </summary>
         public static string Remove {
@@ -129,6 +147,15 @@ namespace MasterISS_Agent_Website_Localization {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gösteriliyor..
+        /// </summary>
+        public static string Showing {
+            get {
+                return ResourceManager.GetString("Showing", resourceCulture);
             }
         }
         
@@ -156,6 +183,24 @@ namespace MasterISS_Agent_Website_Localization {
         public static string Successful {
             get {
                 return ResourceManager.GetString("Successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ile.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toplam.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

@@ -58,5 +58,14 @@ namespace MasterISS_Agent_Website.Properties {
                 return ((decimal)(this["FileSizeLimit"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int SearchLimit {
+            get {
+                return ((int)(this["SearchLimit"]));
+            }
+        }
     }
 }

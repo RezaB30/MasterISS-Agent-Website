@@ -13,7 +13,5 @@ namespace MasterISS_Agent_Website.ViewModels.Home
         [Display(Name = "Amount", ResourceType = typeof(HomeModel))]
         public decimal Cost { get; set; }
 
-        [Display(Name = "BillName", ResourceType = typeof(HomeModel))]
-        public string BillName { get; set; }
     }
 }

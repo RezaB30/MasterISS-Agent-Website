@@ -28,25 +28,56 @@ namespace MasterISS_Agent_Website
             }
             catch (Exception ex)
             {
-                LoggerError.Fatal($"An error occurred while EnumSelectList => ErrorMessage : {ex.Message}");
+                LoggerError.Fatal(ex, $"An error occurred while EnumSelectList");
                 return null;
             }
+        }
+
+        public static string EnumDescription<TEnum, TResource>(int convertedValue) where TEnum : struct, IComparable, IFormattable, IConvertible
+        {
+            try
+            {
+                var displayText = new LocalizedList<TEnum, TResource>().GetDisplayText(convertedValue, CultureInfo.CurrentCulture);
+
+                return displayText;
+            }
+            catch (Exception ex)
+            {
+                LoggerError.Fatal(ex, $"An error occurred while EnumDescription");
+                return null;
+            }
+
         }
 
         public static SelectList NameValuePairSelectList<Tkey, TValue>(this IEnumerable<KeyValuePair<Tkey, TValue>> keyValuePairs, Tkey? selectedValue)
             where Tkey : struct
             where TValue : class
         {
-
-            var selectList = new SelectList(keyValuePairs.Select(kvp => new { Name = kvp.Value, Value = kvp.Key }).ToArray(), "Value", "Name", selectedValue);
-            return selectList;
-
+            try
+            {
+                var selectList = new SelectList(keyValuePairs.Select(kvp => new { Name = kvp.Value, Value = kvp.Key }).ToArray(), "Value", "Name", selectedValue);
+                return selectList;
+            }
+            catch (Exception ex)
+            {
+                LoggerError.Fatal(ex, $"An error occurred while NameValuePairSelectList");
+                return null;
+            }
         }
 
         public static string GetConvertedErrorMessage(int errorCode)
         {
-            var convertedMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(errorCode, CultureInfo.CurrentCulture);
-            return convertedMessage;
+            try
+            {
+                var convertedMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(errorCode, CultureInfo.CurrentCulture);
+                return convertedMessage;
+            }
+            catch (Exception ex)
+            {
+                LoggerError.Fatal(ex, $"An error occurred while GetConvertedErrorMessage");
+                throw;
+            }
+
         }
 
     }

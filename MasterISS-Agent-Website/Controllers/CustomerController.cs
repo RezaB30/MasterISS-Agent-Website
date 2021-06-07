@@ -447,7 +447,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         public ActionResult GetAgentSubscriptions(int page = 1, int pageSize = 20)
         {
-            var response = _wrapper.GetAgentSubscriptions(page);
+            var response = _wrapper.GetAgentSubscriptions(page, pageSize);
 
             if (response.ResponseMessage.ErrorCode == 0)
             {
@@ -751,7 +751,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
         private List<KeyValuePair<int, string>> GetFormTypes(int? selectedValue)
         {
-            var formTypesLocalized = new LocalizedList<GeneralPDFFormTypes, RadiusR.Localization.Lists.GeneralPDFFormTypes>().GetList(CultureInfo.CurrentCulture).Where(fl => fl.Key != (int)GeneralPDFFormTypes.TransferForm && fl.Key != (int)GeneralPDFFormTypes.TransportForm).ToList();
+            var formTypesLocalized = new LocalizedList<GeneralPDFFormTypes, RadiusR.Localization.Lists.GeneralPDFFormTypes>().GetList(CultureInfo.CurrentCulture).Where(fl => fl.Key == (int)GeneralPDFFormTypes.ContractForm).ToList();
             return formTypesLocalized;
         }
         private SelectList NationalityList(int? selectedValue)

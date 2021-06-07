@@ -48,6 +48,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\SetupWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +139,59 @@
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.CustomerServiceServiceAvailabilityResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService.wsdl" />
+    <None Include="Connected Services\SetupWebService\CustomerSetupService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\CustomerSetupService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.AddCustomerAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetCustomerAttachmentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetCustomerContractResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetCustomerCredentialResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetCustomerLineDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetCustomerSessionInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetTaskDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.GetTaskListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SetupWebService\MasterISS_Agent_Website_WebServices.SetupWebService.ParameterlessResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AgentWebService\" />
+    <WCFMetadataStorage Include="Connected Services\SetupWebService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\AgentWebService\configuration91.svcinfo" />
@@ -146,6 +201,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\AgentWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SetupWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SetupWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SetupWebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

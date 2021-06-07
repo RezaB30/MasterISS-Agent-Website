@@ -135,11 +135,20 @@
   <data name="NoRecordsFound" xml:space="preserve">
     <value>No Records Found</value>
   </data>
+  <data name="OnThisPage" xml:space="preserve">
+    <value>On this page</value>
+  </data>
+  <data name="RecordFound" xml:space="preserve">
+    <value>record found.</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="Showing" xml:space="preserve">
+    <value>showing</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign In</value>
@@ -149,6 +158,12 @@
   </data>
   <data name="Successful" xml:space="preserve">
     <value>Successful</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

@@ -123,6 +123,9 @@
   <data name="BillName" xml:space="preserve">
     <value>Fatura Adı</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Son Ödeme Tarihi</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="IssueDate" xml:space="preserve">
     <value>Düzenlenme Tarihi</value>
+  </data>
+  <data name="PayDate" xml:space="preserve">
+    <value>Ödeme Tarihi</value>
   </data>
   <data name="SubscriberName" xml:space="preserve">
     <value>Abone Adı</value>

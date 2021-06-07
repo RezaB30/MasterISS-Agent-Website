@@ -1,0 +1,181 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Setup
+@model GetTaskDetailsViewModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <i aria-hidden="true" class="ki font-size-h5 ki-close"></i>
+    </button>
+</div>
+@if (ViewBag.ErrorMessage == null)
+{
+    <div class="modal-body">
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.Address)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.Address)</span>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.BBK)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.BBK)</span>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.HasModem)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.HasModem)</span>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.ModemName)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.ModemName)</span>
+            </div>
+        </div>
+        <hr /> 
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CustomerPhoneNo)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.CustomerPhoneNo)</span>
+            </div>
+        </div>
+        <hr />
+
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CustomerType)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.CustomerType)</span>
+            </div>
+        </div>
+        <hr />
+
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.Details)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.Details)</span>
+            </div>
+        </div>
+        <hr />
+        
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.PSTN)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.PSTN)</span>
+            </div>
+        </div>
+        <hr />
+        
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.TaskNo)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.TaskNo)</span>
+            </div>
+        </div>
+        <hr />
+
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.XDSLNo)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.XDSLNo)</span>
+            </div>
+        </div>
+        <hr />
+
+         <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.XDSLType)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.XDSLType)</span>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row mb-3">
+            <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.TaskUpdates)</span>
+
+            @foreach (var item in Model.TaskUpdates)
+            {
+
+                <div class="row g-3">
+                    <div class="col">
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.FaultCodes)</span>
+                    </div>
+                    <div class="col">
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.FaultCodes)</span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row g-3">
+                    <div class="col">
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.CreationDate)</span>
+                    </div>
+                    <div class="col">
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.CreationDate)</span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row g-3">
+                    <div class="col">
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.Description)</span>
+                    </div>
+                    <div class="col">
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.Description)</span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row g-3">
+                    <div class="col">
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.ReservationDate)</span>
+                    </div>
+                    <div class="col">
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.ReservationDate)</span>
+                    </div>
+                </div>
+                <hr />
+
+            }
+        </div>
+        <hr />
+    </div>
+}
+else
+{
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+}
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+</div>
+

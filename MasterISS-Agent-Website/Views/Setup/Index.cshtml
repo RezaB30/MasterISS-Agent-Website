@@ -1,0 +1,101 @@
+﻿@using MasterISS_Agent_Website.ViewModels.Setup
+@using PagedList
+@using PagedList.Mvc
+@using MasterISS_Agent_Website_Localization
+@model StaticPagedList<ListTasksViewModel>
+@{
+    ViewBag.Title = "Kurulum İş Emirleri";
+
+    var search = ViewBag.Search as GetTaskListViewModel ?? new GetTaskListViewModel();
+}
+
+@if (ViewBag.ValidationError == null && ViewBag.Max30Days == null && ViewBag.StartTimeBiggerThanEndTime == null && ViewBag.ErrorMessage == null && ViewBag.DateFormatIsNotCorrect == null)
+{
+    if (Model != null && Model.TotalItemCount > 0)
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskIssueDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().ReservationDate)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Province) > @Html.DisplayNameFor(m => m.FirstOrDefault().City)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskStatus)</th>
+                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskType)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TaskIssueDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ReservationDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Province) > @Html.DisplayFor(modelItem => item.City)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TaskStatus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TaskType)</td>
+                        <td>
+                            <input data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" value="Görev Detayları" dataValue="@item.TaskNo" class="btn btn-info get-task-details" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="card card-custom">
+            <div class="card-body py-7">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex flex-wrap mr-3">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "Setup", new
+                   {
+                       page = page,
+                   }),
+                   new PagedListRenderOptions
+                   {
+                   })
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="text-muted"> @View.Total @Model.TotalItemCount @View.RecordFound @View.OnThisPage @Model.FirstItemOnPage @View.To @Model.LastItemOnPage @View.Showing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <span class="text-danger">@MasterISS_Agent_Website_Localization.View.NoRecordsFound</span>
+    }
+}
+else
+{
+    <div class="text-danger">
+        <span>@ViewBag.Max30Days</span>
+        <span>@ViewBag.ErrorMessage</span>
+        <span>@ViewBag.StartTimeBiggerThanEndTime</span>
+        <span>@ViewBag.DateFormatIsNotCorrect</span>
+    </div>
+}
+
+<div class="modal fade" id="modalCenterGeneric" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div id="generic-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Javascript{
+    <script>
+
+        $(".get-task-details").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { taskNo: dataValue }
+            var url = '@Url.Action("GetTaskDetails", "Setup")';
+            var container = $("#generic-container");
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+          });
+
+    </script>
+}
