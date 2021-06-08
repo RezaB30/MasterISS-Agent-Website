@@ -2225,6 +2225,9 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MasterISS_Agent_Website_WebServices.AgentWebService.PaginationRequest PaginationField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.SearchFilter SearchFilterField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public MasterISS_Agent_Website_WebServices.AgentWebService.PaginationRequest Pagination {
             get {
@@ -2234,6 +2237,19 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((object.ReferenceEquals(this.PaginationField, value) != true)) {
                     this.PaginationField = value;
                     this.RaisePropertyChanged("Pagination");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.SearchFilter SearchFilter {
+            get {
+                return this.SearchFilterField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SearchFilterField, value) != true)) {
+                    this.SearchFilterField = value;
+                    this.RaisePropertyChanged("SearchFilter");
                 }
             }
         }
@@ -2673,6 +2689,9 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MasterISS_Agent_Website_WebServices.AgentWebService.PaginationRequest PaginationField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private MasterISS_Agent_Website_WebServices.AgentWebService.SearchFilter SearchFilterField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
         public MasterISS_Agent_Website_WebServices.AgentWebService.PaginationRequest Pagination {
             get {
@@ -2682,6 +2701,19 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((object.ReferenceEquals(this.PaginationField, value) != true)) {
                     this.PaginationField = value;
                     this.RaisePropertyChanged("Pagination");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public MasterISS_Agent_Website_WebServices.AgentWebService.SearchFilter SearchFilter {
+            get {
+                return this.SearchFilterField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SearchFilterField, value) != true)) {
+                    this.SearchFilterField = value;
+                    this.RaisePropertyChanged("SearchFilter");
                 }
             }
         }
@@ -3699,6 +3731,52 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
                 if ((this.PageNoField.Equals(value) != true)) {
                     this.PageNoField = value;
                     this.RaisePropertyChanged("PageNo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SearchFilter", Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.A" +
+        "gentRequests")]
+    [System.SerializableAttribute()]
+    public partial class SearchFilter : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CustomerCodeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomerCode {
+            get {
+                return this.CustomerCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CustomerCodeField, value) != true)) {
+                    this.CustomerCodeField = value;
+                    this.RaisePropertyChanged("CustomerCode");
                 }
             }
         }

@@ -226,7 +226,7 @@ namespace MasterISS_Agent_Website.Controllers
             filterAgentPaidBills = filterAgentPaidBills ?? new FilterAgentPaidBillsViewModel();
             ViewBag.Search = filterAgentPaidBills;
 
-            var response = _wrapper.GetRelatedPayments(page, pageSize);
+            var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
 
             if (response.ResponseMessage.ErrorCode == 0)
             {

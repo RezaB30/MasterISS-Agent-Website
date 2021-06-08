@@ -201,6 +201,7 @@
       <xs:extension base="tns:RequestBase">
         <xs:sequence>
           <xs:element minOccurs="0" name="Pagination" nillable="true" type="tns:PaginationRequest" />
+          <xs:element minOccurs="0" name="SearchFilter" nillable="true" type="tns:SearchFilter" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -213,6 +214,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PaginationRequest" nillable="true" type="tns:PaginationRequest" />
+  <xs:complexType name="SearchFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchFilter" nillable="true" type="tns:SearchFilter" />
   <xs:complexType name="AgentServiceParameterlessRequest">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q5:BaseRequestOfParameterlessRequestSHA256_S6Bq0k7I">
@@ -478,6 +485,7 @@
       <xs:extension base="tns:RequestBase">
         <xs:sequence>
           <xs:element minOccurs="0" name="Pagination" nillable="true" type="tns:PaginationRequest" />
+          <xs:element minOccurs="0" name="SearchFilter" nillable="true" type="tns:SearchFilter" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

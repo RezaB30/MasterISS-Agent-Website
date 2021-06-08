@@ -162,6 +162,9 @@
   <data name="CustomerName" xml:space="preserve">
     <value>Customer Name</value>
   </data>
+  <data name="CustomerNameAndSubsNo" xml:space="preserve">
+    <value>Customer Name or Subscriber No</value>
+  </data>
   <data name="CustomerResidanceAddressSameSetupAddress" xml:space="preserve">
     <value>The Customer Residence Address is the same as the Setup Address</value>
   </data>

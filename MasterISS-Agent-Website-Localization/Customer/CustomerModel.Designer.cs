@@ -196,6 +196,15 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Müşteri Adı ya da Abone Numarası.
+        /// </summary>
+        public static string CustomerNameAndSubsNo {
+            get {
+                return ResourceManager.GetString("CustomerNameAndSubsNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Müşteri İkamet Adresi, Kurulum Adresi ile Aynı.
         /// </summary>
         public static string CustomerResidanceAddressSameSetupAddress {

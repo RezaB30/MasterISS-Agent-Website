@@ -1,2 +1,36 @@
 ﻿@using MasterISS_Agent_Website.ViewModels.Setup
 @model AddTaskStatusUpdateViewModel
+
+<div class="modal-header">
+    <div class="modal-title"></div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+    @using (Html.BeginForm())
+    {
+        <div class="mb-3">
+            @Html.LabelFor(m => m.FaultCode, new { @class = "col-form-label" })
+            @Html.DropDownListFor(m => m.FaultCode, (SelectList)ViewBag.FaultCodes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3 display-none">
+            @Html.LabelFor(m => m.ReservationDate, new { @class = "col-form-label" })
+            @Html.EditorFor(m => m.ReservationDate, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Description, new { @class = "col-form-label" })
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        </div>
+
+        @Html.HiddenFor(m => m.TaskNo)
+
+        <input type="submit" value="@MasterISS_Agent_Website_Localization.View.Submit" class="btn btn-primary" />
+    }
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+</div>
+

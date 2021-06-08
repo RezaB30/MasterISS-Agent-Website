@@ -162,6 +162,9 @@
   <data name="CustomerName" xml:space="preserve">
     <value>Müşteri Adı</value>
   </data>
+  <data name="CustomerNameAndSubsNo" xml:space="preserve">
+    <value>Müşteri Adı ya da Abone Numarası</value>
+  </data>
   <data name="CustomerResidanceAddressSameSetupAddress" xml:space="preserve">
     <value>Müşteri İkamet Adresi, Kurulum Adresi ile Aynı</value>
   </data>

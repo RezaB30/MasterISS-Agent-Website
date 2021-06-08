@@ -24,7 +24,9 @@ a {
     text-decoration: none;
 }
 
-
+.display-none{
+    display:none;
+}
 label {
     color: var(--black-text-color);
 }

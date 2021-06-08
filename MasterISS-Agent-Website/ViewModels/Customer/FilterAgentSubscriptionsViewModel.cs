@@ -9,7 +9,7 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 {
     public class FilterAgentSubscriptionsViewModel
     {
-        [Display(Name = "CustomerName", ResourceType = typeof(CustomerModel))]
+        [Display(Name = "CustomerNameAndSubsNo", ResourceType = typeof(CustomerModel))]
         public string CustomerName { get; set; }
     }
 }

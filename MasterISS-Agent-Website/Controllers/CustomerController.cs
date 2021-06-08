@@ -450,7 +450,7 @@ namespace MasterISS_Agent_Website.Controllers
             filterSubsModel = filterSubsModel ?? new FilterAgentSubscriptionsViewModel();
             ViewBag.Search = filterSubsModel;
 
-            var response = _wrapper.GetAgentSubscriptions(page, pageSize);
+            var response = _wrapper.GetAgentSubscriptions(page, pageSize, filterSubsModel.CustomerName);
 
             if (response.ResponseMessage.ErrorCode == 0)
             {
