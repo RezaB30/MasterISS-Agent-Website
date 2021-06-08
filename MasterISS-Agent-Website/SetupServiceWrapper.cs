@@ -141,15 +141,15 @@ namespace MasterISS_Agent_Website
             var request = new AddTaskStatusUpdateRequest
             {
                 Culture = Culture,
-                Hash = SetupHash(),
+                Hash = Hash(),
                 Rand = Rand,
                 Username = Username,
                 TaskUpdate = new TaskUpdate
                 {
                     TaskNo = (long)taskStatusUpdateViewModel.TaskNo,
                     Description = taskStatusUpdateViewModel.Description,
-                    FaultCode = (short)taskStatusUpdateViewModel.FaultCodes,
-                    ReservationDate = DateTimeConvertedBySetupWebService(taskStatusUpdateViewModel.ReservationDate)
+                    FaultCode = (short)taskStatusUpdateViewModel.FaultCode,
+                    ReservationDate = taskStatusUpdateViewModel.ReservationDate
                 },
             };
             var response = Client.AddTaskStatusUpdate(request);

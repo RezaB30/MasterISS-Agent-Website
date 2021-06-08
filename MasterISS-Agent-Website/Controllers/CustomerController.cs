@@ -445,8 +445,11 @@ namespace MasterISS_Agent_Website.Controllers
             //return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetAgentSubscriptions(int page = 1, int pageSize = 20)
+        public ActionResult GetAgentSubscriptions(FilterAgentSubscriptionsViewModel filterSubsModel, int page = 1, int pageSize = 20)
         {
+            filterSubsModel = filterSubsModel ?? new FilterAgentSubscriptionsViewModel();
+            ViewBag.Search = filterSubsModel;
+
             var response = _wrapper.GetAgentSubscriptions(page, pageSize);
 
             if (response.ResponseMessage.ErrorCode == 0)

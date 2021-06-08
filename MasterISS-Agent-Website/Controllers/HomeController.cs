@@ -221,9 +221,12 @@ namespace MasterISS_Agent_Website.Controllers
             return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetAgentsPaidBills(int pageNo = 1, int pageSize = 20)
+        public ActionResult GetAgentsPaidBills(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
         {
-            var response = _wrapper.GetRelatedPayments(pageNo, pageSize);
+            filterAgentPaidBills = filterAgentPaidBills ?? new FilterAgentPaidBillsViewModel();
+            ViewBag.Search = filterAgentPaidBills;
+
+            var response = _wrapper.GetRelatedPayments(page, pageSize);
 
             if (response.ResponseMessage.ErrorCode == 0)
             {
@@ -240,7 +243,7 @@ namespace MasterISS_Agent_Website.Controllers
 
                 var totalPageCount = response.RelatedPayments.TotalPageCount;
                 var totalItemCount = response.RelatedPayments.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
-                var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, pageNo, pageSize, totalItemCount);
+                var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, page, pageSize, totalItemCount);
 
                 return View(pagedList);
             }

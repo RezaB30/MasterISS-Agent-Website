@@ -4,11 +4,26 @@
 @model StaticPagedList<ListAgentPaidBillsViewModel>
 @{
     ViewBag.Title = "Ödenmiş Faturalar";
+    var search = ViewBag.Search as FilterAgentPaidBillsViewModel ?? new FilterAgentPaidBillsViewModel();
+}
+
+@using (Html.BeginForm("GetAgentsPaidBills", "Home", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-3">
+            @Html.LabelFor(m => search.CustomerName)
+            @Html.TextBox("CustomerName", search.CustomerName)
+        </div>
+        <div class="col-3">
+            <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
+            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentsPaidBills", "Home", new { @class = "btn btn-secondary mt-4" })
+        </div>
+    </div>
 }
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <table class="table table-striped">
+    <table class="table table-striped mt-4">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberName)</th>
@@ -30,7 +45,7 @@
                     <td>@Html.DisplayFor(modelItem => item.PayDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>@Html.DisplayFor(modelItem => item.Cost)</td>
-                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt","Home",new { billId=item.BillId},new { @class="btn btn-info"})</td>
+                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt", "Home", new { billId = item.BillId }, new { @class = "btn btn-info" })</td>
                 </tr>
             }
         </tbody>
@@ -42,9 +57,10 @@
                 <!--begin::Pagination-->
                 <div class="d-flex justify-content-between align-items-center flex-wrap">
                     <div class="d-flex flex-wrap mr-3">
-                        @Html.PagedListPager(Model, page => Url.Action("GetAgentSubscriptions", "Customer", new
+                        @Html.PagedListPager(Model, page => Url.Action("GetAgentsPaidBills", "Home", new
                    {
                        page = page,
+                       search.CustomerName
                    }),
                    new PagedListRenderOptions
                    {

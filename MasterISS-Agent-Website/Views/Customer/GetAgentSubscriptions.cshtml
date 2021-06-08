@@ -3,11 +3,26 @@
 @model PagedList.StaticPagedList<ListAgentSubscriptionViewModel>
 @{
     ViewBag.Title = "Acenta Müşterileri";
+    var search = ViewBag.Search as FilterAgentSubscriptionsViewModel ?? new FilterAgentSubscriptionsViewModel();
+}
+
+@using (Html.BeginForm("GetAgentSubscriptions", "Customer", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-3">
+            @Html.LabelFor(m => search.CustomerName)
+            @Html.TextBox("CustomerName",search.CustomerName)
+        </div>
+        <div class="col-3">
+            <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
+            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentSubscriptions", "Customer", new { @class = "btn btn-secondary mt-4" })
+        </div>
+    </div>
 }
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <table class="table table-striped">
+    <table class="table table-striped mt-4">
         <thead>
             <tr>
                 <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
@@ -18,8 +33,8 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
+                @*<th></th>
+                <th></th>*@
             </tr>
         </thead>
         <tbody>
@@ -30,8 +45,8 @@
                     <td>@Html.DisplayFor(modelItem => item.CustomerState)</td>
                     <td>@Html.DisplayFor(modelItem => item.MembershipDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                    <td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
-                    <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>
+                    @*<td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
+                    <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>*@
                     <td>
                         <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
                             <input type="button" class="btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
@@ -56,6 +71,7 @@
                         @Html.PagedListPager(Model, page => Url.Action("GetAgentSubscriptions", "Customer", new
                    {
                        page = page,
+                       search.CustomerName
                    }),
                    new PagedListRenderOptions
                    {

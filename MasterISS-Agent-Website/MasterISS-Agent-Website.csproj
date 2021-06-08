@@ -297,6 +297,7 @@
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddClientAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddWorkOrderViewModel.cs" />
+    <Compile Include="ViewModels\Customer\FilterAgentSubscriptionsViewModel.cs" />
     <Compile Include="ViewModels\Customer\GetPartnerClientFormsViewModel.cs" />
     <Compile Include="ViewModels\Customer\IDCardValidationViewModel.cs" />
     <Compile Include="ViewModels\Customer\ListAgentSubscriptionViewModel.cs" />
@@ -305,6 +306,7 @@
     <Compile Include="ViewModels\Customer\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\Home\CustomerBillCollectionViewModel.cs" />
     <Compile Include="ViewModels\Home\CustomerBillIdAndCost.cs" />
+    <Compile Include="ViewModels\Home\FilterAgentPaidBillsViewModel.cs" />
     <Compile Include="ViewModels\Home\GetSubcriberBillsViewModel.cs" />
     <Compile Include="ViewModels\Home\ListAgentPaidBillsViewModel.cs" />
     <Compile Include="ViewModels\Setup\AddCustomerAttachmentViewModel.cs" />

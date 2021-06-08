@@ -6,9 +6,6 @@
 }
 
 <div class="modal-header">
-    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-        <i aria-hidden="true" class="ki font-size-h5 ki-close"></i>
-    </button>
 </div>
 @if (ViewBag.ErrorMessage == null)
 {
@@ -18,87 +15,87 @@
 
         <div class="row g-3">
             <div class="col">
-                <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CustomerName)</span>
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CustomerName)</span>
             </div>
             <div class="col">
-                <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(model => model.CustomerName)</span>
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.CustomerName)</span>
             </div>
         </div>
         <hr/>
 
         <div class="row g-3">
             <div class="col">
-                <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.Allowence)</span>
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.Allowence)</span>
             </div>
             <div class="col">
-                <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(model => model.Allowence)</span>
-            </div>
-        </div>
-        <hr />
-
-        <div class="row g-3">
-            <div class="col">
-                <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.HasModem)</span>
-            </div>
-            <div class="col">
-                <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(model => model.HasModem)</span>
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.Allowence)</span>
             </div>
         </div>
         <hr />
 
         <div class="row g-3">
             <div class="col">
-                <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.ModemName)</span>
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.HasModem)</span>
             </div>
             <div class="col">
-                <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(model => model.ModemName)</span>
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.HasModem)</span>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row g-3">
+            <div class="col">
+                <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.ModemName)</span>
+            </div>
+            <div class="col">
+                <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.ModemName)</span>
             </div>
         </div>
         <hr />
 
 
         <div class="row mb-3">
-            <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(model => model.TaskUpdates)</span>
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.TaskUpdates)</span>
 
             @foreach (var item in Model.TaskUpdates)
             {
 
                 <div class="row g-3">
                     <div class="col">
-                        <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.FaultCodes)</span>
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.FaultCodes)</span>
                     </div>
                     <div class="col">
-                        <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.FaultCodes)</span>
-                    </div>
-                </div>
-                <hr />
-
-                <div class="row g-3">
-                    <div class="col">
-                        <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.CreationDate)</span>
-                    </div>
-                    <div class="col">
-                        <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.CreationDate)</span>
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.FaultCodes)</span>
                     </div>
                 </div>
                 <hr />
 
                 <div class="row g-3">
                     <div class="col">
-                        <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.Description)</span>
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.CreationDate)</span>
                     </div>
                     <div class="col">
-                        <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.Description)</span>
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.CreationDate)</span>
                     </div>
                 </div>
                 <hr />
 
                 <div class="row g-3">
                     <div class="col">
-                        <span class="text-dark-50 flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.ReservationDate)</span>
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.Description)</span>
                     </div>
                     <div class="col">
-                        <span class="text-danger flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.ReservationDate)</span>
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.Description)</span>
+                    </div>
+                </div>
+                <hr />
+
+                <div class="row g-3">
+                    <div class="col">
+                        <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(modelItem => item.ReservationDate)</span>
+                    </div>
+                    <div class="col">
+                        <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(modelItem => item.ReservationDate)</span>
                     </div>
                 </div>
                 <hr />

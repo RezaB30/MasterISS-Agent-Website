@@ -20,7 +20,7 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public RadiusR.DB.Enums.CustomerSetup.XDSLTypes XDSLTypes { get; set; }
 
-        [Display(Name = "TaskTypes", ResourceType = typeof(CustomerModel))]
+        [Display(Name = "TaskType", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
         public RadiusR.DB.Enums.CustomerSetup.TaskTypes TaskTypes { get; set; }
 

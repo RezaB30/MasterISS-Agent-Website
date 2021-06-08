@@ -25,7 +25,7 @@ namespace MasterISS_Agent_Website.ViewModels.Home
         public string Description { get; set; }
 
         [Display(Name = "IssueDate", ResourceType = typeof(HomeModel))]
-        [UIHint("DateTimeConverted")]
+        [UIHint("ShortDateTimeConverted")]
         public DateTime IssueDate { get; set; }
 
         [Display(Name = "PayDate", ResourceType = typeof(HomeModel))]

@@ -13,6 +13,7 @@ using RadiusR.DB.Enums;
 
 namespace MasterISS_Agent_Website.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SetupController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
