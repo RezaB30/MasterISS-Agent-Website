@@ -129,6 +129,9 @@
   <data name="CustomerType" xml:space="preserve">
     <value>Müşteri Tipi</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Detaylar</value>
   </data>

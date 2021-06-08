@@ -7,16 +7,23 @@
 </div>
 
 <div class="modal-body">
-    @using (Html.BeginForm())
+    @using (Ajax.BeginForm("UpdateTaskStatus", "Setup", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResult" }))
     {
+        <div class="error-codes-container" style="display:none">
+            <div class="mt-2 my-4"></div>
+            <div class="text-danger error-codes" align="center"></div>
+            <div class="mt-2 my-4"></div>
+        </div>
+
+        @Html.AntiForgeryToken()
         <div class="mb-3">
             @Html.LabelFor(m => m.FaultCode, new { @class = "col-form-label" })
             @Html.DropDownListFor(m => m.FaultCode, (SelectList)ViewBag.FaultCodes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
         </div>
 
-        <div class="mb-3 display-none">
+        <div class="mb-3 display-none reservation-date-container">
             @Html.LabelFor(m => m.ReservationDate, new { @class = "col-form-label" })
-            @Html.EditorFor(m => m.ReservationDate, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
+            @Html.EditorFor(m => m.ReservationDate, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") } })
         </div>
 
         <div class="mb-3">

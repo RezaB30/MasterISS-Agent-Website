@@ -39,6 +39,9 @@
                         <td>
                             <input data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" value="Görev Detayları" dataValue="@item.TaskNo" class="btn btn-info get-task-details" />
                         </td>
+                        <td>
+                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success update-task-status" dataValue="@item.TaskNo" value="Görev Durumunu Güncelle" />
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -94,8 +97,50 @@ else
             var postData = { taskNo: dataValue }
             var url = '@Url.Action("GetTaskDetails", "Setup")';
             var container = $("#generic-container");
+            container.empty();
             AjaxRequestTypeGetAndReturnHTML(postData, url, container);
           });
 
+        $(".update-task-status").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { taskNo: dataValue }
+            var url = '@Url.Action("UpdateTaskStatus", "Setup")';
+            var container = $("#generic-container");
+            container.empty();
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+
+        $("#generic-container").on('change', '#FaultCode', function () {
+            var value = $(this).val();
+            if (value=='9') {
+                $(".reservation-date-container").show();
+            }
+            else {
+                $(".reservation-date-container").hide();
+            }
+        });
+
+        function GenericResult(data, status) {
+          if (status = "success") {
+              var responseStatus = data.responseJSON.status;
+              if (responseStatus == "Success") {
+                  var message = data.responseJSON.message;
+                  var url='@Url.Action("Index", "Setup")';
+                  GetAlert(message, "true",url);
+              }
+              else if (responseStatus =="FailedAndRedirect") {
+                  var redirectMessage = data.responseJSON.ErrorMessage;
+                  var urlHome='@Url.Action("Index", "Home")';
+                  GetAlert(redirectMessage, "false", urlHome);
+              }
+              else {
+                  $(".error-codes-container").show();
+                  $(".error-codes").html(data.responseJSON.ErrorMessage);
+              }
+          }
+          else {
+              console.log("Error");
+          }
+      }
     </script>
 }

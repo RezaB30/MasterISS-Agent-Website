@@ -13,7 +13,7 @@ using RadiusR.DB.Enums;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize/*(Roles = "Admin")*/]
     public class SetupController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
@@ -126,6 +126,8 @@ namespace MasterISS_Agent_Website.Controllers
 
                 return PartialView("_GetTaskDetails", taskDetails);
             }
+            LoggerError.Fatal($"An error occurred while GetTaskDetails GetTaskDetails , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
             ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
             return PartialView("_GetTaskDetails");
         }
@@ -138,7 +140,40 @@ namespace MasterISS_Agent_Website.Controllers
                 TaskNo = taskNo
             };
 
-            return PartialView("UpdateTaskStatus", addTaskStatusUpdateViewModel);
+            return PartialView("_UpdateTaskStatus", addTaskStatusUpdateViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateTaskStatus(AddTaskStatusUpdateViewModel addTaskStatusUpdateViewModel)
+        {
+            if (Enum.IsDefined(typeof(FaultCodes), addTaskStatusUpdateViewModel.FaultCode))
+            {
+                if (ModelState.IsValid)
+                {
+                    if ((addTaskStatusUpdateViewModel.FaultCode == FaultCodes.RendezvousMade) && string.IsNullOrEmpty(addTaskStatusUpdateViewModel.ReservationDate))
+                    {
+                        return Json(new { status = "Failed", ErrorMessage = SetupView.CannotBeLeftBlankrReservationDate }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        var response = _setupWrapper.AddTaskStatusUpdate(addTaskStatusUpdateViewModel);
+                        if (response.ResponseMessage.ErrorCode == 0)
+                        {
+                            return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
+                        }
+
+                        LoggerError.Fatal($"An error occurred while UpdateTaskStatus AddTaskStatusUpdate , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                        return Json(new { status = "Failed", ErrorMessage = response.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
+                    }
+
+                }
+
+                var errorMessage = string.Join("<br/>", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+                return Json(new { status = "Failed", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
         }
 
         private ServiceResponse<List<SetupTask>> FilteredTaskList(GetTaskListViewModel getTaskListViewModel)

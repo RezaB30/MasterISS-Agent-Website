@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Randevu Tarihi alanı boş bırakılamaz..
+        /// </summary>
+        public static string CannotBeLeftBlankrReservationDate {
+            get {
+                return ResourceManager.GetString("CannotBeLeftBlankrReservationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geçersiz Tarih Biçimi.
         /// </summary>
         public static string DateFormatIsNotCorrect {

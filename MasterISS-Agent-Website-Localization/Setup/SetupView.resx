@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CannotBeLeftBlankrReservationDate" xml:space="preserve">
+    <value>Randevu Tarihi alanı boş bırakılamaz.</value>
+  </data>
   <data name="DateFormatIsNotCorrect" xml:space="preserve">
     <value>Geçersiz Tarih Biçimi</value>
   </data>

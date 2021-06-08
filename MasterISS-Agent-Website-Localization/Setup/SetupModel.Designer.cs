@@ -97,6 +97,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Açıklama.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detaylar.
         /// </summary>
         public static string Details {

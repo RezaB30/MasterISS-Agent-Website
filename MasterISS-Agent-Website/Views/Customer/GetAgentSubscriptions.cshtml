@@ -33,8 +33,8 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                @*<th></th>
-                <th></th>*@
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -45,8 +45,8 @@
                     <td>@Html.DisplayFor(modelItem => item.CustomerState)</td>
                     <td>@Html.DisplayFor(modelItem => item.MembershipDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                    @*<td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
-                    <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>*@
+                    <td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
+                    <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>
                     <td>
                         <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
                             <input type="button" class="btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
