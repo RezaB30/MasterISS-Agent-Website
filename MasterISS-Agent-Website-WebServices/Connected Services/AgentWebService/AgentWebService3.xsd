@@ -124,9 +124,9 @@
   <xs:element name="KeyValueItem" nillable="true" type="tns:KeyValueItem" />
   <xs:complexType name="AgentServicePaymentResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q7:BaseResponseOfArrayOflongSHA256PGu3YCeQ">
         <xs:sequence>
-          <xs:element minOccurs="0" name="PaymentResponse" type="xs:boolean" />
+          <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PaymentResponse" nillable="true" type="q8:ArrayOflong" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -134,7 +134,7 @@
   <xs:element name="AgentServicePaymentResponse" nillable="true" type="tns:AgentServicePaymentResponse" />
   <xs:complexType name="AgentServiceCredentialSMSResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q8:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
           <xs:element minOccurs="0" name="CredentialSMSResponse" type="xs:boolean" />
         </xs:sequence>
@@ -144,7 +144,7 @@
   <xs:element name="AgentServiceCredentialSMSResponse" nillable="true" type="tns:AgentServiceCredentialSMSResponse" />
   <xs:complexType name="AgentServiceIDCardValidationResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q9:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
           <xs:element minOccurs="0" name="IDCardValidationResponse" type="xs:boolean" />
         </xs:sequence>
@@ -154,7 +154,7 @@
   <xs:element name="AgentServiceIDCardValidationResponse" nillable="true" type="tns:AgentServiceIDCardValidationResponse" />
   <xs:complexType name="AgentServiceBillListResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q10:BaseResponseOfBillListResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseResponseOfBillListResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="BillListResponse" nillable="true" type="tns:BillListResponse" />
         </xs:sequence>
@@ -204,7 +204,7 @@
   <xs:element name="BillListResponse.PrePaidSubscriptionInfo" nillable="true" type="tns:BillListResponse.PrePaidSubscriptionInfo" />
   <xs:complexType name="AgentServiceAddWorkOrderResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q11:BaseResponseOfbooleanSHA256Miy85_SUl">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseResponseOfbooleanSHA256Miy85_SUl">
         <xs:sequence>
           <xs:element minOccurs="0" name="AddWorkOrderResult" type="xs:boolean" />
         </xs:sequence>
@@ -214,7 +214,7 @@
   <xs:element name="AgentServiceAddWorkOrderResponse" nillable="true" type="tns:AgentServiceAddWorkOrderResponse" />
   <xs:complexType name="AgentServiceServiceOperatorsResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q12:BaseResponseOfArrayOfNameValuePairSHA2568F1FUdyT">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseResponseOfArrayOfNameValuePairSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="ServiceOperators" nillable="true" type="tns:ArrayOfNameValuePair" />
         </xs:sequence>
@@ -230,7 +230,7 @@
   <xs:element name="ArrayOfNameValuePair" nillable="true" type="tns:ArrayOfNameValuePair" />
   <xs:complexType name="AgentServiceCustomerSetupTaskResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q13:BaseResponseOfArrayOfCustomerSetupTaskResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q14:BaseResponseOfArrayOfCustomerSetupTaskResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="CustomerTaskList" nillable="true" type="tns:ArrayOfCustomerSetupTaskResponse" />
         </xs:sequence>
@@ -281,7 +281,7 @@
   <xs:element name="CustomerSetupTaskResponse.TaskUpdates" nillable="true" type="tns:CustomerSetupTaskResponse.TaskUpdates" />
   <xs:complexType name="AgentServiceClientFormsResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q14:BaseResponseOfAgentClientFormsResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q15:BaseResponseOfAgentClientFormsResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="AgentClientForms" nillable="true" type="tns:AgentClientFormsResponse" />
         </xs:sequence>
@@ -300,7 +300,7 @@
   <xs:element name="AgentClientFormsResponse" nillable="true" type="tns:AgentClientFormsResponse" />
   <xs:complexType name="AgentServiceSaveClientAttachmentResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q15:BaseResponseOfNullableOfbooleanSHA256qBRhzOKh">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q16:BaseResponseOfNullableOfbooleanSHA256qBRhzOKh">
         <xs:sequence>
           <xs:element minOccurs="0" name="SaveClientAttachmentResult" nillable="true" type="xs:boolean" />
         </xs:sequence>
@@ -310,7 +310,7 @@
   <xs:element name="AgentServiceSaveClientAttachmentResponse" nillable="true" type="tns:AgentServiceSaveClientAttachmentResponse" />
   <xs:complexType name="AgentServiceBillReceiptResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q16:BaseResponseOfBillReceiptResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q17:BaseResponseOfBillReceiptResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="BillReceiptResult" nillable="true" type="tns:BillReceiptResponse" />
         </xs:sequence>
@@ -328,7 +328,7 @@
   <xs:element name="BillReceiptResponse" nillable="true" type="tns:BillReceiptResponse" />
   <xs:complexType name="AgentServiceRelatedPaymentsResponse">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q17:BaseResponseOfRelatedPaymentsResponseSHA2568F1FUdyT">
+      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q18:BaseResponseOfRelatedPaymentsResponseSHA2568F1FUdyT">
         <xs:sequence>
           <xs:element minOccurs="0" name="RelatedPayments" nillable="true" type="tns:RelatedPaymentsResponse" />
         </xs:sequence>

@@ -1,0 +1,144 @@
+﻿@using MasterISS_Agent_Website.Helpers
+@using MasterISS_Agent_Website.ViewModels.Setup
+@model ListCustomerSessionInfo
+
+<div class="modal-header">
+</div>
+@if (ViewBag.ErrorMessage == null)
+{
+<div class="modal-body">
+    <h2>Fİrst</h2>
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.IsOnline)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.FirstSessionInfo.IsOnline)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.IPAddress)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.FirstSessionInfo.IPAddress)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.NASIPAddress)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.FirstSessionInfo.NASIPAddress)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.SessionId)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.FirstSessionInfo.SessionId)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.SessionStart)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.FirstSessionInfo.SessionStart)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.FirstSessionInfo.SessionStart)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.TimeCustomFormat(model => model.FirstSessionInfo)</span>
+        </div>
+    </div>
+    <hr />
+
+    <h2>last</h2>
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.IsOnline)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.LastSessionInfo.IsOnline)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.IPAddress)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.LastSessionInfo.IPAddress)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.NASIPAddress)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.LastSessionInfo.NASIPAddress)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.SessionId)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.LastSessionInfo.SessionId)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.SessionStart)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.LastSessionInfo.SessionStart)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.LastSessionInfo.SessionStart)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.TimeCustomFormat(model => model.LastSessionInfo)</span>
+        </div>
+    </div>
+    <hr />
+
+
+</div>
+}
+else
+{
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+}
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+</div>
+

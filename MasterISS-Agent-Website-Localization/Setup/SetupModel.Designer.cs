@@ -133,6 +133,33 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IP Adres.
+        /// </summary>
+        public static string IPAddress {
+            get {
+                return ResourceManager.GetString("IPAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktif Mi?.
+        /// </summary>
+        public static string IsOnline {
+            get {
+                return ResourceManager.GetString("IsOnline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NAS IP Adres.
+        /// </summary>
+        public static string NASIPAddress {
+            get {
+                return ResourceManager.GetString("NASIPAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to İl.
         /// </summary>
         public static string Province {
@@ -156,6 +183,33 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         public static string ReservationDate {
             get {
                 return ResourceManager.GetString("ReservationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oturum ID.
+        /// </summary>
+        public static string SessionId {
+            get {
+                return ResourceManager.GetString("SessionId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oturum Başlangıç Saati.
+        /// </summary>
+        public static string SessionStart {
+            get {
+                return ResourceManager.GetString("SessionStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oturum Zamanı.
+        /// </summary>
+        public static string SessionTime {
+            get {
+                return ResourceManager.GetString("SessionTime", resourceCulture);
             }
         }
         

@@ -89,7 +89,7 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
-        public AgentServicePaymentResponse PayBillsPrePaid(string subscriberNo)
+        public AgentServicePaymentResponse PayBills(string subscriberNo)
         {
             var request = new AgentServicePaymentRequest
             {

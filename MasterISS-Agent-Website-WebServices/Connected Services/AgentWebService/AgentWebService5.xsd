@@ -350,11 +350,11 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BaseRequestOfPaymentRequestSHA256_S6Bq0k7I" nillable="true" type="tns:BaseRequestOfPaymentRequestSHA256_S6Bq0k7I" />
-  <xs:complexType name="BaseResponseOfbooleanSHA256Miy85_SUl">
+  <xs:complexType name="BaseResponseOfArrayOflongSHA256PGu3YCeQ">
     <xs:annotation>
       <xs:appinfo>
         <GenericType Name="BaseResponseOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="ArrayOflong" Namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
           <GenericParameter Name="SHA256" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
         </GenericType>
       </xs:appinfo>
@@ -365,7 +365,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="BaseResponseOfbooleanSHA256Miy85_SUl" nillable="true" type="tns:BaseResponseOfbooleanSHA256Miy85_SUl" />
+  <xs:element name="BaseResponseOfArrayOflongSHA256PGu3YCeQ" nillable="true" type="tns:BaseResponseOfArrayOflongSHA256PGu3YCeQ" />
   <xs:complexType name="BaseRequestOfSubscriptionCredentialSMSRequestSHA256_S6Bq0k7I">
     <xs:annotation>
       <xs:appinfo>
@@ -382,6 +382,22 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BaseRequestOfSubscriptionCredentialSMSRequestSHA256_S6Bq0k7I" nillable="true" type="tns:BaseRequestOfSubscriptionCredentialSMSRequestSHA256_S6Bq0k7I" />
+  <xs:complexType name="BaseResponseOfbooleanSHA256Miy85_SUl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseResponseOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="SHA256" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponseOfSHA256o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseResponseOfbooleanSHA256Miy85_SUl" nillable="true" type="tns:BaseResponseOfbooleanSHA256Miy85_SUl" />
   <xs:complexType name="BaseRequestOfIDCardValidationRequestSHA256_S6Bq0k7I">
     <xs:annotation>
       <xs:appinfo>

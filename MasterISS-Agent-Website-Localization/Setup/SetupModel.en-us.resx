@@ -141,6 +141,15 @@
   <data name="FaultCodes" xml:space="preserve">
     <value>Task Description</value>
   </data>
+  <data name="IPAddress" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="IsOnline" xml:space="preserve">
+    <value>Is Online?</value>
+  </data>
+  <data name="NASIPAddress" xml:space="preserve">
+    <value>NAS IP Address</value>
+  </data>
   <data name="Province" xml:space="preserve">
     <value>Province</value>
   </data>
@@ -149,6 +158,15 @@
   </data>
   <data name="ReservationDate" xml:space="preserve">
     <value>Reservation Date</value>
+  </data>
+  <data name="SessionId" xml:space="preserve">
+    <value>Session ID</value>
+  </data>
+  <data name="SessionStart" xml:space="preserve">
+    <value>Session Start Time</value>
+  </data>
+  <data name="SessionTime" xml:space="preserve">
+    <value>Session Time</value>
   </data>
   <data name="SetupAddress" xml:space="preserve">
     <value>Setup Address</value>

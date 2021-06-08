@@ -120,14 +120,23 @@
   <data name="Close" xml:space="preserve">
     <value>Kapat</value>
   </data>
+  <data name="Day" xml:space="preserve">
+    <value>Gün</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Detaylar</value>
   </data>
   <data name="GenericErrorMessage" xml:space="preserve">
     <value>Bir Hata Oluştu. Daha sonra tekrar deneyiniz.</value>
   </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Saat</value>
+  </data>
   <data name="InvalidCredentials" xml:space="preserve">
     <value>Geçersiz Kimlik Bilgileri</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Dakika</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Hayır</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Kaldır</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>Saniye</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Seçiniz</value>

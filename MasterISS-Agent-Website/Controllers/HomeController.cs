@@ -10,6 +10,8 @@ using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
@@ -123,14 +125,13 @@ namespace MasterISS_Agent_Website.Controllers
                 if (validSubscriber != null)
                 {
                     var billTotalCount = validSubscriber.Total;
-                    var billList = response.BillListResponse.PrePaidSubscriptionInfoes.Select(ubl => new CustomerBillIdAndCost { Cost = ubl.Total }).ToArray();
+                    var billList = response.BillListResponse.Bills.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total }).ToArray();
                     Session["BillsSumCount"] = billTotalCount;
                     Session["BillList"] = billList;
                     Session["SubsNo"] = subscriberNo;
                     Session["SubsName"] = response.BillListResponse.SubscriberName;
-
+                    Session["CustomerCode"] = customerCode;
                     ViewBag.SumCount = billTotalCount;
-
                     ViewBag.PrePaid = "Pre Paid";
 
                     return View("ConfirmBills");
@@ -144,81 +145,68 @@ namespace MasterISS_Agent_Website.Controllers
             return View("Index");
         }
 
-        public MemoryCache cache = MemoryCache.Default;
-        public ActionResult PayBill()
+
+        public ActionResult PayBill(string type)
         {
-            var wrapper = new WebServiceWrapper();
             var selectedBills = Session["BillList"] as CustomerBillIdAndCost[];
             var billSubscriberName = Session["SubsName"].ToString();
             var billSubscriberNo = Session["SubsNo"].ToString();
+            var billsId = selectedBills.Select(sb => sb.BillId).ToArray();
 
-            if (selectedBills != null && selectedBills.Count() > 0)
+
+            var customerCode = Session["CustomerCode"]?.ToString();
+            if (type == "prePaid")
             {
-                var billsId = selectedBills.Select(sb => sb.BillId).ToArray();
-                var responsePayBill = wrapper.PayBills(billsId);
-
-                if (responsePayBill.ResponseMessage.ErrorCode == 0)
+                var response = _wrapper.PayBills(customerCode);
+                if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    RemoveSessionsByBillOperations();
+                    var billId = response.PaymentResponse.FirstOrDefault();
 
-                    var message = MasterISS_Agent_Website_Localization.View.Successful;
-                    return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
+                    _wrapper = new WebServiceWrapper();
+
+                    var billReceiptResponse = _wrapper.GetBillReceipt(billId);
+
+                    if (billReceiptResponse.ResponseMessage.ErrorCode == 0)
+                    {
+                        return File(billReceiptResponse.BillReceiptResult.FileContent, billReceiptResponse.BillReceiptResult.FileName, billReceiptResponse.BillReceiptResult.FileName);
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while PayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-
-                    RemoveSessionsByBillOperations();
-
-                    var errorMessage = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(responsePayBill.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
-                    return Json(new { status = "FailedAndRedirect", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
+                    return View("ConfirmBills");
                 }
             }
             else
             {
-                RemoveSessionsByBillOperations();
-
-                LoggerError.Fatal($"An error occurred while PayBill => Selected Bills Null,  by: {AgentClaimInfo.UserEmail()}");
-
-                var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-                return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public ActionResult PayBillPrePaid()
-        {
-            var wrapper = new WebServiceWrapper();
-            var selectedBills = Session["BillList"] as CustomerBillIdAndCost[];
-            var billSubscriberName = Session["SubsName"].ToString();
-            var billSubscriberNo = Session["SubsNo"].ToString();
-
-            if (selectedBills != null && selectedBills.Count() > 0)
-            {
-                var response = wrapper.PayBillsPrePaid(billSubscriberNo);
-                if (response.ResponseMessage.ErrorCode == 0)
+                if (selectedBills != null && selectedBills.Count() > 0)
                 {
-                    RemoveSessionsByBillOperations();
+                    var responsePayBill = _wrapper.PayBills(billsId);
 
-                    var message = MasterISS_Agent_Website_Localization.View.Successful;
-                    return Json(new { status = "Success", message = message }, JsonRequestBehavior.AllowGet);
+                    if (responsePayBill.ResponseMessage.ErrorCode == 0)
+                    {
+                        RemoveSessionsByBillOperations();
+
+                        return File("", "");
+                    }
+                    else
+                    {
+                        LoggerError.Fatal($"An error occurred while PayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+
+                        ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(responsePayBill.ResponseMessage.ErrorCode);
+                        return View("ConfirmBills");
+                    }
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while PrePaidPayBill, PayBillErrorCode: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-
-                    RemoveSessionsByBillOperations();
-
-                    var errorMessage = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
-                    return Json(new { status = "FailedAndRedirect", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
+                    ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
+                    return View("ConfirmBills");
                 }
             }
 
-            RemoveSessionsByBillOperations();
-
-            LoggerError.Fatal($"An error occurred while PrePaidPayBill => Selected Bills Null,  by: {AgentClaimInfo.UserEmail()}");
-
-            var notDefined = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-            return Json(new { status = "FailedAndRedirect", ErrorMessage = notDefined }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetAgentsPaidBills(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
@@ -280,6 +268,7 @@ namespace MasterISS_Agent_Website.Controllers
             Session.Remove("BillList");
             Session.Remove("SubsNo");
             Session.Remove("SubsName");
+            Session.Remove("CustomerCode");
         }
         private bool ValidBills(long[] selectedBills, string customerCode, string subscriberNo)
         {

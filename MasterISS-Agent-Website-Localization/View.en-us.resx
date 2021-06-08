@@ -120,14 +120,23 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
   <data name="GenericErrorMessage" xml:space="preserve">
     <value>An Error Has Occurred. Try again later.</value>
   </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hour</value>
+  </data>
   <data name="InvalidCredentials" xml:space="preserve">
     <value>Invalid ID Information</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>Second</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>

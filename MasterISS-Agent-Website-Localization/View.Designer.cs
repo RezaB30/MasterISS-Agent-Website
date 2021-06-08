@@ -70,6 +70,15 @@ namespace MasterISS_Agent_Website_Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gün.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detaylar.
         /// </summary>
         public static string Details {
@@ -88,11 +97,29 @@ namespace MasterISS_Agent_Website_Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saat.
+        /// </summary>
+        public static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Geçersiz Kimlik Bilgileri.
         /// </summary>
         public static string InvalidCredentials {
             get {
                 return ResourceManager.GetString("InvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dakika.
+        /// </summary>
+        public static string Minute {
+            get {
+                return ResourceManager.GetString("Minute", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace MasterISS_Agent_Website_Localization {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saniye.
+        /// </summary>
+        public static string Second {
+            get {
+                return ResourceManager.GetString("Second", resourceCulture);
             }
         }
         

@@ -19,6 +19,8 @@ namespace MasterISS_Agent_Website.Controllers
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
 
         SetupServiceWrapper _setupWrapper;
+
+
         public SetupController()
         {
             _setupWrapper = new SetupServiceWrapper();
@@ -174,6 +176,39 @@ namespace MasterISS_Agent_Website.Controllers
             }
 
             return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
+        }
+        TimeSpan firtSessionTime;
+        TimeSpan lastSessionTime;
+        public ActionResult CustomerSessionInfo(long taskNo)
+        {
+            var response = _setupWrapper.GetCustomerSessionInfo(taskNo);
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var sessionInfo = new ListCustomerSessionInfo
+                {
+                    FirstSessionInfo = new SessionInfo()
+                    {
+                        IPAddress = response.CustomerSessionBundle.FirstSession.IPAddress,
+                        IsOnline = response.CustomerSessionBundle.FirstSession.IsOnline,
+                        NASIPAddress = response.CustomerSessionBundle.FirstSession.NASIPAddress,
+                        SessionId = response.CustomerSessionBundle.FirstSession.SessionId,
+                        SessionStart = Convert.ToDateTime(response.CustomerSessionBundle.FirstSession.SessionStart),
+                        SessionTime = TimeSpan.TryParse(response.CustomerSessionBundle.FirstSession.SessionTime, out firtSessionTime) == true ? firtSessionTime : TimeSpan.Zero
+                    },
+                    LastSessionInfo = new SessionInfo()
+                    {
+                        IPAddress = response.CustomerSessionBundle.LastSession.IPAddress,
+                        IsOnline = response.CustomerSessionBundle.LastSession.IsOnline,
+                        NASIPAddress = response.CustomerSessionBundle.LastSession.NASIPAddress,
+                        SessionId = response.CustomerSessionBundle.LastSession.SessionId,
+                        SessionStart = Convert.ToDateTime(response.CustomerSessionBundle.LastSession.SessionStart),
+                        SessionTime = TimeSpan.TryParse(response.CustomerSessionBundle.LastSession.SessionTime, out lastSessionTime) == true ? lastSessionTime : TimeSpan.Zero
+                    },
+                };
+                return PartialView("_CustomerSessionInfo", sessionInfo);
+            }
+            ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
+            return PartialView("_CustomerSessionInfo");
         }
 
         private ServiceResponse<List<SetupTask>> FilteredTaskList(GetTaskListViewModel getTaskListViewModel)

@@ -42,6 +42,9 @@
                         <td>
                             <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success update-task-status" dataValue="@item.TaskNo" value="Görev Durumunu Güncelle" />
                         </td>
+                        <td>
+                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success customer-session-info" dataValue="@item.TaskNo" value="Oturum Bilgileri" />
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -105,6 +108,15 @@ else
             var dataValue = $(this).attr("dataValue");
             var postData = { taskNo: dataValue }
             var url = '@Url.Action("UpdateTaskStatus", "Setup")';
+            var container = $("#generic-container");
+            container.empty();
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+        
+        $(".customer-session-info").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { taskNo: dataValue }
+            var url = '@Url.Action("CustomerSessionInfo", "Setup")';
             var container = $("#generic-container");
             container.empty();
             AjaxRequestTypeGetAndReturnHTML(postData, url, container);
