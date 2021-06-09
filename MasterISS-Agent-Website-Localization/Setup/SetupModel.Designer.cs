@@ -304,6 +304,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abone Numarası.
+        /// </summary>
+        public static string SubscriberNo {
+            get {
+                return ResourceManager.GetString("SubscriberNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Düzenlenme Tarihi.
         /// </summary>
         public static string TaskIssueDate {

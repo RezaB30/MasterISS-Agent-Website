@@ -103,11 +103,12 @@ namespace MasterISS_Agent_Website.Controllers
 
         public ActionResult GetTaskDetails(long taskNo)
         {
-            _setupWrapper = new SetupServiceWrapper();
             var credentialsResponse = _setupWrapper.GetCustomerCredentials(taskNo);
 
             if (credentialsResponse.ResponseMessage.ErrorCode == 0)
             {
+                _setupWrapper = new SetupServiceWrapper();
+
                 var response = _setupWrapper.GetTaskDetails(taskNo);
 
                 if (response.ResponseMessage.ErrorCode == 0)
@@ -266,7 +267,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var fileCode = Convert.FromBase64String(response.CustomerContract.FileCode);
                 var fileName = response.CustomerContract.FileName;
 
-                return File(fileCode, fileName);
+                return File(fileCode, "application/pdf", fileName);
 
             }
             TempData["GenericErrorMessage"] = response.ResponseMessage.ErrorMessage;

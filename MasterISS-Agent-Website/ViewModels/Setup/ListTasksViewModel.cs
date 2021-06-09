@@ -22,6 +22,7 @@ namespace MasterISS_Agent_Website.ViewModels.Setup
         [Display(ResourceType = typeof(SetupModel), Name = "TaskStatus")]
         public string TaskStatus { get; set; }
 
+        [Display(ResourceType = typeof(SetupModel), Name = "SubscriberNo")]
         public string SubscriberNo { get; set; }
 
         [UIHint("DateTimeConverted")]
