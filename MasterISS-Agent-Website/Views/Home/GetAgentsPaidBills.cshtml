@@ -14,6 +14,17 @@
             @Html.LabelFor(m => search.CustomerName)
             @Html.TextBox("CustomerName", search.CustomerName)
         </div>
+
+        @*<div class="col-3">
+            @Html.LabelFor(m => search.PaymentDayStartDate)
+            @Html.TextBox("PaymentDayStartDate", search.PaymentDayStartDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
+        </div>
+
+        <div class="col-3">
+            @Html.LabelFor(m => search.PaymentDayEndDate)
+            @Html.TextBox("PaymentDayEndDate", search.PaymentDayEndDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
+        </div>*@
+
         <div class="col-3">
             <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
             @Html.ActionLink("Filtreyi Sıfırla", "GetAgentsPaidBills", "Home", new { @class = "btn btn-secondary mt-4" })
@@ -67,7 +78,7 @@
                    })
                     </div>
                     <div class="d-flex align-items-center">
-                        <span class="text-muted"> Toplam @Model.TotalItemCount kayıt bulundu. Bu sayfada @Model.FirstItemOnPage ile  @Model.LastItemOnPage gösteriliyor</span>
+                        <span class="text-muted"> Bu sayfada @Model.FirstItemOnPage ile  @Model.LastItemOnPage gösteriliyor</span>
                     </div>
                 </div>
                 <!--end:: Pagination-->
@@ -77,7 +88,7 @@
 }
 else
 {
-    <div class="text-danger">
+    <div class="text-danger mt-5" align="center">
         @ViewBag.ErrorMessage
     </div>
 }

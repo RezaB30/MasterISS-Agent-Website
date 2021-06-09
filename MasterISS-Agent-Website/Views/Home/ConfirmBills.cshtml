@@ -5,27 +5,31 @@
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <div class="mb-2">
-        <span>Toplam Tutar: @ViewBag.SumCount</span>
+    <div class="row g-3">
+        <div class="mb-2 col">
+            <span>Toplam Tutar: @ViewBag.SumCount</span>
+            <br />
+        </div>
     </div>
-    @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
+    <div class="row g-3">
+        <div class="col-2">
+            @using (Html.BeginForm("PayBill", "Home", FormMethod.Post))
+            {
+                if (ViewBag.PrePaid != null)
+                {
+                    <button type="submit" name="type" value="prePaid" class="btn btn-info pay-button">Öde</button>
+                }
+                else
+                {
+                    <button type="submit" name="type" value="normal" class="btn btn-info pay-button">Öde</button>
+                }
+            }
+        </div>
+        <div class="col-2">
+            @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
 
-
-    using (Html.BeginForm("PayBill", "Home", FormMethod.Post))
-    {
-        if (ViewBag.PrePaid != null)
-        {
-            <div>
-                <button type="submit" name="type" value="prePaid" class="btn btn-info pay-button">Öde</button>
-            </div>
-        }
-        else
-        {
-            <div>
-                <button type="submit" name="type" value="normal" class="btn btn-info pay-button">Öde</button>
-            </div>
-        }
-    }
 }
 else
 {

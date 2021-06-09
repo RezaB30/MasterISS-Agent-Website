@@ -279,6 +279,12 @@
   <data name="PassportNo" xml:space="preserve">
     <value>Passport No</value>
   </data>
+  <data name="PaymentDayEndDate" xml:space="preserve">
+    <value>Payment Date End</value>
+  </data>
+  <data name="PaymentDayStartDate" xml:space="preserve">
+    <value>Payment Date Start </value>
+  </data>
   <data name="PlaceOfIssue" xml:space="preserve">
     <value>Place Of Issue</value>
   </data>

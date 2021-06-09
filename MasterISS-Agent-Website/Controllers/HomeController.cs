@@ -1,4 +1,5 @@
-﻿using MasterISS_Agent_Website.ViewModels.Home;
+﻿using MasterISS_Agent_Website.ViewModels;
+using MasterISS_Agent_Website.ViewModels.Home;
 using MasterISS_Agent_Website_Enums.Enums;
 using MasterISS_Agent_Website_Localization.Generic;
 using MasterISS_Agent_Website_Localization.Home;
@@ -16,6 +17,7 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
 using System.Web.Mvc;
+using static MasterISS_Agent_Website_WebServices.AgentWebService.RelatedPaymentsResponse;
 
 namespace MasterISS_Agent_Website.Controllers
 {
@@ -151,32 +153,32 @@ namespace MasterISS_Agent_Website.Controllers
             var selectedBills = Session["BillList"] as CustomerBillIdAndCost[];
             var billSubscriberName = Session["SubsName"].ToString();
             var billSubscriberNo = Session["SubsNo"].ToString();
-            var billsId = selectedBills.Select(sb => sb.BillId).ToArray();
-
-
+            var billsIds = selectedBills.Select(sb => sb.BillId).ToArray();
             var customerCode = Session["CustomerCode"]?.ToString();
+
+            var filterPaidBillList = new FilterAgentPaidBillsViewModel
+            {
+                PaymentDayStartDate = DateTime.Now.AddDays(-2).ToString("dd.MM.yyyy HH:mm"),
+                PaymentDayEndDate = DateTime.Now.ToString("dd.MM.yyyy HH:mm"),
+                CustomerName = billSubscriberName,
+            };
+
             if (type == "prePaid")
             {
                 var response = _wrapper.PayBills(customerCode);
+
                 if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    var billId = response.PaymentResponse.FirstOrDefault();
+                    RemoveSessionsByBillOperations();
 
-                    _wrapper = new WebServiceWrapper();
 
-                    var billReceiptResponse = _wrapper.GetBillReceipt(billId);
-
-                    if (billReceiptResponse.ResponseMessage.ErrorCode == 0)
-                    {
-                        return File(billReceiptResponse.BillReceiptResult.FileContent, billReceiptResponse.BillReceiptResult.FileName, billReceiptResponse.BillReceiptResult.FileName);
-                    }
-                    else
-                    {
-                        return View();
-                    }
+                    return RedirectToAction("GetAgentsPaidBills", "Home", filterPaidBillList);
                 }
                 else
                 {
+                    LoggerError.Fatal($"An error occurred while PayBills, response: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+                    ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+
                     return View("ConfirmBills");
                 }
             }
@@ -184,18 +186,17 @@ namespace MasterISS_Agent_Website.Controllers
             {
                 if (selectedBills != null && selectedBills.Count() > 0)
                 {
-                    var responsePayBill = _wrapper.PayBills(billsId);
+                    var responsePayBill = _wrapper.PayBills(billsIds);
 
                     if (responsePayBill.ResponseMessage.ErrorCode == 0)
                     {
                         RemoveSessionsByBillOperations();
 
-                        return File("", "");
+                        return RedirectToAction("GetAgentsPaidBills", "Home", filterPaidBillList);
                     }
                     else
                     {
-                        LoggerError.Fatal($"An error occurred while PayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-
+                        LoggerError.Fatal($"An error occurred while responsePayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
                         ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(responsePayBill.ResponseMessage.ErrorCode);
                         return View("ConfirmBills");
                     }
@@ -209,40 +210,90 @@ namespace MasterISS_Agent_Website.Controllers
 
         }
 
+        //private ServiceResponse<RelatedPayments[]> FilteredAgentPaidBillList(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
+        //{
+        //    var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
+
+        //    var filteredList = new List<RelatedPayments>();
+
+        //    if (response.ResponseMessage.ErrorCode == 0)
+        //    {
+        //        filteredList = response.RelatedPayments.RelatedPaymentList.ToList();
+
+        //        if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && !string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
+        //        {
+        //            var list = filteredList.Where(fl => Convert.ToDateTime(fl.PayDate) > Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate) && Convert.ToDateTime(fl.PayDate) > Convert.ToDateTime(filterAgentPaidBills.PaymentDayEndDate));
+        //            filteredList = list.ToList();
+        //        }
+
+        //        return new ServiceResponse<RelatedPayments[]>
+        //        {
+        //            Data = filteredList.ToArray()
+        //        };
+
+        //    }
+
+        //    LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+        //    return new ServiceResponse<RelatedPayments[]>
+        //    {
+        //        ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode)
+        //    };
+        //}
+
         public ActionResult GetAgentsPaidBills(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
         {
             filterAgentPaidBills = filterAgentPaidBills ?? new FilterAgentPaidBillsViewModel();
             ViewBag.Search = filterAgentPaidBills;
-
-            var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
-
-            if (response.ResponseMessage.ErrorCode == 0)
+            if (ModelState.IsValid)
             {
-                var list = response.RelatedPayments.RelatedPaymentList.Select(rpl => new ListAgentPaidBillsViewModel
+                var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
+
+                if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    SubscriberNo = rpl.SubscriberNo,
-                    SubscriberName = rpl.ValidDisplayName,
-                    BillId = rpl.BillID,
-                    Cost = rpl.Cost,
-                    Description = rpl.Description,
-                    IssueDate = Convert.ToDateTime(rpl.IssueDate),
-                    PayDate = Convert.ToDateTime(rpl.PayDate),
-                });
+                    var list = response.RelatedPayments.RelatedPaymentList.Select(rpl => new ListAgentPaidBillsViewModel
+                    {
+                        SubscriberNo = rpl.SubscriberNo,
+                        SubscriberName = rpl.ValidDisplayName,
+                        BillId = rpl.BillID,
+                        Cost = rpl.Cost,
+                        Description = rpl.Description,
+                        IssueDate = Convert.ToDateTime(rpl.IssueDate),
+                        PayDate = Convert.ToDateTime(rpl.PayDate),
+                    });
 
-                var totalPageCount = response.RelatedPayments.TotalPageCount;
-                var totalItemCount = response.RelatedPayments.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
-                var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, page, pageSize, totalItemCount);
+                    if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
+                    {
+                        var newList = list.Where(l => l.PayDate >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate));
+                        list = newList;
 
-                return View(pagedList);
+                    }
+                    if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && !string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
+                    {
+                        var newList = list.Where(l => l.PayDate >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate) && l.PayDate <= Convert.ToDateTime(filterAgentPaidBills.PaymentDayEndDate));
+                        list = newList;
+                    }
+
+                    var totalPageCount = response.RelatedPayments.TotalPageCount;
+                    var totalItemCount = response.RelatedPayments.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
+                    var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, page, pageSize, totalItemCount);
+
+                    return View(pagedList);
+                }
+                else
+                {
+
+                    ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+
+                    return View();
+                }
             }
             else
             {
-                LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-
-                ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
-
+                ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.Setup.SetupView.DateFormatIsNotCorrect;
                 return View();
             }
+
+
         }
 
         public ActionResult GetBillReceipt(long billId)

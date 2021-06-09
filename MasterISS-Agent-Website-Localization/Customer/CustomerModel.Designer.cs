@@ -547,6 +547,24 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ödeme Tarihi Bitiş.
+        /// </summary>
+        public static string PaymentDayEndDate {
+            get {
+                return ResourceManager.GetString("PaymentDayEndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ödeme Tarihi Başlangıç.
+        /// </summary>
+        public static string PaymentDayStartDate {
+            get {
+                return ResourceManager.GetString("PaymentDayStartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verildiği Yer.
         /// </summary>
         public static string PlaceOfIssue {
