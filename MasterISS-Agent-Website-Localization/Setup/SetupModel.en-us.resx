@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AttachmentType" xml:space="preserve">
+    <value>Attachment Type</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="CurrentDowloadSpeed" xml:space="preserve">
+    <value>Current Dowload Speed</value>
+  </data>
+  <data name="CurrentUploadSpeed" xml:space="preserve">
+    <value>Current Upload Speed</value>
   </data>
   <data name="CustomerName" xml:space="preserve">
     <value>Customer Name</value>
@@ -135,6 +144,12 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="DowloadNoiseMargin" xml:space="preserve">
+    <value>Dowload Noise Margin</value>
+  </data>
+  <data name="DowloadSpeedCapasity" xml:space="preserve">
+    <value>Dowload Speed Capasity</value>
+  </data>
   <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
@@ -144,11 +159,17 @@
   <data name="IPAddress" xml:space="preserve">
     <value>IP Address</value>
   </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active?</value>
+  </data>
   <data name="IsOnline" xml:space="preserve">
     <value>Is Online?</value>
   </data>
   <data name="NASIPAddress" xml:space="preserve">
     <value>NAS IP Address</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="Province" xml:space="preserve">
     <value>Province</value>
@@ -171,6 +192,9 @@
   <data name="SetupAddress" xml:space="preserve">
     <value>Setup Address</value>
   </data>
+  <data name="ShelfCardPort" xml:space="preserve">
+    <value>Shelf Card Port</value>
+  </data>
   <data name="StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
@@ -185,6 +209,15 @@
   </data>
   <data name="TaskType" xml:space="preserve">
     <value>Task Type</value>
+  </data>
+  <data name="UploadNoiseMargin" xml:space="preserve">
+    <value>Upload Noise Margin</value>
+  </data>
+  <data name="UploadSpeedCapasity" xml:space="preserve">
+    <value>Upload Speed Capasity</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="XDSLNo" xml:space="preserve">
     <value>XDSL No</value>

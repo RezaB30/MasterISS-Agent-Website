@@ -61,11 +61,38 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eklenti Tipi.
+        /// </summary>
+        public static string AttachmentType {
+            get {
+                return ResourceManager.GetString("AttachmentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to İlçe.
         /// </summary>
         public static string City {
             get {
                 return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mevcut İndirme Hızı.
+        /// </summary>
+        public static string CurrentDowloadSpeed {
+            get {
+                return ResourceManager.GetString("CurrentDowloadSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mevcut Yükleme Hızı.
+        /// </summary>
+        public static string CurrentUploadSpeed {
+            get {
+                return ResourceManager.GetString("CurrentUploadSpeed", resourceCulture);
             }
         }
         
@@ -115,6 +142,24 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dowload Noise Margin.
+        /// </summary>
+        public static string DowloadNoiseMargin {
+            get {
+                return ResourceManager.GetString("DowloadNoiseMargin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to İndirme Hız Kapasitesi.
+        /// </summary>
+        public static string DowloadSpeedCapasity {
+            get {
+                return ResourceManager.GetString("DowloadSpeedCapasity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bitiş Tarihi.
         /// </summary>
         public static string EndDate {
@@ -144,6 +189,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         /// <summary>
         ///   Looks up a localized string similar to Aktif Mi?.
         /// </summary>
+        public static string IsActive {
+            get {
+                return ResourceManager.GetString("IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktif Mi?.
+        /// </summary>
         public static string IsOnline {
             get {
                 return ResourceManager.GetString("IsOnline", resourceCulture);
@@ -156,6 +210,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         public static string NASIPAddress {
             get {
                 return ResourceManager.GetString("NASIPAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Şifre.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
@@ -223,6 +286,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shelf Card Port.
+        /// </summary>
+        public static string ShelfCardPort {
+            get {
+                return ResourceManager.GetString("ShelfCardPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Başlangıç Tarihi.
         /// </summary>
         public static string StartDate {
@@ -264,6 +336,33 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         public static string TaskType {
             get {
                 return ResourceManager.GetString("TaskType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload Noise Margin.
+        /// </summary>
+        public static string UploadNoiseMargin {
+            get {
+                return ResourceManager.GetString("UploadNoiseMargin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yükleme Hız Kapasitesi.
+        /// </summary>
+        public static string UploadSpeedCapasity {
+            get {
+                return ResourceManager.GetString("UploadSpeedCapasity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı Adı.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
         

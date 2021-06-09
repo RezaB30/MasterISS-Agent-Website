@@ -301,7 +301,7 @@ namespace MasterISS_Agent_Website.Controllers
             var response = _wrapper.GetBillReceipt(billId);
             if (response.ResponseMessage.ErrorCode == 0)
             {
-                return File(response.BillReceiptResult.FileContent, response.BillReceiptResult.FileName, response.BillReceiptResult.FileName);
+                return File(response.BillReceiptResult.FileContent, response.BillReceiptResult.MIMEType);
             }
             else
             {

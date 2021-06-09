@@ -5,6 +5,7 @@ using RezaB.Data.Localization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,6 +30,25 @@ namespace MasterISS_Agent_Website
             catch (Exception ex)
             {
                 LoggerError.Fatal(ex, $"An error occurred while EnumSelectList");
+                return null;
+            }
+        }
+        public static string ConvertToBase64(HttpPostedFileBase file)
+        {
+            try
+            {
+                string theFileName = Path.GetFileName(file.FileName);
+                byte[] theFileAsBytes = new byte[file.ContentLength];
+                using (BinaryReader theReader = new BinaryReader(file.InputStream))
+                {
+                    theFileAsBytes = theReader.ReadBytes(file.ContentLength);
+                }
+                var thePFileDataAsString = Convert.ToBase64String(theFileAsBytes);
+                return thePFileDataAsString;
+            }
+            catch (Exception ex)
+            {
+                LoggerError.Fatal(ex, "An error occurred while Stream ConvertToBase64");
                 return null;
             }
         }

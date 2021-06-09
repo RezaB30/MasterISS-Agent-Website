@@ -319,6 +319,7 @@
     <Compile Include="ViewModels\Setup\AddCustomerAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Setup\AddTaskStatusUpdateViewModel.cs" />
     <Compile Include="ViewModels\Setup\GetTaskDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Setup\GetTaskLineInfoViewModel.cs" />
     <Compile Include="ViewModels\Setup\GetTaskListViewModel.cs" />
     <Compile Include="ViewModels\Setup\ListCustomerSessionInfo.cs" />
     <Compile Include="ViewModels\Setup\ListTasksViewModel.cs" />
@@ -419,6 +420,8 @@
     <Content Include="Views\Setup\_GetTaskDetails.cshtml" />
     <Content Include="Views\Setup\_UpdateTaskStatus.cshtml" />
     <Content Include="Views\Setup\_CustomerSessionInfo.cshtml" />
+    <Content Include="Views\Setup\_CustomerLineInfo.cshtml" />
+    <Content Include="Views\Setup\_AddCustomerAttachment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

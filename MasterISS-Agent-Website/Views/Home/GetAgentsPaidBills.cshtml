@@ -16,14 +16,14 @@
         </div>
 
         @*<div class="col-3">
-            @Html.LabelFor(m => search.PaymentDayStartDate)
-            @Html.TextBox("PaymentDayStartDate", search.PaymentDayStartDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
-        </div>
+                @Html.LabelFor(m => search.PaymentDayStartDate)
+                @Html.TextBox("PaymentDayStartDate", search.PaymentDayStartDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
+            </div>
 
-        <div class="col-3">
-            @Html.LabelFor(m => search.PaymentDayEndDate)
-            @Html.TextBox("PaymentDayEndDate", search.PaymentDayEndDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
-        </div>*@
+            <div class="col-3">
+                @Html.LabelFor(m => search.PaymentDayEndDate)
+                @Html.TextBox("PaymentDayEndDate", search.PaymentDayEndDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
+            </div>*@
 
         <div class="col-3">
             <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
@@ -56,7 +56,7 @@
                     <td>@Html.DisplayFor(modelItem => item.PayDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.Description)</td>
                     <td>@Html.DisplayFor(modelItem => item.Cost)</td>
-                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt", "Home", new { billId = item.BillId }, new { @class = "btn btn-info" })</td>
+                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt", "Home", new { billId = item.BillId }, new { @class = "btn btn-info", @target = "_blank" })</td>
                 </tr>
             }
         </tbody>

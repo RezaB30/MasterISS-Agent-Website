@@ -19,6 +19,12 @@ namespace MasterISS_Agent_Website.ViewModels.Setup
         [Display(ResourceType = typeof(SetupModel), Name = "SetupAddress")]
         public string Address { get; set; }
 
+        [Display(ResourceType = typeof(SetupModel), Name = "Username")]
+        public string Username { get; set; }
+
+        [Display(ResourceType = typeof(SetupModel), Name = "Password")]
+        public string Password { get; set; }
+
         public string BBK { get; set; }
 
         [Display(ResourceType = typeof(SetupModel), Name = "CustomerPhoneNo")]

@@ -114,27 +114,27 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
-        //public AddCustomerAttachmentResponse AddCustomerAttachment(AddCustomerAttachmentViewModel uploadFileViewModel)
-        //{
-        //    var request = new AddCustomerAttachmentRequest
-        //    {
-        //        Culture = Culture,
-        //        Hash = Hash(),
-        //        Rand = Rand,
-        //        Username = Username,
-        //        CustomerAttachment = new CustomerAttachment
-        //        {
-        //            FileData = uploadFileViewModel.FileData,
-        //            FileType = uploadFileViewModel.Extension.Replace(".", ""),
-        //            TaskNo = (long)uploadFileViewModel.TaskNo,
-        //            AttachmentType = (short)uploadFileViewModel.AttachmentTypesEnum
-        //        }
-        //    };
+        public AddCustomerAttachmentResponse AddCustomerAttachment(AddCustomerAttachmentViewModel uploadFileViewModel)
+        {
+            var request = new AddCustomerAttachmentRequest
+            {
+                Culture = Culture,
+                Hash = Hash(),
+                Rand = Rand,
+                Username = Username,
+                CustomerAttachment = new CustomerAttachment
+                {
+                    FileData = uploadFileViewModel.FileData,
+                    FileType = uploadFileViewModel.Extension.Replace(".", ""),
+                    TaskNo = uploadFileViewModel.TaskNo,
+                    AttachmentType = (short)uploadFileViewModel.AttachmentType
+                }
+            };
 
-        //    var response = Client.AddCustomerAttachment(request);
+            var response = Client.AddCustomerAttachment(request);
 
-        //    return response;
-        //}
+            return response;
+        }
 
         public ParameterlessResponse AddTaskStatusUpdate(AddTaskStatusUpdateViewModel taskStatusUpdateViewModel)
         {

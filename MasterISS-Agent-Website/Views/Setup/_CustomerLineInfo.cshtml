@@ -1,0 +1,106 @@
+﻿@using MasterISS_Agent_Website.Helpers
+@using MasterISS_Agent_Website.ViewModels.Setup
+@model GetTaskLineInfoViewModel
+<div class="modal-header">
+</div>
+@if (ViewBag.ErrorMessage == null)
+{
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CurrentDownloadSpeed)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.CurrentDownloadSpeed)</span>
+        </div>
+    </div>
+    <hr /> 
+    
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.CurrentUploadSpeed)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.CurrentUploadSpeed)</span>
+        </div>
+    </div>
+    <hr />
+       
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.DownloadNoiseMargin)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.DownloadNoiseMargin)</span>
+        </div>
+    </div>
+    <hr />
+         
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.UploadNoiseMargin)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.UploadNoiseMargin)</span>
+        </div>
+    </div>
+    <hr />
+      
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.DownloadSpeedCapasity)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.DownloadSpeedCapasity)</span>
+        </div>
+    </div>
+    <hr />  
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.UploadSpeedCapasity)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.UploadSpeedCapasity)</span>
+        </div>
+    </div>
+    <hr />
+    
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.IsActive)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.IsActive)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.XDSLNo)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.XDSLNo)</span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="row g-3">
+        <div class="col">
+            <span class="text-dark flex-root font-weight-bold">@Html.DisplayNameFor(model => model.ShelfCardPort)</span>
+        </div>
+        <div class="col">
+            <span class="text-black-50 flex-root font-weight-bold">@Html.DisplayFor(model => model.ShelfCardPort)</span>
+        </div>
+    </div>
+    <hr />
+
+
+}
+else
+{
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+}
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@MasterISS_Agent_Website_Localization.View.Close</button>
+</div>

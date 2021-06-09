@@ -45,6 +45,15 @@
                         <td>
                             <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success customer-session-info" dataValue="@item.TaskNo" value="Oturum Bilgileri" />
                         </td>
+                        <td>
+                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success customer-line-info" dataValue="@item.TaskNo" value="Hat Bilgileri" />
+                        </td>
+                        <td>
+                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-customer-file" dataValue="@item.TaskNo" value="Müşteriye Belge Ekle" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sözleşme Bilgileri", "GetCustomerContract", "Setup", new { taskNo = item.TaskNo }, new { @class = "btn btn-info", @target = "_blank" })
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -112,11 +121,29 @@ else
             container.empty();
             AjaxRequestTypeGetAndReturnHTML(postData, url, container);
         });
-        
+
         $(".customer-session-info").click(function () {
             var dataValue = $(this).attr("dataValue");
             var postData = { taskNo: dataValue }
             var url = '@Url.Action("CustomerSessionInfo", "Setup")';
+            var container = $("#generic-container");
+            container.empty();
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+
+        $(".customer-line-info").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { taskNo: dataValue }
+            var url = '@Url.Action("CustomerLineInfo", "Setup")';
+            var container = $("#generic-container");
+            container.empty();
+            AjaxRequestTypeGetAndReturnHTML(postData, url, container);
+        });
+
+        $(".add-customer-file").click(function () {
+            var dataValue = $(this).attr("dataValue");
+            var postData = { taskNo: dataValue }
+            var url = '@Url.Action("AddCustomerAttachment", "Setup")';
             var container = $("#generic-container");
             container.empty();
             AjaxRequestTypeGetAndReturnHTML(postData, url, container);

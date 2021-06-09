@@ -10,6 +10,8 @@ using NLog;
 using RadiusR.DB.Enums.CustomerSetup;
 using PagedList;
 using RadiusR.DB.Enums;
+using MasterISS_Agent_Website_Enums.Enums;
+using System.IO;
 
 namespace MasterISS_Agent_Website.Controllers
 {
@@ -101,37 +103,55 @@ namespace MasterISS_Agent_Website.Controllers
 
         public ActionResult GetTaskDetails(long taskNo)
         {
-            var response = _setupWrapper.GetTaskDetails(taskNo);
-            if (response.ResponseMessage.ErrorCode == 0)
+            _setupWrapper = new SetupServiceWrapper();
+            var credentialsResponse = _setupWrapper.GetCustomerCredentials(taskNo);
+
+            if (credentialsResponse.ResponseMessage.ErrorCode == 0)
             {
-                var taskDetails = new GetTaskDetailsViewModel
+                var response = _setupWrapper.GetTaskDetails(taskNo);
+
+                if (response.ResponseMessage.ErrorCode == 0)
                 {
-                    Address = response.SetupTask.Address,
-                    BBK = response.SetupTask.BBK,
-                    CustomerPhoneNo = response.SetupTask.CustomerPhoneNo,
-                    CustomerType = ExtensionMethods.EnumDescription<CustomerType, RadiusR.Localization.Lists.CustomerType>(response.SetupTask.CustomerType),
-                    Details = response.SetupTask.Details,
-                    HasModem = response.SetupTask.HasModem,
-                    ModemName = response.SetupTask.ModemName,
-                    PSTN = response.SetupTask.PSTN,
-                    TaskNo = response.SetupTask.TaskNo,
-                    XDSLNo = response.SetupTask.XDSLNo,
-                    XDSLType = ExtensionMethods.EnumDescription<XDSLTypes, RadiusR.Localization.Lists.XDSLType>(response.SetupTask.XDSLType),
-                    TaskUpdates = response.SetupTask.TaskUpdates.Select(tu => new ViewModels.Customer.TaskUpdatesDetailListViewModel
+                    var taskDetails = new GetTaskDetailsViewModel
                     {
-                        CreationDate = Convert.ToDateTime(tu.CreationDate),
-                        Description = tu.Description,
-                        FaultCodes = ExtensionMethods.EnumDescription<FaultCodes, RadiusR.Localization.Lists.CustomerSetup.FaultCodes>(tu.FaultCode),
-                        ReservationDate = Convert.ToDateTime(tu.ReservationDate),
-                    })
-                };
+                        Address = response.SetupTask.Address,
+                        BBK = response.SetupTask.BBK,
+                        CustomerPhoneNo = response.SetupTask.CustomerPhoneNo,
+                        CustomerType = ExtensionMethods.EnumDescription<CustomerType, RadiusR.Localization.Lists.CustomerType>(response.SetupTask.CustomerType),
+                        Details = response.SetupTask.Details,
+                        HasModem = response.SetupTask.HasModem,
+                        ModemName = response.SetupTask.ModemName,
+                        PSTN = response.SetupTask.PSTN,
+                        TaskNo = response.SetupTask.TaskNo,
+                        XDSLNo = response.SetupTask.XDSLNo,
+                        XDSLType = ExtensionMethods.EnumDescription<XDSLTypes, RadiusR.Localization.Lists.XDSLType>(response.SetupTask.XDSLType),
+                        Password = credentialsResponse.CustomerCredentials.Password,
+                        Username = credentialsResponse.CustomerCredentials.Username,
+                        TaskUpdates = response.SetupTask.TaskUpdates.Select(tu => new ViewModels.Customer.TaskUpdatesDetailListViewModel
+                        {
+                            CreationDate = Convert.ToDateTime(tu.CreationDate),
+                            Description = tu.Description,
+                            FaultCodes = ExtensionMethods.EnumDescription<FaultCodes, RadiusR.Localization.Lists.CustomerSetup.FaultCodes>(tu.FaultCode),
+                            ReservationDate = Convert.ToDateTime(tu.ReservationDate),
+                        })
+                    };
 
-                return PartialView("_GetTaskDetails", taskDetails);
+                    return PartialView("_GetTaskDetails", taskDetails);
+                }
+                else
+                {
+                    LoggerError.Fatal($"An error occurred while GetTaskDetails  , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                    ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
+                    return PartialView("_GetTaskDetails");
+                }
             }
-            LoggerError.Fatal($"An error occurred while GetTaskDetails GetTaskDetails , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            else
+            {
+                LoggerError.Fatal($"An error occurred while GetCustomerCredentials  , ErrorCode:{credentialsResponse.ResponseMessage.ErrorCode} ErrorMessage:{credentialsResponse.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                ViewBag.ErrorMessage = credentialsResponse.ResponseMessage.ErrorMessage;
+                return PartialView("_GetTaskDetails");
+            }
 
-            ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
-            return PartialView("_GetTaskDetails");
         }
 
         public ActionResult UpdateTaskStatus(long taskNo)
@@ -177,6 +197,7 @@ namespace MasterISS_Agent_Website.Controllers
 
             return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
         }
+
         TimeSpan firtSessionTime;
         TimeSpan lastSessionTime;
         public ActionResult CustomerSessionInfo(long taskNo)
@@ -207,8 +228,100 @@ namespace MasterISS_Agent_Website.Controllers
                 };
                 return PartialView("_CustomerSessionInfo", sessionInfo);
             }
+            LoggerError.Fatal($"An error occurred while GetCustomerSessionInfo , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
             ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
             return PartialView("_CustomerSessionInfo");
+        }
+
+        public ActionResult CustomerLineInfo(long taskNo)
+        {
+            var response = _setupWrapper.GetCustomerLineDetails(taskNo);
+
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var lineInfo = new GetTaskLineInfoViewModel
+                {
+                    CurrentDownloadSpeed = response.CustomerLineDetails.CurrentDownloadSpeed,
+                    CurrentUploadSpeed = response.CustomerLineDetails.CurrentUploadSpeed,
+                    DownloadNoiseMargin = response.CustomerLineDetails.DownloadNoiseMargin,
+                    DownloadSpeedCapasity = response.CustomerLineDetails.DownloadSpeedCapacity,
+                    IsActive = response.CustomerLineDetails.IsActive,
+                    ShelfCardPort = response.CustomerLineDetails.ShelfCardPort,
+                    UploadNoiseMargin = response.CustomerLineDetails.UploadNoiseMargin,
+                    UploadSpeedCapasity = response.CustomerLineDetails.UploadSpeedCapacity,
+                    XDSLNo = response.CustomerLineDetails.XDSLNo
+                };
+                return PartialView("_CustomerLineInfo", lineInfo);
+            }
+            LoggerError.Fatal($"An error occurred while GetCustomerLineDetails , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
+            return PartialView("_CustomerLineInfo");
+        }
+
+        public ActionResult GetCustomerContract(long taskNo)
+        {
+            var response = _setupWrapper.GetCustomerContract(taskNo);
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                var fileCode = Convert.FromBase64String(response.CustomerContract.FileCode);
+                var fileName = response.CustomerContract.FileName;
+
+                return File(fileCode, fileName);
+
+            }
+            TempData["GenericErrorMessage"] = response.ResponseMessage.ErrorMessage;
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AddCustomerAttachment(long taskNo)
+        {
+            var addCustomerAttachmentViewModel = new AddCustomerAttachmentViewModel
+            {
+                TaskNo = taskNo,
+            };
+
+            ViewBag.AttachmentTypes = ExtensionMethods.EnumSelectList<AttachmentType, MasterISS_Agent_Website_Localization.Generic.AttachmentType>(null);
+
+            return PartialView("_AddCustomerAttachment", addCustomerAttachmentViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddCustomerAttachment(AddCustomerAttachmentViewModel addCustomerAttachmentViewModel, IEnumerable<HttpPostedFileBase> uploadingFiles)
+        {
+            if (ModelState.IsValid)
+            {
+                var isValidAttachmentType = Enum.IsDefined(typeof(MasterISS_Agent_Website_Enums.Enums.AttachmentType), addCustomerAttachmentViewModel.AttachmentType);
+                if (isValidAttachmentType)
+                {
+                    var validFiles = FileOperations.ValidFiles(uploadingFiles);
+                    if (validFiles.Key)
+                    {
+                        foreach (var item in uploadingFiles)
+                        {
+                            addCustomerAttachmentViewModel.FileData = ExtensionMethods.ConvertToBase64(item);
+                            addCustomerAttachmentViewModel.Extension = new FileInfo(item.FileName).Extension.Replace(".", "");
+
+                            _setupWrapper = new SetupServiceWrapper();
+                            var response = _setupWrapper.AddCustomerAttachment(addCustomerAttachmentViewModel);
+
+                            if (response.ResponseMessage.ErrorCode != 0)
+                            {
+                                LoggerError.Fatal($"An error occurred while AddCustomerAttachment(HttpPost) AddCustomerAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+
+                                return Json(new { status = "Failed", ErrorMessage = response.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
+                            }
+                        }
+
+                        return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
+                    }
+                    return Json(new { status = "Failed", ErrorMessage = validFiles.Value }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
+            }
+
+            var errorMessage = string.Join("<br/>", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+            return Json(new { status = "Failed", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
         }
 
         private ServiceResponse<List<SetupTask>> FilteredTaskList(GetTaskListViewModel getTaskListViewModel)

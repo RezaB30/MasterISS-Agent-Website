@@ -123,6 +123,12 @@
   <data name="FaultyFormat" xml:space="preserve">
     <value>Lütfen '.jpg','.png','.pdf','.jpeg' formatında dosya gönderiniz</value>
   </data>
+  <data name="FirstSessionInfo" xml:space="preserve">
+    <value>İlk Oturum Bilgileri</value>
+  </data>
+  <data name="LastSessionInfo" xml:space="preserve">
+    <value>Son Oturum Bilgileri</value>
+  </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>Dosya Boyutu Maksimum 10 MB olmalı.</value>
   </data>

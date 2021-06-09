@@ -123,6 +123,12 @@
   <data name="FaultyFormat" xml:space="preserve">
     <value>Send a file in '.jpg','.png','.jpeg','.pdf' format.</value>
   </data>
+  <data name="FirstSessionInfo" xml:space="preserve">
+    <value>First Session Info</value>
+  </data>
+  <data name="LastSessionInfo" xml:space="preserve">
+    <value>Last Session Info</value>
+  </data>
   <data name="MaxFileSizeError" xml:space="preserve">
     <value>File size must be maximum 10 MB.</value>
   </data>

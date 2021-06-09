@@ -79,6 +79,24 @@ namespace MasterISS_Agent_Website_Localization.Customer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to İlk Oturum Bilgileri.
+        /// </summary>
+        public static string FirstSessionInfo {
+            get {
+                return ResourceManager.GetString("FirstSessionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Son Oturum Bilgileri.
+        /// </summary>
+        public static string LastSessionInfo {
+            get {
+                return ResourceManager.GetString("LastSessionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dosya Boyutu Maksimum 10 MB olmalı..
         /// </summary>
         public static string MaxFileSizeError {
