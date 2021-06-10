@@ -49,8 +49,8 @@ namespace MasterISS_Agent_Website
                 Username = Username,
                 DateSpan = new DateSpan
                 {
-                    StartDate = getTaskListViewModel.StartDate,
-                    EndDate = getTaskListViewModel.EndDate
+                    StartDate = DateParseOperations.ConvertedDateTimeForGetTask(getTaskListViewModel.StartDate),
+                    EndDate = DateParseOperations.ConvertedDateTimeForGetTask(getTaskListViewModel.EndDate)
                 }
             };
 

@@ -29,6 +29,16 @@ namespace MasterISS_Agent_Website
             }
             return null;
         }
+        public static string ConvertedDateTimeForGetTask(string convertedDateTime)
+        {
+            DateTime date;
+            var convertedValue = DateTime.TryParseExact(convertedDateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+            if (convertedValue)
+            {
+                return date.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            return null;
+        }
 
         private static string ConvertDateForFilter(string convertedDateTime)
         {

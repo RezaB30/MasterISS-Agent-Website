@@ -9,6 +9,38 @@
     var search = ViewBag.Search as GetTaskListViewModel ?? new GetTaskListViewModel();
 }
 
+@using (Html.BeginForm("Index", "Setup", FormMethod.Get))
+{
+    <div class="row">
+
+        <div class="col-2">
+            @Html.LabelFor(m => search.StartDate)
+            @Html.TextBox("StartDate", search.StartDate)
+        </div>
+
+        <div class="col-2">
+            @Html.LabelFor(m => search.EndDate)
+            @Html.TextBox("EndDate", search.EndDate)
+        </div> 
+
+        <div class="col-2">
+            @Html.LabelFor(m => search.TaskStatus)
+            @Html.DropDownList("TaskStatus", (SelectList)ViewBag.TaskStatus, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
+        </div>
+        
+        <div class="col-2">
+            @Html.LabelFor(m => search.TaskType)
+            @Html.DropDownList("TaskType", (SelectList)ViewBag.TaskTypes, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
+        </div>
+
+        <div class="col-3">
+            <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
+            @Html.ActionLink("Filtreyi Sıfırla", "Index", "Setup", new { @class = "btn btn-secondary mt-4" })
+        </div>
+    </div>
+}
+
+
 @if (ViewBag.ValidationError == null && ViewBag.Max30Days == null && ViewBag.StartTimeBiggerThanEndTime == null && ViewBag.ErrorMessage == null && ViewBag.DateFormatIsNotCorrect == null)
 {
     if (Model != null && Model.TotalItemCount > 0)

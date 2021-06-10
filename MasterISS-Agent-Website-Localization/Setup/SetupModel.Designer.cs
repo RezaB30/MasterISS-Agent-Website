@@ -169,6 +169,15 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Görev Durumu.
+        /// </summary>
+        public static string FaultCode {
+            get {
+                return ResourceManager.GetString("FaultCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Görev Açıklaması.
         /// </summary>
         public static string FaultCodes {
@@ -246,6 +255,24 @@ namespace MasterISS_Agent_Website_Localization.Setup {
         public static string ReservationDate {
             get {
                 return ResourceManager.GetString("ReservationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aranan Kişi.
+        /// </summary>
+        public static string SearchedName {
+            get {
+                return ResourceManager.GetString("SearchedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Görev Numarası.
+        /// </summary>
+        public static string SearchedTaskNo {
+            get {
+                return ResourceManager.GetString("SearchedTaskNo", resourceCulture);
             }
         }
         

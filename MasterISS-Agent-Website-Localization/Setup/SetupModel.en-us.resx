@@ -153,6 +153,9 @@
   <data name="EndDate" xml:space="preserve">
     <value>End Date</value>
   </data>
+  <data name="FaultCode" xml:space="preserve">
+    <value>Task Status</value>
+  </data>
   <data name="FaultCodes" xml:space="preserve">
     <value>Task Description</value>
   </data>
@@ -179,6 +182,12 @@
   </data>
   <data name="ReservationDate" xml:space="preserve">
     <value>Reservation Date</value>
+  </data>
+  <data name="SearchedName" xml:space="preserve">
+    <value>Search by Name</value>
+  </data>
+  <data name="SearchedTaskNo" xml:space="preserve">
+    <value>Task No</value>
   </data>
   <data name="SessionId" xml:space="preserve">
     <value>Session ID</value>

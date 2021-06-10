@@ -153,6 +153,9 @@
   <data name="EndDate" xml:space="preserve">
     <value>Bitiş Tarihi</value>
   </data>
+  <data name="FaultCode" xml:space="preserve">
+    <value>Görev Durumu</value>
+  </data>
   <data name="FaultCodes" xml:space="preserve">
     <value>Görev Açıklaması</value>
   </data>
@@ -179,6 +182,12 @@
   </data>
   <data name="ReservationDate" xml:space="preserve">
     <value>Randevu Tarihi</value>
+  </data>
+  <data name="SearchedName" xml:space="preserve">
+    <value>Aranan Kişi</value>
+  </data>
+  <data name="SearchedTaskNo" xml:space="preserve">
+    <value>Görev Numarası</value>
   </data>
   <data name="SessionId" xml:space="preserve">
     <value>Oturum ID</value>

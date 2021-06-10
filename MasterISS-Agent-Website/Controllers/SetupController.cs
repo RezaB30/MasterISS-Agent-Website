@@ -22,15 +22,17 @@ namespace MasterISS_Agent_Website.Controllers
 
         SetupServiceWrapper _setupWrapper;
 
-
         public SetupController()
         {
             _setupWrapper = new SetupServiceWrapper();
         }
-        // GET: Setup
+
         public ActionResult Index(GetTaskListViewModel getTaskListViewModel, int page = 1, int pageSize = 20)
         {
             getTaskListViewModel = getTaskListViewModel ?? new GetTaskListViewModel();
+
+            ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>(getTaskListViewModel.TaskType ?? null);
+            ViewBag.TaskStatus = ExtensionMethods.EnumSelectList<TaskStatuses, RadiusR.Localization.Lists.CustomerSetup.TaskStatuses>(getTaskListViewModel.TaskStatus ?? null);
 
             ViewBag.Search = getTaskListViewModel;
 
@@ -50,8 +52,8 @@ namespace MasterISS_Agent_Website.Controllers
                     {
                         if (startDate.Value.AddDays(Properties.Settings.Default.SearchLimit) >= endDate)
                         {
-                            getTaskListViewModel.StartDate = startDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
-                            getTaskListViewModel.EndDate = endDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                            getTaskListViewModel.StartDate = startDate.Value.ToString("dd.MM.yyyy HH:mm");
+                            getTaskListViewModel.EndDate = endDate.Value.ToString("dd.MM.yyyy HH:mm");
 
                             var taskList = FilteredTaskList(getTaskListViewModel);
                             if (taskList.Data != null)
@@ -334,6 +336,27 @@ namespace MasterISS_Agent_Website.Controllers
             if (response.ResponseMessage.ErrorCode == 0)
             {
                 list = response.SetupTasks.Where(st => Convert.ToDateTime(st.TaskIssueDate) > Convert.ToDateTime(getTaskListViewModel.StartDate) && Convert.ToDateTime(st.TaskIssueDate) <= Convert.ToDateTime(getTaskListViewModel.EndDate)).ToList();
+
+                if (getTaskListViewModel.SearchedTaskNo != null)
+                {
+                    var filteredList = list.Where(fl => fl.TaskNo == getTaskListViewModel.SearchedTaskNo).ToList();
+                    list = filteredList;
+                }
+                if (!string.IsNullOrEmpty(getTaskListViewModel.SearchedName))
+                {
+                    var filteredList = list.Where(fl => fl.ContactName.Contains(getTaskListViewModel.SearchedName)).ToList();
+                    list = filteredList;
+                }
+                if (getTaskListViewModel.TaskStatus != null)
+                {
+                    var filteredList = list.Where(fl => fl.TaskStatus == getTaskListViewModel.TaskStatus).ToList();
+                    list = filteredList;
+                }
+                if (getTaskListViewModel.TaskType != null)
+                {
+                    var filteredList = list.Where(fl => fl.TaskType == getTaskListViewModel.TaskType).ToList();
+                    list = filteredList;
+                }
 
                 return new ServiceResponse<List<SetupTask>>
                 {
