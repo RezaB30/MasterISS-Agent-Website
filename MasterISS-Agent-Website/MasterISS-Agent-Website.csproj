@@ -256,6 +256,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -300,6 +306,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ServiceResponse.cs" />
+    <Compile Include="ServiceResponseRelatedPayment.cs" />
     <Compile Include="SetupServiceWrapper.cs" />
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddClientAttachmentViewModel.cs" />
@@ -433,6 +440,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MasterISS-Agent-Website-Business\MasterISS-Agent-Website-Business.csproj">
+      <Project>{e8745d7d-1cf4-42fe-98dc-4f5aae976fe6}</Project>
+      <Name>MasterISS-Agent-Website-Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterISS-Agent-Website-Core\MasterISS-Agent-Website-Core.csproj">
+      <Project>{d57aa84c-3d15-4b1c-9d19-c080b480b494}</Project>
+      <Name>MasterISS-Agent-Website-Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterISS-Agent-Website-DataAccess\MasterISS-Agent-Website-DataAccess.csproj">
+      <Project>{e0956f86-90e9-45d1-a1f2-4b6cb312d6c4}</Project>
+      <Name>MasterISS-Agent-Website-DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MasterISS-Agent-Website-Enums\MasterISS-Agent-Website-Enums.csproj">
       <Project>{1bfaa824-5e98-4610-a142-64439a30e440}</Project>
       <Name>MasterISS-Agent-Website-Enums</Name>
@@ -445,9 +464,9 @@
       <Project>{905caaf7-d1f5-44f1-b2b7-eed680450832}</Project>
       <Name>MasterISS-Agent-Website-WebServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MasterISS-Partner-Website-Database\MasterISS-Partner-Website-Database.csproj">
+    <ProjectReference Include="..\MasterISS-Partner-Website-Database\MasterISS-Agent-Website-Database.csproj">
       <Project>{8867b6b4-359d-4751-b0c4-fab799688708}</Project>
-      <Name>MasterISS-Partner-Website-Database</Name>
+      <Name>MasterISS-Agent-Website-Database</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

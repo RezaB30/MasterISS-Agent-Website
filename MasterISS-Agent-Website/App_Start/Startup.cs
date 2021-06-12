@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using MasterISS_Agent_Website_Business.Abstract;
+using MasterISS_Agent_Website_Business.Concrete;
+using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -14,6 +16,7 @@ namespace MasterISS_Agent_Website.App_Start
 {
     public class Startup
     {
+    
         public void Configuration(IAppBuilder app)
         {
             UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);

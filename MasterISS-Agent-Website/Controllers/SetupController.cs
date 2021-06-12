@@ -12,6 +12,9 @@ using PagedList;
 using RadiusR.DB.Enums;
 using MasterISS_Agent_Website_Enums.Enums;
 using System.IO;
+using MasterISS_Agent_Website_Business.Abstract;
+using MasterISS_Agent_Website_Business.Concrete;
+using MasterISS_Agent_Website_DataAccess.Concrete.EntityFramework;
 
 namespace MasterISS_Agent_Website.Controllers
 {
@@ -21,14 +24,17 @@ namespace MasterISS_Agent_Website.Controllers
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
 
         SetupServiceWrapper _setupWrapper;
+        IRoleService _roleService;
 
         public SetupController()
         {
             _setupWrapper = new SetupServiceWrapper();
+            _roleService = new RoleManager(new EfRoleDal());
         }
 
         public ActionResult Index(GetTaskListViewModel getTaskListViewModel, int page = 1, int pageSize = 20)
         {
+            //var ass = _roleService.GetAll();
             getTaskListViewModel = getTaskListViewModel ?? new GetTaskListViewModel();
 
             ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>(getTaskListViewModel.TaskType ?? null);

@@ -11,7 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Enu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Localization", "MasterISS-Agent-Website-Localization\MasterISS-Agent-Website-Localization.csproj", "{D3911F38-24A8-41D4-8C02-3BFAE7821D54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Partner-Website-Database", "MasterISS-Partner-Website-Database\MasterISS-Partner-Website-Database.csproj", "{8867B6B4-359D-4751-B0C4-FAB799688708}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Database", "MasterISS-Partner-Website-Database\MasterISS-Agent-Website-Database.csproj", "{8867B6B4-359D-4751-B0C4-FAB799688708}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-DataAccess", "MasterISS-Agent-Website-DataAccess\MasterISS-Agent-Website-DataAccess.csproj", "{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Business", "MasterISS-Agent-Website-Business\MasterISS-Agent-Website-Business.csproj", "{E8745D7D-1CF4-42FE-98DC-4F5AAE976FE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterISS-Agent-Website-Core", "MasterISS-Agent-Website-Core\MasterISS-Agent-Website-Core.csproj", "{D57AA84C-3D15-4B1C-9D19-C080B480B494}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{8867B6B4-359D-4751-B0C4-FAB799688708}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8867B6B4-359D-4751-B0C4-FAB799688708}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8867B6B4-359D-4751-B0C4-FAB799688708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8745D7D-1CF4-42FE-98DC-4F5AAE976FE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8745D7D-1CF4-42FE-98DC-4F5AAE976FE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8745D7D-1CF4-42FE-98DC-4F5AAE976FE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8745D7D-1CF4-42FE-98DC-4F5AAE976FE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57AA84C-3D15-4B1C-9D19-C080B480B494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57AA84C-3D15-4B1C-9D19-C080B480B494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57AA84C-3D15-4B1C-9D19-C080B480B494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57AA84C-3D15-4B1C-9D19-C080B480B494}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

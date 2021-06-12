@@ -210,35 +210,42 @@ namespace MasterISS_Agent_Website.Controllers
 
         }
 
-        //private ServiceResponse<RelatedPayments[]> FilteredAgentPaidBillList(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
-        //{
-        //    var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
+        private ServiceResponseRelatedPayment<RelatedPayments[]> FilteredAgentPaidBillList(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
+        {
+            var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
 
-        //    var filteredList = new List<RelatedPayments>();
+            var filteredList = new List<RelatedPayments>();
 
-        //    if (response.ResponseMessage.ErrorCode == 0)
-        //    {
-        //        filteredList = response.RelatedPayments.RelatedPaymentList.ToList();
+            if (response.ResponseMessage.ErrorCode == 0)
+            {
+                filteredList = response.RelatedPayments.RelatedPaymentList.ToList();
 
-        //        if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && !string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
-        //        {
-        //            var list = filteredList.Where(fl => Convert.ToDateTime(fl.PayDate) > Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate) && Convert.ToDateTime(fl.PayDate) > Convert.ToDateTime(filterAgentPaidBills.PaymentDayEndDate));
-        //            filteredList = list.ToList();
-        //        }
+                if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
+                {
+                    var list = filteredList.Where(l => Convert.ToDateTime(l.PayDate) >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate));
+                    filteredList = list.ToList();
+                }
 
-        //        return new ServiceResponse<RelatedPayments[]>
-        //        {
-        //            Data = filteredList.ToArray()
-        //        };
+                if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && !string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
+                {
+                    var list = filteredList.Where(fl => Convert.ToDateTime(fl.PayDate) >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate) && Convert.ToDateTime(fl.PayDate) <= Convert.ToDateTime(filterAgentPaidBills.PaymentDayEndDate).AddMinutes(1));
+                    filteredList = list.ToList();
+                }
 
-        //    }
+                return new ServiceResponseRelatedPayment<RelatedPayments[]>
+                {
+                    Data = filteredList.ToArray(),
+                    TotalPageCount = response.RelatedPayments.TotalPageCount
+                };
 
-        //    LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
-        //    return new ServiceResponse<RelatedPayments[]>
-        //    {
-        //        ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode)
-        //    };
-        //}
+            }
+
+            LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+            return new ServiceResponseRelatedPayment<RelatedPayments[]>
+            {
+                ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode),
+            };
+        }
 
         public ActionResult GetAgentsPaidBills(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
         {
@@ -246,11 +253,11 @@ namespace MasterISS_Agent_Website.Controllers
             ViewBag.Search = filterAgentPaidBills;
             if (ModelState.IsValid)
             {
-                var response = _wrapper.GetRelatedPayments(page, pageSize, filterAgentPaidBills.CustomerName);
+                var response = FilteredAgentPaidBillList(filterAgentPaidBills, page = 1, pageSize = 20);
 
-                if (response.ResponseMessage.ErrorCode == 0)
+                if (response.Data != null)
                 {
-                    var list = response.RelatedPayments.RelatedPaymentList.Select(rpl => new ListAgentPaidBillsViewModel
+                    var list = response.Data.Select(rpl => new ListAgentPaidBillsViewModel
                     {
                         SubscriberNo = rpl.SubscriberNo,
                         SubscriberName = rpl.ValidDisplayName,
@@ -261,39 +268,22 @@ namespace MasterISS_Agent_Website.Controllers
                         PayDate = Convert.ToDateTime(rpl.PayDate),
                     });
 
-                    if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
-                    {
-                        var newList = list.Where(l => l.PayDate >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate));
-                        list = newList;
-
-                    }
-                    if (!string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayStartDate) && !string.IsNullOrEmpty(filterAgentPaidBills.PaymentDayEndDate))
-                    {
-                        var newList = list.Where(l => l.PayDate >= Convert.ToDateTime(filterAgentPaidBills.PaymentDayStartDate) && l.PayDate <= Convert.ToDateTime(filterAgentPaidBills.PaymentDayEndDate));
-                        list = newList;
-                    }
-
-                    var totalPageCount = response.RelatedPayments.TotalPageCount;
-                    var totalItemCount = response.RelatedPayments.TotalPageCount == 1 ? list.Count() : totalPageCount * pageSize;
+                    var totalPageCount = response.TotalPageCount;
+                    var totalItemCount = response.TotalPageCount == 1 ? response.Data.Count() : totalPageCount * pageSize;
                     var pagedList = new StaticPagedList<ListAgentPaidBillsViewModel>(list, page, pageSize, totalItemCount);
 
                     return View(pagedList);
-                }
-                else
-                {
 
-                    ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
-
-                    return View();
                 }
+
+                ViewBag.ErrorMessage = response.ErrorMessage;
+                return View();
             }
             else
             {
                 ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.Setup.SetupView.DateFormatIsNotCorrect;
                 return View();
             }
-
-
         }
 
         public ActionResult GetBillReceipt(long billId)

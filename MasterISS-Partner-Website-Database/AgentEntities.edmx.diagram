@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="762ac03d6a7e47e3b628415906535b4a" Name="Diagram1">
+        <EntityTypeShape EntityType="MasterISSAgentWebSiteModel.Permission" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MasterISSAgentWebSiteModel.Role" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="MasterISSAgentWebSiteModel.RolePermission" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="MasterISSAgentWebSiteModel.User" Width="1.5" PointX="3" PointY="5.875" />
+        <AssociationConnector Association="MasterISSAgentWebSiteModel.FK_RolePermission_Permission" />
+        <AssociationConnector Association="MasterISSAgentWebSiteModel.FK_RolePermission_Role" />
+        <AssociationConnector Association="MasterISSAgentWebSiteModel.FK_User_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
