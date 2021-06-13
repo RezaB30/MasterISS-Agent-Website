@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktif Mi?.
+        /// </summary>
+        public static string IsEnabled {
+            get {
+                return ResourceManager.GetString("IsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parola.
         /// </summary>
         public static string Password {

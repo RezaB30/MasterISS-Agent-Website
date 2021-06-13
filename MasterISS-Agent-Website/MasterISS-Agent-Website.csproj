@@ -333,6 +333,7 @@
     <Compile Include="ViewModels\Setup\ListTasksViewModel.cs" />
     <Compile Include="ViewModels\User\AddRoleViewModel.cs" />
     <Compile Include="ViewModels\User\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\User\ListAgentUsersViewModel.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>

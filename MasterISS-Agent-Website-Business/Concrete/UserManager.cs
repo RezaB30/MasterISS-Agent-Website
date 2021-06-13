@@ -6,6 +6,7 @@ using MasterISS_Partner_Website_Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,7 +50,12 @@ namespace MasterISS_Agent_Website_Business.Concrete
             //{
             //    return new ErrorDataResult<List<User>>("hata var");
             //}
-            return new SuccessDataResult<List<User>>(_userdal.GetAll(), "Başarılı");
+            return new SuccessDataResult<List<User>>(_userdal.GetAll(), MasterISS_Agent_Website_Localization.View.Successful);
+        }
+
+        public IDataResult<List<User>> GetByFilter(Expression<Func<User, bool>> filter)
+        {
+            return new SuccessDataResult<List<User>>(_userdal.GetAll(filter), MasterISS_Agent_Website_Localization.View.Successful);
         }
 
         public IDataResult<User> GetById(long userId)
@@ -58,7 +64,7 @@ namespace MasterISS_Agent_Website_Business.Concrete
             //{
             //    return new ErrorDataResult<User>("hata var");
             //}
-            return new SuccessDataResult<User>(_userdal.Get(u => u.Id == userId), "Başarılı");
+            return new SuccessDataResult<User>(_userdal.Get(u => u.Id == userId), MasterISS_Agent_Website_Localization.View.Successful);
         }
     }
 }

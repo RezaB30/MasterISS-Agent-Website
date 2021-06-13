@@ -20,14 +20,24 @@ namespace MasterISS_Agent_Website
         public static bool EnumIsDefinedforList<TEnum>(int[] list)
             where TEnum : struct, IComparable, IFormattable, IConvertible
         {
-            foreach (var item in list)
+            try
             {
-                if (!Enum.IsDefined(typeof(TEnum), item))
+                foreach (var item in list)
                 {
-                    return false;
+                    if (!Enum.IsDefined(typeof(TEnum), item))
+                    {
+                        return false;
+                    }
                 }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                LoggerError.Fatal(ex, $"An error occurred while EnumIsDefinedforList");
+
+                return false;
+            }
+           
         }
 
         public static SelectList EnumSelectList<TEnum, TResource>(object selectedValue) where TEnum : struct, IComparable, IFormattable, IConvertible

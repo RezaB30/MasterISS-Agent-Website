@@ -1,4 +1,5 @@
-﻿
+﻿@using MasterISS_Agent_Website.ViewModels.User
+@model IEnumerable<ListAgentUsersViewModel>
 @{
     ViewBag.Title = "Kullanıcı İşlemleri";
 }
@@ -7,6 +8,30 @@
 
 <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-user-button" value="User Ekle" />
 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().NameSurname)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().UserEmail)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().RoleName)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IsEnabled)</th>
+            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NameSurname)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
+                <td>@Html.DisplayFor(modelItem => item.RoleName)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsEnabled)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <div class="modal fade" id="modalCenterGeneric" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

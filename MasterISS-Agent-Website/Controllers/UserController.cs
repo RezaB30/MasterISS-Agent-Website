@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         IRoleService _roleService;
         IRolePermissionService _rolePermissionService;
@@ -34,6 +34,25 @@ namespace MasterISS_Agent_Website.Controllers
 
         public ActionResult Index()
         {
+            var agentId = AgentClaimInfo.AgentId();
+            var result = _userService.GetByFilter(u => u.AgentId == agentId);
+
+            if (result.IsSuccess)
+            {
+                var list = result.Data.Select(u => new ListAgentUsersViewModel
+                {
+                    IsEnabled = u.IsEnabled,
+                    NameSurname = u.NameSurname,
+                    PhoneNumber = u.PhoneNumber,
+                    RoleName = u.Role.RoleName,
+                    UserEmail = u.Username,
+                    UserId = u.Id
+                });
+
+                return View(list);
+            }
+
+            ViewBag.ErrorMessage = result.Message;
             return View();
         }
 
