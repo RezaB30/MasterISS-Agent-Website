@@ -1,0 +1,50 @@
+﻿@using MasterISS_Agent_Website.ViewModels.User
+@using MasterISS_Agent_Website_Localization
+@model AddRoleViewModel
+
+<div class="modal-header">
+    <div class="py-2">
+        <span class="text-dark-75 font-weight-bolder d-block font-size-h5">ABC</span>
+    </div>
+</div>
+
+@using (Ajax.BeginForm("AddRole", "User", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResultUserOperations" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="row">
+            @Html.LabelFor(m => m.RoleName, new { @class = "text-info col-12 col-form-label" })
+
+            <div class="input-group">
+                @Html.EditorFor(m => m.RoleName, new { htmlAttributes = new { placeholder = Html.DisplayNameFor(m => m.RoleName), @class = "form-control", @autocomplete = "off" } })
+            </div>
+
+            <div class="error-codes-container" style="display:none">
+                <div class="separator separator-dashed mt-2 my-4"></div>
+                <div class="text-danger error-codes" align="center"></div>
+                <div class="separator separator-dashed mt-2 my-4"></div>
+            </div>
+
+            <label class="text-info col-12 col-form-label my-4">İzinler</label>
+            <div class="checkbox-list">
+                @if (ViewBag.PermissionList != null)
+                {
+                    foreach (var item in (SelectList)ViewBag.PermissionList)
+                    {
+                        <label class="checkbox">
+                            <input class="checkbox" type="checkbox" value="@item.Value" name="Permissions" />
+                            <span></span>@Html.DisplayFor(m => item.Text)
+                        </label>
+                    }
+                }
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">@View.Close</button>
+        <button type="submit" class="btn btn-info font-weight-bold">Rol Oluştur</button>
+    </div>
+}

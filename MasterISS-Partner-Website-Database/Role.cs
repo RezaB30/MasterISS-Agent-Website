@@ -24,6 +24,7 @@ namespace MasterISS_Partner_Website_Database
         public int Id { get; set; }
         public string RoleName { get; set; }
         public bool IsEnabled { get; set; }
+        public int AgentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RolePermission> RolePermission { get; set; }

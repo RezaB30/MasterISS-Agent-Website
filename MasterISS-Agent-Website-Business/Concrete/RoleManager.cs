@@ -5,6 +5,7 @@ using MasterISS_Partner_Website_Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,19 +20,22 @@ namespace MasterISS_Agent_Website_Business.Concrete
             _roleDal = roleDal;
         }
 
-        public IResult Add(Role user)
+        public IResult Add(Role role)
         {
-            throw new NotImplementedException();
+            _roleDal.Add(role);
+            return new SuccessResult("Success");
+        }
+
+        public IDataResult<List<Role>> GetByFilter(Expression<Func<Role, bool>> filter)
+        {
+            return new SuccessDataResult<List<Role>>(_roleDal.GetAll(filter), "Success");
+
         }
 
         public IDataResult<List<Role>> GetAll()
         {
-            return new SuccessDataResult<List<Role>>(_roleDal.GetAll(), "Başarılı");
+            return new SuccessDataResult<List<Role>>(_roleDal.GetAll(), "Success");
         }
 
-        public IDataResult<Role> GetById(long userId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

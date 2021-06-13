@@ -31,7 +31,7 @@ namespace MasterISS_Agent_Website
 
             return setupServiceUser;
         }
-        
+
         public static string SetupServiceHash()
         {
             var setupServiceHash = CurrentClaims().Where(c => c.Type == "SetupServiceHash")
@@ -40,6 +40,12 @@ namespace MasterISS_Agent_Website
             return setupServiceHash;
         }
 
+        public static int AgentId()
+        {
+            var agentId = CurrentClaims().Where(c => c.Type == "AgentId")
+                  .Select(c => c.Value).SingleOrDefault();
+            return Convert.ToInt32(agentId);
+        }
 
         private static List<Claim> CurrentClaims()
         {

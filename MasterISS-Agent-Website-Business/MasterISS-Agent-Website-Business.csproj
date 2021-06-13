@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IPermissionService.cs" />
+    <Compile Include="Abstract\IRolePermissionService.cs" />
     <Compile Include="Abstract\IRoleService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Concrete\PermissionManager.cs" />
     <Compile Include="Concrete\RoleManager.cs" />
+    <Compile Include="Concrete\RolePermissionManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,6 +59,14 @@
     <ProjectReference Include="..\MasterISS-Agent-Website-DataAccess\MasterISS-Agent-Website-DataAccess.csproj">
       <Project>{E0956F86-90E9-45D1-A1F2-4B6CB312D6C4}</Project>
       <Name>MasterISS-Agent-Website-DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterISS-Agent-Website-Enums\MasterISS-Agent-Website-Enums.csproj">
+      <Project>{1BFAA824-5E98-4610-A142-64439A30E440}</Project>
+      <Name>MasterISS-Agent-Website-Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MasterISS-Agent-Website-Localization\MasterISS-Agent-Website-Localization.csproj">
+      <Project>{d3911f38-24a8-41d4-8c02-3bfae7821d54}</Project>
+      <Name>MasterISS-Agent-Website-Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\MasterISS-Partner-Website-Database\MasterISS-Agent-Website-Database.csproj">
       <Project>{8867B6B4-359D-4751-B0C4-FAB799688708}</Project>

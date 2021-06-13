@@ -17,6 +17,19 @@ namespace MasterISS_Agent_Website
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
 
+        public static bool EnumIsDefinedforList<TEnum>(int[] list)
+            where TEnum : struct, IComparable, IFormattable, IConvertible
+        {
+            foreach (var item in list)
+            {
+                if (!Enum.IsDefined(typeof(TEnum), item))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static SelectList EnumSelectList<TEnum, TResource>(object selectedValue) where TEnum : struct, IComparable, IFormattable, IConvertible
         {
             try

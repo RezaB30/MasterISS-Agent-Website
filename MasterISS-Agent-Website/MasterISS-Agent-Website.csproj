@@ -290,6 +290,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryInfrastructureController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DateParseOperations.cs" />
     <Compile Include="DateTimeValidation.cs" />
     <Compile Include="ExtensionMethods.cs" />
@@ -330,6 +331,8 @@
     <Compile Include="ViewModels\Setup\GetTaskListViewModel.cs" />
     <Compile Include="ViewModels\Setup\ListCustomerSessionInfo.cs" />
     <Compile Include="ViewModels\Setup\ListTasksViewModel.cs" />
+    <Compile Include="ViewModels\User\AddRoleViewModel.cs" />
+    <Compile Include="ViewModels\User\AddUserViewModel.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +432,9 @@
     <Content Include="Views\Setup\_CustomerSessionInfo.cshtml" />
     <Content Include="Views\Setup\_CustomerLineInfo.cshtml" />
     <Content Include="Views\Setup\_AddCustomerAttachment.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\_AddRole.cshtml" />
+    <Content Include="Views\User\_AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,7 @@ namespace MasterISS_Partner_Website_Database
     {
         public long Id { get; set; }
         public string NameSurname { get; set; }
-        public int PartnerId { get; set; }
+        public int AgentId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int RoleId { get; set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MasterISS_Agent_Website_DataAccess.Abstract
 {
-    public interface IUserDal : IEntityRepository<User>
+    public interface IPermissionDal : IEntityRepository<Permission>
     {
     }
 }

@@ -102,7 +102,7 @@ namespace MasterISS_Agent_Website.Controllers
                     var billList = userBillList.Select(ubl => new CustomerBillIdAndCost { BillId = ubl.ID, Cost = ubl.Total }).ToArray();
                     Session["BillsSumCount"] = billTotalCount;
                     Session["BillList"] = billList;
-                    Session["SubsNo"] = customerCode;
+                    Session["SubsNo"] = subscriberNo;
                     Session["SubsName"] = response.BillListResponse.SubscriberName;
 
                     ViewBag.SumCount = billTotalCount;
@@ -165,7 +165,7 @@ namespace MasterISS_Agent_Website.Controllers
 
             if (type == "prePaid")
             {
-                var response = _wrapper.PayBills(customerCode);
+                var response = _wrapper.PayBills(billSubscriberNo);
 
                 if (response.ResponseMessage.ErrorCode == 0)
                 {

@@ -19,6 +19,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="IsEnabled" Type="bit" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RolePermission">
           <Key>
@@ -34,7 +35,7 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameSurname" Type="nvarchar" MaxLength="400" Nullable="false" />
-          <Property Name="PartnerId" Type="int" Nullable="false" />
+          <Property Name="AgentId" Type="int" Nullable="false" />
           <Property Name="Username" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
@@ -132,6 +133,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="IsEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RolePermission" Relationship="MasterISSAgentWebSiteModel.FK_RolePermission_Role" FromRole="Role" ToRole="RolePermission" />
           <NavigationProperty Name="User" Relationship="MasterISSAgentWebSiteModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
@@ -151,7 +153,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameSurname" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="PartnerId" Type="Int32" Nullable="false" />
+          <Property Name="AgentId" Type="Int32" Nullable="false" />
           <Property Name="Username" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
@@ -195,7 +197,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -212,6 +214,7 @@
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="MasterISSAgentWebSiteModel.Role">
               <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -235,7 +238,7 @@
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
                 <ScalarProperty Name="NameSurname" ColumnName="NameSurname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

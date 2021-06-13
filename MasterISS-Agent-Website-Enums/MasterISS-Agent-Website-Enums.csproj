@@ -48,6 +48,7 @@
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Enums\HavePSTN.cs" />
     <Compile Include="Enums\NationalityList.cs" />
+    <Compile Include="Enums\PermissionList.cs" />
     <Compile Include="Enums\ProfessionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

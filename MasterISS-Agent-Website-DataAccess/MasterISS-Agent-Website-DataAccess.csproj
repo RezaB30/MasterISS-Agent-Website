@@ -51,9 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IPermissionDal.cs" />
     <Compile Include="Abstract\IRoleDal.cs" />
+    <Compile Include="Abstract\IRolePermissionDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfPermissionDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfRoleDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfRolePermissionDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

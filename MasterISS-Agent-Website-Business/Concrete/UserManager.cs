@@ -1,6 +1,7 @@
 ﻿using MasterISS_Agent_Website_Business.Abstract;
 using MasterISS_Agent_Website_Core.Utilities;
 using MasterISS_Agent_Website_DataAccess.Abstract;
+using MasterISS_Agent_Website_Enums.Enums;
 using MasterISS_Partner_Website_Database;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,25 @@ namespace MasterISS_Agent_Website_Business.Concrete
 
         public IResult Add(User user)
         {
-            //if (user.NameSurname.Length < 2)
-            //{
-            //    return new ErrorResult("En az 2 karakter Yap");
-            //}
-            _userdal.Add(user);
-            return new SuccessResult();
+            if (Enum.IsDefined(typeof(PermissionList), user.RoleId))
+            {
+                var result = _userdal.Get(u => u.Username == user.Username);
+
+                if (result == null)
+                {
+                    _userdal.Add(user);
+                    return new SuccessResult(MasterISS_Agent_Website_Localization.View.Successful);
+                }
+                else
+                {
+                    return new ErrorResult(MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified);
+                }
+            }
+            else
+            {
+                return new ErrorResult(MasterISS_Agent_Website_Localization.View.GenericErrorMessage);
+            }
+
         }
 
         public IDataResult<List<User>> GetAll()

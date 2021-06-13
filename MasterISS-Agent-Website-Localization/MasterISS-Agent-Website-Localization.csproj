@@ -131,6 +131,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HavePSTN.en-us.resx</DependentUpon>
     </Compile>
+    <Compile Include="Generic\PermissionList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PermissionList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Generic\PermissionList.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PermissionList.en-us.resx</DependentUpon>
+    </Compile>
     <Compile Include="Home\HomeModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -170,6 +180,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SetupView.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModel.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserView.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserView.en-us.resx</DependentUpon>
     </Compile>
     <Compile Include="Validation.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -267,6 +297,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HavePSTN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generic\PermissionList.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PermissionList.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\PermissionList.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PermissionList.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home\HomeModel.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeModel.en-us.Designer.cs</LastGenOutput>
@@ -298,6 +336,22 @@
     <EmbeddedResource Include="Setup\SetupView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SetupView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\UserModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\UserModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\UserView.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserView.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\UserView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserView.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

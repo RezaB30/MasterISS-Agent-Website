@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Kullanıcı İşlemleri";
+}
+
+<input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-role-button" value="Rol Ekle" />
+
+<input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-user-button" value="User Ekle" />
+
+
+<div class="modal fade" id="modalCenterGeneric" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div id="generic-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Javascript{
+    <script>
+
+        $(".add-role-button").click(function () {
+        var url = '@Url.Action("AddRole", "User")';
+        var container = $("#generic-container");
+        container.empty();
+        AjaxRequestTypeGetAndReturnHTML(null, url, container);
+        });
+
+        $(".add-user-button").click(function () {
+        var url = '@Url.Action("AddUser", "User")';
+        var container = $("#generic-container");
+        container.empty();
+        AjaxRequestTypeGetAndReturnHTML(null, url, container);
+        });
+
+        function GenericResultUserOperations(data, status) {
+          if (status = "success") {
+              var responseStatus = data.responseJSON.status;
+              if (responseStatus == "Success") {
+                  var message = data.responseJSON.message;
+                  var url='@Url.Action("Index", "User")';
+                  GetAlert(message, "true",url);
+              }
+              else if (responseStatus =="FailedAndRedirect") {
+                  var redirectMessage = data.responseJSON.ErrorMessage;
+                  var urlHome='@Url.Action("Index", "Home")';
+                  GetAlert(redirectMessage, "false", urlHome);
+              }
+              else {
+                  $(".error-codes-container").show();
+                  $(".error-codes").html(data.responseJSON.ErrorMessage);
+              }
+          }
+          else {
+              console.log("Error");
+          }
+      }
+
+    </script>
+}
