@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mevcut İzinler.
+        /// </summary>
+        public static string AvailablePermission {
+            get {
+                return ResourceManager.GetString("AvailablePermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aktif Mi?.
         /// </summary>
         public static string IsEnabled {

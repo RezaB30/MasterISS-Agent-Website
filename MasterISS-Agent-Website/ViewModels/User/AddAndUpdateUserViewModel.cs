@@ -8,8 +8,14 @@ using System.Web;
 
 namespace MasterISS_Agent_Website.ViewModels.User
 {
-    public class AddUserViewModel
+    public class AddAndUpdateUserViewModel
     {
+        public long UserId { get; set; }
+
+        [Display(ResourceType = typeof(UserModel), Name = "IsEnabled")]
+        [Required(ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "Required")]
+        public bool IsEnabled { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "Required")]
         [Display(ResourceType = typeof(UserModel), Name = "RoleName")]
         public int RoleId { get; set; }

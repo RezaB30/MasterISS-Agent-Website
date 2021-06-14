@@ -332,7 +332,7 @@
     <Compile Include="ViewModels\Setup\ListCustomerSessionInfo.cs" />
     <Compile Include="ViewModels\Setup\ListTasksViewModel.cs" />
     <Compile Include="ViewModels\User\AddRoleViewModel.cs" />
-    <Compile Include="ViewModels\User\AddUserViewModel.cs" />
+    <Compile Include="ViewModels\User\AddAndUpdateUserViewModel.cs" />
     <Compile Include="ViewModels\User\ListAgentUsersViewModel.cs" />
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
@@ -436,6 +436,8 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\_AddRole.cshtml" />
     <Content Include="Views\User\_AddUser.cshtml" />
+    <Content Include="Views\User\_UpdateUser.cshtml" />
+    <Content Include="Views\User\_RoleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

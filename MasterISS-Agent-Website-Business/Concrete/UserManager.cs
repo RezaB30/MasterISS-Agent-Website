@@ -60,11 +60,35 @@ namespace MasterISS_Agent_Website_Business.Concrete
 
         public IDataResult<User> GetById(long userId)
         {
-            //if (DateTime.Now.Hour == 1)
-            //{
-            //    return new ErrorDataResult<User>("hata var");
-            //}
-            return new SuccessDataResult<User>(_userdal.Get(u => u.Id == userId), MasterISS_Agent_Website_Localization.View.Successful);
+            var user = _userdal.Get(u => u.Id == userId);
+
+            if (user != null)
+            {
+                return new SuccessDataResult<User>(user, MasterISS_Agent_Website_Localization.View.Successful);
+            }
+            else
+            {
+                return new ErrorDataResult<User>(MasterISS_Agent_Website_Localization.View.GenericErrorMessage);
+            }
+        }
+
+        public IResult Update(User user)
+        {
+            if (Enum.IsDefined(typeof(PermissionList), user.RoleId))
+            {
+                var result = _userdal.Get(u => u.Username == user.Username);
+
+                if (result == null)
+                {
+                    _userdal.Update(user);
+                    return new SuccessResult(MasterISS_Agent_Website_Localization.View.Successful);
+                }
+                else
+                {
+                    return new ErrorResult(MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified);
+                }
+            }
+            return new ErrorResult(MasterISS_Agent_Website_Localization.View.GenericErrorMessage);
         }
     }
 }

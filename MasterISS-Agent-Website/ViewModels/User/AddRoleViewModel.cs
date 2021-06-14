@@ -18,4 +18,16 @@ namespace MasterISS_Agent_Website.ViewModels.User
         [Display(Name = "Permissions", ResourceType = typeof(UserModel))]
         public int[] Permissions { get; set; }
     }
+
+    public class AvailablePermissionList
+    {
+        public string PermissionName { get; set; }
+        public int PermissionId { get; set; }
+        public string IsSelected { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Validation), ErrorMessageResourceName = "Required")]
+        [Display(Name = "AvailablePermission", ResourceType = typeof(UserModel))]
+        public int[] SelectedPermissions { get; set; }
+
+    }
 }

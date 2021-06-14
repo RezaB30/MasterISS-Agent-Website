@@ -8,30 +8,42 @@
 
 <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-user-button" value="User Ekle" />
 
+<input type="button" data-bs-target="#modalCenterUpdateRolePermission" data-bs-toggle="modal" class="btn btn-success update-role-permission" value="Rol İzinleri Güncelle" />
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().NameSurname)</th>
-            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().UserEmail)</th>
-            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().RoleName)</th>
-            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IsEnabled)</th>
-            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (Model.Count() != 0)
+{
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.NameSurname)</td>
-                <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
-                <td>@Html.DisplayFor(modelItem => item.RoleName)</td>
-                <td>@Html.DisplayFor(modelItem => item.IsEnabled)</td>
-                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().NameSurname)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().UserEmail)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().RoleName)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IsEnabled)</th>
+                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.NameSurname)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserEmail)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RoleName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IsEnabled)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td><input type="button" data-bs-target="#modalCenterGeneric" dataValue="@item.UserId" data-bs-toggle="modal" class="btn btn-success update-User-button" value="Kullanıcıyı Güncelle" /> </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <span class="text-danger">Kullanıcı Bulunamadı</span>
+}
+
 
 <div class="modal fade" id="modalCenterGeneric" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,14 +54,105 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalCenterUpdateRolePermission" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div id="update-role-permission-container">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                    </div>
+
+                    @using (Ajax.BeginForm("UpdateRolePermission", "User", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResultUserOperations" }))
+                    {
+                        <div class="modal-body">
+                            <div class="form-group my-0">
+                                <label class="text-info col-form-label">Rol Seçiniz</label>
+
+                                @Html.DropDownList("RoleId", (SelectList)ViewBag.RoleList, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
+
+                                <div class="error-codes-container" style="display:none">
+                                    <div class="separator separator-dashed mt-2 my-4"></div>
+                                    <div class="text-danger error-codes" align="center"></div>
+                                    <div class="separator separator-dashed mt-2 my-4"></div>
+                                </div>
+
+                                @Html.AntiForgeryToken()
+                                <label class="text-info col-12 col-form-label my-4">İzinler</label>
+                                <div class="checkbox-list permissionCheckboxList">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Kapat</button>
+                            <button type="submit" class="btn btn-info font-weight-bold">Değiştir ve Kaydet</button>
+                        </div> <!--end::Info-->
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Javascript{
     <script>
+
+        $("#update-role-permission-container").on('change', '#RoleId', function () {
+        var id = $(this).find(":selected").val();
+        if (id != "") {
+            $.ajax({
+                url: '@Url.Action("RolePermissionList", "User")',
+                type: 'GET',
+                dataType: 'JSON ',
+                data: {
+                    roleId: id,
+                },
+                complete: function (data, status) {
+                    if (status == "success") {
+                        var area = $(".permissionCheckboxList")
+                        area.empty();
+                        var data = data.responseJSON.list;
+                        $.each(data, function (i, item) {
+                            if (data[i].IsSelected==null) {
+                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions"/><span></span>' + data[i].PermissionName + ' </label>');
+                            }
+                            else {
+                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions" checked="' + data[i].IsSelected + '" /><span></span>' + data[i].PermissionName + ' </label>');
+                            }
+                        });
+                    }
+                    else if (status =="FailedAndRedirect") {
+                        var url='@Url.Action("Index", "Home")'
+                        var errormessage = data.responseJSON.ErrorMessage;
+                        GetAlert(errormessage,"false",url)
+                    }
+                    else {
+                        console.log("error");
+                    }
+                }
+            });
+        }
+        else {
+            var area = $(".permissionCheckboxList")
+            area.empty();
+        }
+        });
 
         $(".add-role-button").click(function () {
         var url = '@Url.Action("AddRole", "User")';
         var container = $("#generic-container");
         container.empty();
         AjaxRequestTypeGetAndReturnHTML(null, url, container);
+        });
+
+        $(".update-User-button").click(function () {
+        var url = '@Url.Action("UpdateUser", "User")';
+        var dataValue = $(this).attr("dataValue");
+        var postData = { userId: dataValue}
+        var container = $("#generic-container");
+        container.empty();
+        AjaxRequestTypeGetAndReturnHTML(postData, url, container);
         });
 
         $(".add-user-button").click(function () {

@@ -18,6 +18,7 @@ namespace MasterISS_Agent_Website.ViewModels.User
         public string NameSurname { get; set; }
 
         [Display(ResourceType = typeof(UserModel), Name = "IsEnabled")]
+        [UIHint("BoolFormat")]
         public bool IsEnabled { get; set; }
 
         [Display(ResourceType = typeof(UserModel), Name = "RoleName")]

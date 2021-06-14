@@ -19,5 +19,18 @@ namespace MasterISS_Agent_Website_DataAccess.Concrete.EntityFramework
                 db.SaveChanges();
             }
         }
+
+        public void RemoveRange(IEnumerable<RolePermission> entity)
+        {
+            using (var db = new MasterISSAgentWebSiteEntities())
+            {
+                foreach (var item in entity)
+                {
+                    db.RolePermission.Attach(item);
+                    db.RolePermission.Remove(item);
+                }
+                db.SaveChanges();
+            }
+        }
     }
 }

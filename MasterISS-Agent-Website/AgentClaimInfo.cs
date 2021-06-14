@@ -43,7 +43,7 @@ namespace MasterISS_Agent_Website
         public static int AgentId()
         {
             var agentId = CurrentClaims().Where(c => c.Type == "AgentId")
-                  .Select(c => c.Value).SingleOrDefault();
+                  .Select(c => c.Value).FirstOrDefault();
             return Convert.ToInt32(agentId);
         }
 
