@@ -40,6 +40,14 @@ namespace MasterISS_Agent_Website
             return setupServiceHash;
         }
 
+        public static string SubUserMail()
+        {
+            var subUserMail = CurrentClaims().Where(c => c.Type == "SubMail")
+                  .Select(c => c.Value).SingleOrDefault();
+
+            return subUserMail;
+        }
+
         public static int AgentId()
         {
             var agentId = CurrentClaims().Where(c => c.Type == "AgentId")

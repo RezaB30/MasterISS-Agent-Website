@@ -44,12 +44,18 @@ namespace MasterISS_Agent_Website_Business.Concrete
 
         }
 
+        public IDataResult<User> Get(Expression<Func<User, bool>> filter)
+        {
+            var user = _userdal.Get(filter);
+            if (user !=null)
+            {
+                return new SuccessDataResult<User>(user, MasterISS_Agent_Website_Localization.View.Successful);
+            }
+            return new ErrorDataResult<User>(MasterISS_Agent_Website_Localization.Account.AccountView.UserNotFound);
+        }
+
         public IDataResult<List<User>> GetAll()
         {
-            //if (DateTime.Now.Hour == 14)
-            //{
-            //    return new ErrorDataResult<List<User>>("hata var");
-            //}
             return new SuccessDataResult<List<User>>(_userdal.GetAll(), MasterISS_Agent_Website_Localization.View.Successful);
         }
 

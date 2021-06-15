@@ -68,6 +68,25 @@ namespace MasterISS_Agent_Website
             return response;
         }
 
+        public AgentServiceAuthenticationResponse GetAgentInfo(string adminUsername)
+        {
+            var request = new AgentServiceParameterlessRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                ParameterlessRequest = new ParameterlessRequest
+                {
+                    UserEmail = adminUsername,
+                },
+            };
+
+            var response = Client.GetAgentInfo(request);
+
+            return response;
+        }
+
         public AgentServicePaymentResponse PayBills(long[] billsIds)
         {
             var request = new AgentServicePaymentRequest

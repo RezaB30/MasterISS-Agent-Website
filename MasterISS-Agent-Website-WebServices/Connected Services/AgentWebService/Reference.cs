@@ -6594,6 +6594,12 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/GetRelatedPayments", ReplyAction="http://tempuri.org/IAgentWebService/GetRelatedPaymentsResponse")]
         System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceRelatedPaymentsResponse> GetRelatedPaymentsAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceRelatedPaymentsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/GetAgentInfo", ReplyAction="http://tempuri.org/IAgentWebService/GetAgentInfoResponse")]
+        MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse GetAgentInfo(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceParameterlessRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAgentWebService/GetAgentInfo", ReplyAction="http://tempuri.org/IAgentWebService/GetAgentInfoResponse")]
+        System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse> GetAgentInfoAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceParameterlessRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -6885,6 +6891,14 @@ namespace MasterISS_Agent_Website_WebServices.AgentWebService {
         
         public System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceRelatedPaymentsResponse> GetRelatedPaymentsAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceRelatedPaymentsRequest request) {
             return base.Channel.GetRelatedPaymentsAsync(request);
+        }
+        
+        public MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse GetAgentInfo(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceParameterlessRequest request) {
+            return base.Channel.GetAgentInfo(request);
+        }
+        
+        public System.Threading.Tasks.Task<MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse> GetAgentInfoAsync(MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceParameterlessRequest request) {
+            return base.Channel.GetAgentInfoAsync(request);
         }
     }
 }

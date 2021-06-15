@@ -68,5 +68,14 @@ namespace MasterISS_Agent_Website_Localization.Account {
                 return ResourceManager.GetString("Select", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kullanıcı Bulunamadı.
+        /// </summary>
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
     }
 }

@@ -15,13 +15,14 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : BaseController
     {
-        IRoleService _roleService;
-        IRolePermissionService _rolePermissionService;
-        IUserService _userService;
-        IPermissionService _permissionService;
-        WebServiceWrapper _wrapper;
+        private readonly IRoleService _roleService;
+        private readonly IRolePermissionService _rolePermissionService;
+        private readonly IUserService _userService;
+        private readonly IPermissionService _permissionService;
+        private readonly WebServiceWrapper _wrapper;
 
         private static Logger Logger = LogManager.GetLogger("AppLogger");
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");

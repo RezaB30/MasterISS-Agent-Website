@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization.Account {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acenta Kullanıcı Adı.
+        /// </summary>
+        public static string AdminUsername {
+            get {
+                return ResourceManager.GetString("AdminUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Şifre.
         /// </summary>
         public static string Password {

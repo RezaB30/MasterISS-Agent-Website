@@ -17,6 +17,8 @@ namespace MasterISS_Agent_Website_Business.Abstract
 
         IDataResult<List<User>> GetByFilter(Expression<Func<User, bool>> filter);
 
+        IDataResult<User> Get(Expression<Func<User, bool>> filter);
+
         IDataResult<User> GetById(long userId);
 
         IResult Update(User user);

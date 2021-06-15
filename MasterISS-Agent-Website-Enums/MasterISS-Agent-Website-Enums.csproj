@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\AttachmentType.cs" />
+    <Compile Include="Enums\AuthenticateType.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Enums\CultureList.cs" />
     <Compile Include="Enums\DateType.cs" />

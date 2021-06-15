@@ -18,7 +18,7 @@ using MasterISS_Agent_Website_DataAccess.Concrete.EntityFramework;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize/*(Roles = "Admin")*/]
+    [Authorize(Roles = "Admin,SetupManager")]
     public class SetupController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
@@ -146,14 +146,14 @@ namespace MasterISS_Agent_Website.Controllers
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while GetTaskDetails  , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                    LoggerError.Fatal($"An error occurred while GetTaskDetails  , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
                     ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
                     return PartialView("_GetTaskDetails");
                 }
             }
             else
             {
-                LoggerError.Fatal($"An error occurred while GetCustomerCredentials  , ErrorCode:{credentialsResponse.ResponseMessage.ErrorCode} ErrorMessage:{credentialsResponse.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while GetCustomerCredentials  , ErrorCode:{credentialsResponse.ResponseMessage.ErrorCode} ErrorMessage:{credentialsResponse.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
                 ViewBag.ErrorMessage = credentialsResponse.ResponseMessage.ErrorMessage;
                 return PartialView("_GetTaskDetails");
             }
@@ -191,7 +191,7 @@ namespace MasterISS_Agent_Website.Controllers
                             return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
                         }
 
-                        LoggerError.Fatal($"An error occurred while UpdateTaskStatus AddTaskStatusUpdate , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                        LoggerError.Fatal($"An error occurred while UpdateTaskStatus AddTaskStatusUpdate , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
                         return Json(new { status = "Failed", ErrorMessage = response.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
                     }
 
@@ -234,7 +234,7 @@ namespace MasterISS_Agent_Website.Controllers
                 };
                 return PartialView("_CustomerSessionInfo", sessionInfo);
             }
-            LoggerError.Fatal($"An error occurred while GetCustomerSessionInfo , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetCustomerSessionInfo , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
             return PartialView("_CustomerSessionInfo");
         }
@@ -259,7 +259,7 @@ namespace MasterISS_Agent_Website.Controllers
                 };
                 return PartialView("_CustomerLineInfo", lineInfo);
             }
-            LoggerError.Fatal($"An error occurred while GetCustomerLineDetails , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetCustomerLineDetails , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             ViewBag.ErrorMessage = response.ResponseMessage.ErrorMessage;
             return PartialView("_CustomerLineInfo");
         }
@@ -312,7 +312,7 @@ namespace MasterISS_Agent_Website.Controllers
 
                             if (response.ResponseMessage.ErrorCode != 0)
                             {
-                                LoggerError.Fatal($"An error occurred while AddCustomerAttachment(HttpPost) AddCustomerAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                                LoggerError.Fatal($"An error occurred while AddCustomerAttachment(HttpPost) AddCustomerAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
                                 return Json(new { status = "Failed", ErrorMessage = response.ResponseMessage.ErrorMessage }, JsonRequestBehavior.AllowGet);
                             }
@@ -367,7 +367,7 @@ namespace MasterISS_Agent_Website.Controllers
                 };
             }
 
-            LoggerError.Fatal($"An error occurred while FilteredTaskList GetTaskList , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while FilteredTaskList GetTaskList , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
             return new ServiceResponse<List<SetupTask>>
             {

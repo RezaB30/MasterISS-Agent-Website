@@ -310,6 +310,7 @@
     <Compile Include="ServiceResponseRelatedPayment.cs" />
     <Compile Include="SetupServiceWrapper.cs" />
     <Compile Include="ViewModels\Account\SignInViewModel.cs" />
+    <Compile Include="ViewModels\Account\SubUserSignInViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddClientAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Customer\AddWorkOrderViewModel.cs" />
     <Compile Include="ViewModels\Customer\FilterAgentSubscriptionsViewModel.cs" />
@@ -438,6 +439,7 @@
     <Content Include="Views\User\_AddUser.cshtml" />
     <Content Include="Views\User\_UpdateUser.cshtml" />
     <Content Include="Views\User\_RoleList.cshtml" />
+    <Content Include="Views\Account\SubUserSignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

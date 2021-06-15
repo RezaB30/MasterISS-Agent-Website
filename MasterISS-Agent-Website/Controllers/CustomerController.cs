@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,SaleManager")]
     public class CustomerController : BaseController
     {
         private static Logger Logger = LogManager.GetLogger("AppLogger");
@@ -58,7 +58,7 @@ namespace MasterISS_Agent_Website.Controllers
             }
             else
             {
-                LoggerError.Fatal($"An error occurred while NewCustomer(HttpGet) GetProvinces , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while NewCustomer(HttpGet) GetProvinces , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             }
 
             ViewBag.DistrictsByGeneralInfo = new SelectList("");
@@ -196,7 +196,7 @@ namespace MasterISS_Agent_Website.Controllers
                             else
                             {
                                 serviceWrapper = new WebServiceWrapper();
-                                LoggerError.Fatal($"An error occurred while GetApartmentAddress , individualAddress: {individualAddress.ResponseMessage.ErrorCode} , by: {AgentClaimInfo.UserEmail()}");
+                                LoggerError.Fatal($"An error occurred while GetApartmentAddress , individualAddress: {individualAddress.ResponseMessage.ErrorCode} , by: {AgentClaimInfo.SubUserMail()}");
 
                             }
                         }
@@ -220,7 +220,7 @@ namespace MasterISS_Agent_Website.Controllers
                             else
                             {
                                 webServiceWrapper = new WebServiceWrapper();
-                                LoggerError.Fatal($"An error occurred while GetApartmentAddress , CompanyApartmentAddressResponse: {companyApartmentAddress.ResponseMessage.ErrorCode} ExecutiveResidencyBBKResponseCode: {executiveResidencyAddress.ResponseMessage.ErrorCode}, by: {AgentClaimInfo.UserEmail()}");
+                                LoggerError.Fatal($"An error occurred while GetApartmentAddress , CompanyApartmentAddressResponse: {companyApartmentAddress.ResponseMessage.ErrorCode} ExecutiveResidencyBBKResponseCode: {executiveResidencyAddress.ResponseMessage.ErrorCode}, by: {AgentClaimInfo.SubUserMail()}");
                             }
                         }
 
@@ -261,7 +261,7 @@ namespace MasterISS_Agent_Website.Controllers
                             {
                                 //LOG
                                 wrapperBySMSConfirmation = new WebServiceWrapper();
-                                LoggerError.Fatal("An error occurred while SMSConfirmation , ErrorCode: " + smsConfirmation.ResponseMessage.ErrorCode + ", by: " + AgentClaimInfo.UserEmail());
+                                LoggerError.Fatal("An error occurred while SMSConfirmation , ErrorCode: " + smsConfirmation.ResponseMessage.ErrorCode + ", by: " + AgentClaimInfo.SubUserMail());
                                 //LOG
 
                                 ViewBag.NewCustomerError = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(smsConfirmation.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
@@ -271,7 +271,7 @@ namespace MasterISS_Agent_Website.Controllers
                         else
                         {
                             //LOG
-                            LoggerError.Fatal($"An error occurred while GetApartmentAddress , ErrorCode: BillingAddressResponse : {billingAddress.ResponseMessage.ErrorCode} SetupAddressResponse : {setupAddress.ResponseMessage.ErrorCode}, by: {AgentClaimInfo.UserEmail()}");
+                            LoggerError.Fatal($"An error occurred while GetApartmentAddress , ErrorCode: BillingAddressResponse : {billingAddress.ResponseMessage.ErrorCode} SetupAddressResponse : {setupAddress.ResponseMessage.ErrorCode}, by: {AgentClaimInfo.SubUserMail()}");
                             //LOG
 
                             ViewBag.NewCustomerError = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
@@ -387,7 +387,7 @@ namespace MasterISS_Agent_Website.Controllers
                             Session.Remove("SMSCode");
 
                             //LOG
-                            Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.UserEmail());
+                            Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.SubUserMail());
                             //LOG
                             //TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
                             return View("Successful");
@@ -401,7 +401,7 @@ namespace MasterISS_Agent_Website.Controllers
                             Session.Remove("SMSCode");
 
                             //LOG
-                            LoggerError.Fatal($"An error occurred while NewCustomerRegister, ErrorCode:  {response.ResponseMessage.ErrorCode}, ErrorMessage : {response.ResponseMessage.ErrorMessage}, NameValuePair :{string.Join(",", response.NewCustomerRegisterResponse)}  by: {AgentClaimInfo.UserEmail()}");
+                            LoggerError.Fatal($"An error occurred while NewCustomerRegister, ErrorCode:  {response.ResponseMessage.ErrorCode}, ErrorMessage : {response.ResponseMessage.ErrorMessage}, NameValuePair :{string.Join(",", response.NewCustomerRegisterResponse)}  by: {AgentClaimInfo.SubUserMail()}");
                             //LOG
 
                             TempData["SMSConfirmationError"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
@@ -474,7 +474,7 @@ namespace MasterISS_Agent_Website.Controllers
             else
             {
                 ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-                LoggerError.Fatal($"An error occurred while GetAgentSubscriptions(HttpGet) GetAgentSubscriptions , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while GetAgentSubscriptions(HttpGet) GetAgentSubscriptions , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
                 return View();
             }
         }
@@ -516,7 +516,7 @@ namespace MasterISS_Agent_Website.Controllers
             else
             {
                 ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-                LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpGet) ServiceOperators , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpGet) ServiceOperators , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
                 return View();
             }
         }
@@ -536,7 +536,7 @@ namespace MasterISS_Agent_Website.Controllers
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpPost) AddWorkOrder , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                    LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpPost) AddWorkOrder , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
                     ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
                     return View(addWorkOrderViewModel);
@@ -566,7 +566,7 @@ namespace MasterISS_Agent_Website.Controllers
             else
             {
                 TempData["GenericErrorMessage"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
-                LoggerError.Fatal($"An error occurred while GetSelectedPartnerClientForms(HttpGet) GetAgentClientForms , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while GetSelectedPartnerClientForms(HttpGet) GetAgentClientForms , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
                 return RedirectToAction("Index", "Home");
             }
@@ -614,13 +614,13 @@ namespace MasterISS_Agent_Website.Controllers
                                 var response = _wrapper.SaveClientAttachment(addClientAttachmentViewModel);
                                 if (response.ResponseMessage.ErrorCode != 0)
                                 {
-                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachment , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
                                     return Json(new { status = "Failed", ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode) }, JsonRequestBehavior.AllowGet);
                                 }
                                 if (response.SaveClientAttachmentResult == false)
                                 {
-                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachmentResult return false , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+                                    LoggerError.Fatal($"An error occurred while UploadDocumentCustomer(HttpPost) SaveClientAttachmentResult return false , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
                                     return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
                                 }
@@ -662,7 +662,7 @@ namespace MasterISS_Agent_Website.Controllers
                 return View(listCustomerTasks);
             }
 
-            LoggerError.Fatal($"An error occurred while GetCustomerTasks(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetCustomerTasks(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
             ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
             return View();
@@ -698,14 +698,14 @@ namespace MasterISS_Agent_Website.Controllers
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) selectedTask , selectedTaskNotFound by:{AgentClaimInfo.UserEmail()}");
+                    LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) selectedTask , selectedTaskNotFound by:{AgentClaimInfo.SubUserMail()}");
 
                     ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
                     return PartialView("_GetCustomerTaskDetails");
                 }
             }
 
-            LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetCustomerTaskDetails(HttpGet) GetCustomerTasks , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
 
             ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
 
@@ -766,7 +766,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = tck.Value, Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while GetNationalities , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetNationalities , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList ProfessionList(int? selectedValue)
@@ -778,7 +778,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = tck.Value.ToUpper(), Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while ProfessionList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while ProfessionList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList CustomerTypeList(int? selectedValue)
@@ -791,7 +791,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Where(ctl => ctl.Key != (long)CustomerType.PrivateCompany).Select(tck => new { Name = tck.Value, Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while CustomerTypeList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while CustomerTypeList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList PartnerTariffList(int? selectedValue)
@@ -803,7 +803,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = tck.Value, Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while PartnerTariffList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while PartnerTariffList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList CultureList(string selectedValue)
@@ -815,7 +815,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = ConvertCultureDisplayName(tck.Value), Value = tck.Value }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while CultureList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while CultureList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList SubscriptionRegistrationType(int? selectedValue)
@@ -834,7 +834,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = tck.Value, Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while TCKTypeList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while TCKTypeList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private SelectList SexesList(int? selectedValue)
@@ -846,7 +846,7 @@ namespace MasterISS_Agent_Website.Controllers
                 var list = new SelectList(response.KeyValueItemResponse.Select(tck => new { Name = tck.Value, Value = tck.Key }), "Value", "Name", selectedValue);
                 return list;
             }
-            LoggerError.Fatal($"An error occurred while SexesList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while SexesList , ErrorCode: {response.ResponseMessage.ErrorCode} , ErrorMessage: {response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
             return null;
         }
         private bool IsCustomerTypeIndividual(int customerTypeId)

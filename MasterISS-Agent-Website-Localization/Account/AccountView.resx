@@ -120,4 +120,7 @@
   <data name="Select" xml:space="preserve">
     <value>Seçiniz</value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>Kullanıcı Bulunamadı</value>
+  </data>
 </root>

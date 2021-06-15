@@ -21,7 +21,7 @@ using static MasterISS_Agent_Website_WebServices.AgentWebService.RelatedPayments
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,PaymentManager")]
     public class HomeController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
@@ -33,6 +33,7 @@ namespace MasterISS_Agent_Website.Controllers
             _wrapper = new WebServiceWrapper();
         }
 
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Error = "Error";
@@ -58,7 +59,7 @@ namespace MasterISS_Agent_Website.Controllers
                     }
                 }
 
-                LoggerError.Fatal($"An error occurred while GetBills , ErrorCode: {response.ResponseMessage.ErrorCode}, ErrorMessage: {response.ResponseMessage.ErrorMessage} by: {AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while GetBills , ErrorCode: {response.ResponseMessage.ErrorCode}, ErrorMessage: {response.ResponseMessage.ErrorMessage} by: {AgentClaimInfo.SubUserMail()}");
 
                 ViewBag.ResponseError = new LocalizedList<ErrorCodes, ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture);
 
@@ -176,7 +177,7 @@ namespace MasterISS_Agent_Website.Controllers
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while PayBills, response: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+                    LoggerError.Fatal($"An error occurred while PayBills, response: {response.ResponseMessage.ErrorCode}, PayBillErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.SubUserMail()}");
                     ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
 
                     return View("ConfirmBills");
@@ -196,7 +197,7 @@ namespace MasterISS_Agent_Website.Controllers
                     }
                     else
                     {
-                        LoggerError.Fatal($"An error occurred while responsePayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+                        LoggerError.Fatal($"An error occurred while responsePayBill, PayBillErrorCode: {responsePayBill.ResponseMessage.ErrorCode}, PayBillErrorMessage: {responsePayBill.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.SubUserMail()}");
                         ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(responsePayBill.ResponseMessage.ErrorCode);
                         return View("ConfirmBills");
                     }
@@ -240,7 +241,7 @@ namespace MasterISS_Agent_Website.Controllers
 
             }
 
-            LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+            LoggerError.Fatal($"An error occurred while GetAgentsPaidBills, GetRelatedPaymentsErrorCode: {response.ResponseMessage.ErrorCode}, GetRelatedPaymentsErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.SubUserMail()}");
             return new ServiceResponseRelatedPayment<RelatedPayments[]>
             {
                 ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode),
@@ -295,7 +296,7 @@ namespace MasterISS_Agent_Website.Controllers
             }
             else
             {
-                LoggerError.Fatal($"An error occurred while GetBillReceipt, GetBillReceipt ErrorCode: {response.ResponseMessage.ErrorCode}, GetBillReceipt ErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.UserEmail()}");
+                LoggerError.Fatal($"An error occurred while GetBillReceipt, GetBillReceipt ErrorCode: {response.ResponseMessage.ErrorCode}, GetBillReceipt ErrorMessage: {response.ResponseMessage.ErrorMessage}, by: {AgentClaimInfo.SubUserMail()}");
 
                 TempData["GenericErrorMessage"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
 

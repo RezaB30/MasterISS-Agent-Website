@@ -1,0 +1,34 @@
+﻿@using MasterISS_Agent_Website_Localization
+@model MasterISS_Agent_Website.ViewModels.Account.SubUserSignInViewModel
+@{
+    <title>Giriş Yap</title>
+}
+
+@using (Html.BeginForm("SubUserSignIn", "Account", FormMethod.Post, new { @class = "center" }))
+{
+    <h2 style="text-align:center">Giriş Yap</h2>
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.AdminUsername)
+        @Html.EditorFor(m => m.AdminUsername, new { htmlAttributes = new { @autocomplete = "off", @class = "radius" } })
+        @Html.ValidationMessageFor(m => m.AdminUsername)
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Username)
+        @Html.EditorFor(m => m.Username, new { htmlAttributes = new { @autocomplete = "off", @class = "radius" } })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @autocomplete = "off", @class = "radius" } })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <input type="submit" class="btn-primary mt-2" value="@View.SignIn" />
+}
+<div>
+    @ViewBag.ErrorMessage
+</div>
