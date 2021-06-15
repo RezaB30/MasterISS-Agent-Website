@@ -21,7 +21,7 @@ using static MasterISS_Agent_Website_WebServices.AgentWebService.RelatedPayments
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize(Roles = "Admin,PaymentManager")]
+    [Authorize]
     public class HomeController : BaseController
     {
         private static Logger LoggerError = LogManager.GetLogger("AppLoggerError");
@@ -33,7 +33,6 @@ namespace MasterISS_Agent_Website.Controllers
             _wrapper = new WebServiceWrapper();
         }
 
-        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Error = "Error";
@@ -42,6 +41,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult Index([Bind(Prefix = "search")] GetSubcriberBillsViewModel getSubcriberBillsViewModel)
         {
             getSubcriberBillsViewModel = getSubcriberBillsViewModel ?? new GetSubcriberBillsViewModel();
@@ -69,6 +69,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult ValidBillsBySubcriberNo(long[] selectedBills, string customerCode, string subscriberNo)
         {
             if (ValidBills(selectedBills, customerCode, subscriberNo))
@@ -82,6 +83,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult ConfirmBills(long[] selectedBills, string customerCode, string subscriberNo)
         {
             if (selectedBills != null)
@@ -115,6 +117,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult ConfirmPrePaid(string subscriberNo, string customerCode)
         {
             var wrapper = new WebServiceWrapper();
@@ -149,6 +152,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
 
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult PayBill(string type)
         {
             var selectedBills = Session["BillList"] as CustomerBillIdAndCost[];
@@ -248,6 +252,7 @@ namespace MasterISS_Agent_Website.Controllers
             };
         }
 
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult GetAgentsPaidBills(FilterAgentPaidBillsViewModel filterAgentPaidBills, int page = 1, int pageSize = 20)
         {
             filterAgentPaidBills = filterAgentPaidBills ?? new FilterAgentPaidBillsViewModel();
@@ -287,6 +292,7 @@ namespace MasterISS_Agent_Website.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,PaymentManager")]
         public ActionResult GetBillReceipt(long billId)
         {
             var response = _wrapper.GetBillReceipt(billId);

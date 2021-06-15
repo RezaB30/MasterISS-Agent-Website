@@ -338,7 +338,18 @@
     <Compile Include="WebServiceWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\adminlte.min.css" />
+    <Content Include="Content\css\all.css" />
+    <Content Include="Content\css\all.min.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\daterangepicker.css" />
+    <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\css\fontawesome.min.css" />
+    <Content Include="Content\css\icheck-bootstrap.min.css" />
+    <Content Include="Content\css\jqvmap.min.css" />
+    <Content Include="Content\css\OverlayScrollbars.min.css" />
+    <Content Include="Content\css\summernote-bs4.min.css" />
+    <Content Include="Content\css\tempusdominus-bootstrap-4.min.css" />
     <Content Include="Content\images\icons\add-client.svg" />
     <Content Include="Content\images\icons\client-list.svg" />
     <Content Include="Content\images\icons\down-chevron.svg" />
@@ -346,9 +357,10 @@
     <Content Include="Content\images\icons\power-off.svg" />
     <Content Include="Content\images\icons\search.svg" />
     <Content Include="Content\images\icons\user.svg" />
+    <Content Include="Content\images\logo\AdminLTELogo.png" />
+    <Content Include="Content\images\logo\logo.svg" />
     <Content Include="Content\images\logo\Master ISS.svg" />
     <Content Include="Content\css\PagedList.css" />
-    <Content Include="Content\css\site.css" />
     <Content Include="Content\css\sweetalert2.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -374,8 +386,25 @@
     <Content Include="fonts\Prompt-SemiBoldItalic.ttf" />
     <Content Include="fonts\Prompt-Thin.ttf" />
     <Content Include="fonts\Prompt-ThinItalic.ttf" />
+    <Content Include="Scripts\AllPages\adminlte.js" />
     <Content Include="Scripts\AllPages\ajax-operations.js" />
+    <Content Include="Scripts\AllPages\all.js" />
+    <Content Include="Scripts\AllPages\all.min.js" />
+    <Content Include="Scripts\AllPages\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\AllPages\Chart.min.js" />
+    <Content Include="Scripts\AllPages\dashboard.js" />
+    <Content Include="Scripts\AllPages\daterangepicker.js" />
+    <Content Include="Scripts\AllPages\demo.js" />
+    <Content Include="Scripts\AllPages\fontawesome.js" />
+    <Content Include="Scripts\AllPages\fontawesome.min.js" />
     <Content Include="Scripts\AllPages\input-uppercase.js" />
+    <Content Include="Scripts\AllPages\jquery.knob.min.js" />
+    <Content Include="Scripts\AllPages\jquery.overlayScrollbars.min.js" />
+    <Content Include="Scripts\AllPages\jquery.vmap.min.js" />
+    <Content Include="Scripts\AllPages\moment.min.js" />
+    <Content Include="Scripts\AllPages\sparkline.js" />
+    <Content Include="Scripts\AllPages\summernote-bs4.min.js" />
+    <Content Include="Scripts\AllPages\tempusdominus-bootstrap-4.min.js" />
     <Content Include="WebConfigSettings.txt" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
@@ -440,6 +469,7 @@
     <Content Include="Views\User\_UpdateUser.cshtml" />
     <Content Include="Views\User\_RoleList.cshtml" />
     <Content Include="Views\Account\SubUserSignIn.cshtml" />
+    <Content Include="Views\Shared\AssLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

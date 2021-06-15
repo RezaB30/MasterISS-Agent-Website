@@ -1,0 +1,99 @@
+﻿
+@{
+
+    var search = ViewBag.Search as MasterISS_Agent_Website.ViewModels.Home.GetSubcriberBillsViewModel ?? new MasterISS_Agent_Website.ViewModels.Home.GetSubcriberBillsViewModel();
+}
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <header>
+            <div class="page-header">
+                <a href="@Url.Action("Index","Home")">
+                    <div class="navigation-logo"></div>
+                </a>
+                <div class="page-title-bar">
+                    <div class="page-head">
+                        @ViewBag.Title
+                    </div>
+                    <ul class="title-bar-controls">
+                        <li>
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo", @class = "title-bar-search", @placeholder = "TC ya da Telefon Numarası", @autocomplete = "off" })
+                            }
+                        </li>
+                        <li id="user-profile-button">
+                            <div class="inline-icon user-profile-icon"></div>
+                            <span>@ViewBag.Username</span>
+                            <div class="inline-icon chevron-down"></div>
+                            <div id="user-profile-menu" class="drop-down-menu">
+                                <div class="menu-item">
+                                    <div class="inline-icon logout-icon"></div>
+                                    @Html.ActionLink("Çıkış", "SignOut", "Account", null, null)
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <aside>
+            <div class="page-navigation">
+                <nav>
+                    <ul class="side-bar-nav">
+                        <li>
+                            <a href="@Url.Action("Index","Home")" class="side-nav-item"><div class="inline-icon payment"></div> Fatura Ödeme</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("NewCustomer","Customer")" class="side-nav-item"><div class="inline-icon add-client"></div> Yeni Müşteri</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("GetAgentSubscriptions","Customer")" class="side-nav-item"><div class="inline-icon client-list"></div> Abone Listesi</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("GetAgentsPaidBills","Home")" class="side-nav-item"><div class="inline-icon payment"></div> Ödenmiş Fatura Listesi</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","Setup")" class="side-nav-item"><div class="inline-icon payment"></div> Kurulum</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","User")" class="side-nav-item"><div class="inline-icon payment"></div> Kullanıcılar</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="page-content">
+            @RenderBody()
+        </div>
+    }
+    else
+    {
+        <div style="margin:1em;padding:1em;">
+            @RenderBody()
+        </div>
+    }
+
+
+    <footer>
+        <div class="page-footer">
+            &copy; MasterISS 2021 <span class="footer-version">@ViewBag.Version</span>
+        </div>
+    </footer>
+
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/sweetalert2.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.js"></script>*@
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/Scripts/all-page-js")
+    @Scripts.Render("~/Scripts/generic-alert")
+    @RenderSection("Javascript", required: false)
+</body>

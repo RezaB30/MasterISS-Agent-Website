@@ -7,7 +7,7 @@
 }
 
 
-@if (User.IsInRole("Admin") && User.IsInRole("PaymentManager"))
+@if (User.IsInRole("Admin") || User.IsInRole("PaymentManager"))
 {
 
 
@@ -25,7 +25,7 @@
     </div>
 
 
-    @if (ViewBag.Error == null)
+    if (ViewBag.Error == null)
     {
         using (Html.BeginForm("ConfirmBills", "Home", FormMethod.Post, new { @class = "m-2 pt-5" }))
         {
