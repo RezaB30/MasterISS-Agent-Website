@@ -368,7 +368,7 @@ namespace MasterISS_Agent_Website
                     SubscriptionId = addWorkOrderViewModel.SubscriptionId,
                     XDSLType = (short)addWorkOrderViewModel.XDSLTypes,
                     TaskType = (short)addWorkOrderViewModel.TaskTypes,
-                    SetupUserId = addWorkOrderViewModel.SetupUserId,
+                    SetupUserId = addWorkOrderViewModel.SetupUserId.Value,
                     ModemName = addWorkOrderViewModel.ModemName,
                     HasModem = addWorkOrderViewModel.HasModem,
                     UserEmail = AgentClaimInfo.UserEmail()

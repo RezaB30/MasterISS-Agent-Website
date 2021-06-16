@@ -6,40 +6,32 @@
 
 @if (ViewBag.ErrorMessage == null)
 {
-    using (Html.BeginForm("AddWorkOrder", "Customer", FormMethod.Post))
+    using (Html.BeginForm("AddWorkOrder", "Customer", FormMethod.Post,new { @class= "container"}))
     {
         @Html.AntiForgeryToken()
+        <span class="text-danger text-center form-text">@Html.DisplayFor(m => m.SubscriberName)</span>
 
-        <span class="text-danger">@Html.DisplayFor(m => m.SubscriberName)</span>
-
-        <div class="mb-2 mt-2">
-            @Html.LabelFor(m => m.TaskTypes)
-            @Html.DropDownListFor(m => m.TaskTypes, (SelectList)ViewBag.TaskTypes, MasterISS_Agent_Website_Localization.View.Select)
-            @Html.ValidationMessageFor(m => m.TaskTypes)
+        <div class="mb-2">
+            @Html.LabelFor(m => m.TaskTypes, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.TaskTypes, (SelectList)ViewBag.TaskTypes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TaskTypes, null, new { @class = "form-text" })
         </div>
 
         <div class="mb-2">
-            @Html.LabelFor(m => m.SetupUserId)
-            @Html.DropDownListFor(m => m.SetupUserId, (SelectList)ViewBag.ServiceServiceOperators, MasterISS_Agent_Website_Localization.View.Select)
+            @Html.LabelFor(m => m.SetupUserId, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.SetupUserId, (SelectList)ViewBag.ServiceServiceOperators, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.SetupUserId)
         </div>
 
-        @*<div class="pt-3">
-            <label class="checkbox mr-2">
-                @Html.EditorFor(m => m.Individual.SameSetupAddressByIndividual, new { htmlAttributes = new { @class = "checkbox" } })
-                <span></span>
-            </label>
-            @Html.LabelFor(m => m.Individual.SameSetupAddressByIndividual)
-        </div>*@
 
         <div class="mb-2">
-            @Html.LabelFor(m => m.XDSLTypes)
-            @Html.DropDownListFor(m => m.XDSLTypes, (SelectList)ViewBag.XDSLTypes, MasterISS_Agent_Website_Localization.View.Select)
+            @Html.LabelFor(m => m.XDSLTypes, new { @class = "form-label" })
+            @Html.DropDownListFor(m => m.XDSLTypes, (SelectList)ViewBag.XDSLTypes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.XDSLTypes)
         </div>
 
         <div class="mb-2">
-            @Html.LabelFor(m => m.HasModem,new { @class= "m-2" })
+            @Html.LabelFor(m => m.HasModem, new { @class = "" })
             <label class="m-2">
                 @Html.EditorFor(m => m.HasModem)
                 <span></span>
@@ -47,20 +39,21 @@
         </div>
 
         <div class="mb-2">
-            @Html.LabelFor(m => m.ModemName)
-            @Html.EditorFor(m => m.ModemName)
+            @Html.LabelFor(m => m.ModemName, new { @class = "form-label" })
+            @Html.EditorFor(m => m.ModemName, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
             @Html.ValidationMessageFor(m => m.ModemName)
         </div>
 
         <div class="mb-2">
-            @Html.LabelFor(m => m.Description)
-            @Html.TextAreaFor(m => m.Description)
+            @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+            @Html.TextAreaFor(m => m.Description, new { @autocomplete = "off", @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Description)
         </div>
 
         @Html.HiddenFor(m => m.SubscriptionId)
 
-        <input type="submit" value="İş Emri Ata" />
+        <a class="btn btn-secondary" href="@Url.Action("GetAgentSubscriptions","Customer")">Geri</a>
+        <button type="submit" class="btn btn-primary">İş Emri Ata</button>
     }
 }
 else

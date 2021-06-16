@@ -15,6 +15,9 @@ namespace MasterISS_Agent_Website_Business.Abstract
 
         IResult Add(Role role);
 
+        IDataResult<Role> Get(Expression<Func<Role, bool>> filter);
+
+
         IDataResult<List<Role>> GetByFilter(Expression<Func<Role, bool>> filter);
 
     }

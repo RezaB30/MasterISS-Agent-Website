@@ -3,11 +3,6 @@
 @model AddAndUpdateUserViewModel
 
 <div class="modal-content">
-    <div class="modal-header">
-        <div class="py-2">
-            <span class="text-dark-75 font-weight-bolder d-block font-size-h5">ABC</span>
-        </div>
-    </div>
     <div class="modal-body">
         @using (Ajax.BeginForm("AddUser", "User", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResultUserOperations" }))
         {
@@ -22,7 +17,6 @@
                 <div class="separator separator-dashed mt-2 my-4"></div>
             </div>
 
-
             @Html.LabelFor(m => m.UserNameSurname, new { @class = "text-info col-form-label" })
             @Html.EditorFor(m => m.UserNameSurname, new { htmlAttributes = new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.UserNameSurname), @autocomplete = "off" } })
 
@@ -36,8 +30,8 @@
             @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Password), @autocomplete = "off" } })
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">@View.Close</button>
-                <button type="submit" class="btn btn-info font-weight-bold">Kullanıcıyı KAydet</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@View.Close</button>
+                <button type="submit" class="btn btn-info font-weight-bold">Kullanıcıyı Kaydet</button>
             </div> <!--end::Info-->
         }
     </div>

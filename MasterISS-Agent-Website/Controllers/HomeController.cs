@@ -165,7 +165,7 @@ namespace MasterISS_Agent_Website.Controllers
             {
                 PaymentDayStartDate = DateTime.Now.AddDays(-2).ToString("dd.MM.yyyy HH:mm"),
                 PaymentDayEndDate = DateTime.Now.ToString("dd.MM.yyyy HH:mm"),
-                CustomerName = billSubscriberName,
+                CustomerName = billSubscriberNo,
             };
 
             if (type == "prePaid")
@@ -259,7 +259,7 @@ namespace MasterISS_Agent_Website.Controllers
             ViewBag.Search = filterAgentPaidBills;
             if (ModelState.IsValid)
             {
-                var response = FilteredAgentPaidBillList(filterAgentPaidBills, page = 1, pageSize = 20);
+                var response = FilteredAgentPaidBillList(filterAgentPaidBills, page, pageSize);
 
                 if (response.Data != null)
                 {

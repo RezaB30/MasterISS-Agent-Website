@@ -7,12 +7,11 @@
     var search = ViewBag.Search as FilterAgentPaidBillsViewModel ?? new FilterAgentPaidBillsViewModel();
 }
 
-@using (Html.BeginForm("GetAgentsPaidBills", "Home", FormMethod.Get))
+@using (Html.BeginForm("GetAgentsPaidBills", "Home", FormMethod.Get, new { @class = "pt-5 search-form" }))
 {
     <div class="row">
-        <div class="col-3">
-            @Html.LabelFor(m => search.CustomerName)
-            @Html.TextBox("CustomerName", search.CustomerName)
+        <div class="col-3 ml-2">
+            @Html.TextBox("CustomerName", search.CustomerName, new { @class = "form-control", @placeholder = "Müşteri Adı ya da Abone Numarası", @autocomplete = "off" })
         </div>
 
         @*<div class="col-3">
@@ -25,42 +24,50 @@
                 @Html.TextBox("PaymentDayEndDate", search.PaymentDayEndDate, new { @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") })
             </div>*@
 
-        <div class="col-3">
-            <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
-            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentsPaidBills", "Home", new { @class = "btn btn-secondary mt-4" })
+        <div class="col-3 ml-2">
+            <input type="submit" value="Filtrele" class="btn btn-primary" />
+            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentsPaidBills", "Home", new { @class = "btn btn-secondary" })
         </div>
     </div>
 }
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberName)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IssueDate)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PayDate)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Cost)</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.SubscriberName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                    <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PayDate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Cost)</td>
-                    <td>@Html.ActionLink("Makbuz al", "GetBillReceipt", "Home", new { billId = item.BillId }, new { @class = "btn btn-info", @target = "_blank" })</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <section data-info="table section" class="content mt-3">
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberName)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().IssueDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PayDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Description)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Cost)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.SubscriberName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IssueDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PayDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+                                <td>@Html.ActionLink("Makbuz al", "GetBillReceipt", "Home", new { billId = item.BillId }, new { @class = "btn btn-info", @target = "_blank" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    
     if (Model != null && Model.TotalItemCount > 0)
     {
         <div class="card card-custom">

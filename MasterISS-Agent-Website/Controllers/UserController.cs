@@ -319,18 +319,25 @@ namespace MasterISS_Agent_Website.Controllers
                     Username = addUserViewModel.UserEmail,
                 };
 
-                var result = _userService.Add(user);
-
-                if (result.IsSuccess)
+                var resultRole = _roleService.Get(r => r.Id == addUserViewModel.RoleId);
+                if (resultRole.Data != null)
                 {
-                    return Json(new { status = "Success", message = result.Message }, JsonRequestBehavior.AllowGet);
+                    var result = _userService.Add(user);
+
+                    if (result.IsSuccess)
+                    {
+                        return Json(new { status = "Success", message = result.Message }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        LoggerError.Fatal($"An error occurred while AddUser(Post) result : {result.Message} by:{AgentClaimInfo.UserEmail()}");
+                        return Json(new { status = "Failed", ErrorMessage = result.Message }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    LoggerError.Fatal($"An error occurred while AddUser(Post) result : {result.Message} by:{AgentClaimInfo.UserEmail()}");
-                    return Json(new { status = "Failed", ErrorMessage = result.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { status = "Failed", ErrorMessage = resultRole.Message }, JsonRequestBehavior.AllowGet);
                 }
-
             }
 
             var errorMessageModelState = string.Join("<br/>", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));

@@ -5,31 +5,33 @@
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <div class="row g-3">
-        <div class="mb-2 col">
-            <span>Toplam Tutar: @ViewBag.SumCount</span>
-            <br />
+    <div class="container">
+        <div class="row g-3 mt-2">
+            <div class="mb-2 col">
+                <span style="font-size:2em">Toplam Tutar: <span class="text-danger">@ViewBag.SumCount TL</span> </span>
+                <br />
+            </div>
         </div>
-    </div>
-    <div class="row g-3">
-        <div class="col-2">
-            @using (Html.BeginForm("PayBill", "Home", FormMethod.Post))
-            {
-                if (ViewBag.PrePaid != null)
+        <div class="row g-3">
+            <div class="col-2">
+                @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
+            </div>
+            <div class="col-2">
+                @using (Html.BeginForm("PayBill", "Home", FormMethod.Post))
                 {
-                    <button type="submit" name="type" value="prePaid" class="btn btn-info pay-button">Öde</button>
+                    if (ViewBag.PrePaid != null)
+                    {
+                        <button type="submit" name="type" value="prePaid" class="btn btn-info pay-button">Öde</button>
+                    }
+                    else
+                    {
+                        <button type="submit" name="type" value="normal" class="btn btn-info pay-button">Öde</button>
+                    }
                 }
-                else
-                {
-                    <button type="submit" name="type" value="normal" class="btn btn-info pay-button">Öde</button>
-                }
-            }
-        </div>
-        <div class="col-2">
-            @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
-        </div>
-    </div>
+            </div>
 
+        </div>
+    </div>
 }
 else
 {

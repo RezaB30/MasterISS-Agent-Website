@@ -37,5 +37,9 @@ namespace MasterISS_Agent_Website_Business.Concrete
             return new SuccessDataResult<List<Role>>(_roleDal.GetAll(), "Success");
         }
 
+        public IDataResult<Role> Get(Expression<Func<Role, bool>> filter)
+        {
+            return new SuccessDataResult<Role>(_roleDal.Get(filter), MasterISS_Agent_Website_Localization.View.Successful);
+        }
     }
 }

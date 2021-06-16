@@ -29,7 +29,7 @@ namespace MasterISS_Agent_Website.ViewModels.Customer
 
         [Display(Name = "SetupUserId", ResourceType = typeof(CustomerModel))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Validation))]
-        public int SetupUserId { get; set; }
+        public int? SetupUserId { get; set; }
 
         public string SubscriberName { get; set; }
 

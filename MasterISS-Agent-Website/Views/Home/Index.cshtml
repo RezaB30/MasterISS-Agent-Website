@@ -12,14 +12,18 @@
 
 
     <div>
-        <h1>Fatura Sorgulama & Ödeme</h1>
+        <h1 class="text-center mb-3">Fatura Sorgulama & Ödeme</h1>
 
-        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "m-2" }))
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "m-2 search-form" }))
         {
-            <div>
+            <div class="input-group">
                 @Html.AntiForgeryToken()
-                @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo", @placeholder = "TC ya da Telefon Numarası", @autocomplete = "off" })
-                <input type="submit" class="btn-primary mt-2" value="Sorgula" />
+                @Html.TextBoxFor(m => search.CustomerCode, new { @id = "subsNo", @class = "form-control", @placeholder = "TC, Telefon Numarası yada Abone Numarası", @autocomplete = "off" })
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
         }
     </div>
@@ -27,7 +31,7 @@
 
     if (ViewBag.Error == null)
     {
-        using (Html.BeginForm("ConfirmBills", "Home", FormMethod.Post, new { @class = "m-2 pt-5" }))
+        using (Html.BeginForm("ConfirmBills", "Home", FormMethod.Post, new { @class = "m-2 pt-5"}))
         {
             <span class="text-danger">Abone Adı: @Html.DisplayFor(m => m.SubscriberName)</span>
 

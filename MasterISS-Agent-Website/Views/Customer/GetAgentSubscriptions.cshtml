@@ -6,61 +6,80 @@
     var search = ViewBag.Search as FilterAgentSubscriptionsViewModel ?? new FilterAgentSubscriptionsViewModel();
 }
 
-@using (Html.BeginForm("GetAgentSubscriptions", "Customer", FormMethod.Get))
+@using (Html.BeginForm("GetAgentSubscriptions", "Customer", FormMethod.Get, new { @class = "pt-5 search-form" }))
 {
     <div class="row">
-        <div class="col-3">
-            @Html.LabelFor(m => search.CustomerName)
-            @Html.TextBox("CustomerName",search.CustomerName)
+        <div class="col-3 ml-2">
+            @Html.TextBox("CustomerName", search.CustomerName, new { @class = "form-control", @placeholder = "Müşteri Adı ya da Telefon Numarası", @autocomplete = "off" })
         </div>
+
         <div class="col-3">
-            <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
-            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentSubscriptions", "Customer", new { @class = "btn btn-secondary mt-4" })
+            <input type="submit" value="Filtrele" class="btn btn-primary " />
+            @Html.ActionLink("Filtreyi Sıfırla", "GetAgentSubscriptions", "Customer", new { @class = "btn btn-secondary" })
         </div>
     </div>
 }
 
 @if (ViewBag.ErrorMessage == null)
 {
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerState)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().MembershipDate)</th>
-                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.CustomerState)</td>
-                    <td>@Html.DisplayFor(modelItem => item.MembershipDate)</td>
-                    <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                    <td>@Html.ActionLink("İş Emri Ata", "AddWorkOrder", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-info" })</td>
-                    <td>@Html.ActionLink("İş Emirleri", "GetCustomerTasks", "Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName }, new { @class = "btn btn-warning" })</td>
-                    <td>
-                        <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
-                            <input type="button" class="btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
-                        </span>
-                    </td>
-                    <td>
-                        <span data-bs-target="#modalCenterGeneric" data-bs-toggle="modal">
-                            <input type="button" class="btn btn-info add-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye Form Yükle" />
-                        </span>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <section data-info="table section" class="content mt-3">
+        <div class="card">
+            <div class="card-header">Acenta Müşterileri</div>
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerState)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().MembershipDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CustomerState)</td>
+                                <td>@Html.DisplayFor(modelItem => item.MembershipDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Müşteri İşlemleri
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <li>
+                                                <a class="dropdown-item" href="@Url.Action("AddWorkOrder","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
+                                                    İş Emri Ata
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="@Url.Action("GetCustomerTasks","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
+                                                    İş Emirleri
+                                                </a>
+                                            </li>
+                                            
+                                            <li>
+                                                <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
+                                            </li>
+
+                                            <li>
+                                                <input type="button"  data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-info add-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye Form Yükle" />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     if (Model != null && Model.TotalItemCount > 0)
     {
         <div class="card card-custom">

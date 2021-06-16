@@ -9,25 +9,25 @@
     var search = ViewBag.Search as GetTaskListViewModel ?? new GetTaskListViewModel();
 }
 
-@using (Html.BeginForm("Index", "Setup", FormMethod.Get))
+@using (Html.BeginForm("Index", "Setup", FormMethod.Get, new { @class = "pt-5 search-form" }))
 {
-    <div class="row">
+    <div class="row ml-2">
 
         <div class="col-2">
             @Html.LabelFor(m => search.StartDate)
-            @Html.TextBox("StartDate", search.StartDate)
+            @Html.TextBox("StartDate", search.StartDate, new { @class = "form-control" })
         </div>
 
         <div class="col-2">
             @Html.LabelFor(m => search.EndDate)
-            @Html.TextBox("EndDate", search.EndDate)
-        </div> 
+            @Html.TextBox("EndDate", search.EndDate, new { @class = "form-control" })
+        </div>
 
         <div class="col-2">
             @Html.LabelFor(m => search.TaskStatus)
             @Html.DropDownList("TaskStatus", (SelectList)ViewBag.TaskStatus, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
         </div>
-        
+
         <div class="col-2">
             @Html.LabelFor(m => search.TaskType)
             @Html.DropDownList("TaskType", (SelectList)ViewBag.TaskTypes, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
@@ -45,51 +45,71 @@
 {
     if (Model != null && Model.TotalItemCount > 0)
     {
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskIssueDate)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().ReservationDate)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Province) > @Html.DisplayNameFor(m => m.FirstOrDefault().City)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskStatus)</th>
-                    <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskType)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.TaskIssueDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
-                        <td>@Html.DisplayFor(modelItem => item.ReservationDate)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Province) > @Html.DisplayFor(modelItem => item.City)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TaskStatus)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TaskType)</td>
-                        <td>
-                            <input data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" value="Görev Detayları" dataValue="@item.TaskNo" class="btn btn-info get-task-details" />
-                        </td>
-                        <td>
-                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success update-task-status" dataValue="@item.TaskNo" value="Görev Durumunu Güncelle" />
-                        </td>
-                        <td>
-                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success customer-session-info" dataValue="@item.TaskNo" value="Oturum Bilgileri" />
-                        </td>
-                        <td>
-                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success customer-line-info" dataValue="@item.TaskNo" value="Hat Bilgileri" />
-                        </td>
-                        <td>
-                            <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success add-customer-file" dataValue="@item.TaskNo" value="Müşteriye Belge Ekle" />
-                        </td>
-                        <td>
-                            @Html.ActionLink("Sözleşme Bilgileri", "GetCustomerContract", "Setup", new { taskNo = item.TaskNo }, new { @class = "btn btn-info", @target = "_blank" })
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <section data-info="table section" class="content mt-3">
+            <div class="card">
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskIssueDate)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CustomerName)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().SubscriberNo)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().ReservationDate)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().Province) > @Html.DisplayNameFor(m => m.FirstOrDefault().City)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskStatus)</th>
+                                <th>@Html.DisplayNameFor(m => m.FirstOrDefault().TaskType)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.TaskIssueDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SubscriberNo)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ReservationDate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Province) > @Html.DisplayFor(modelItem => item.City)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TaskStatus)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TaskType)</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Kurulum İşlemleri
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li>
+                                                    <input data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" value="Görev Detayları" dataValue="@item.TaskNo" class="btn btn-info dropdown-item get-task-details" />
+                                                </li>
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success dropdown-item update-task-status" dataValue="@item.TaskNo" value="Görev Durumunu Güncelle" />
+                                                </li>
+
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success dropdown-item customer-session-info" dataValue="@item.TaskNo" value="Oturum Bilgileri" />
+                                                </li>
+
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success  dropdown-item customer-line-info" dataValue="@item.TaskNo" value="Hat Bilgileri" />
+                                                </li>
+
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="btn btn-success dropdown-item add-customer-file" dataValue="@item.TaskNo" value="Müşteriye Belge Ekle" />
+                                                </li>
+
+                                                <li>
+                                                    @Html.ActionLink("Sözleşme Bilgileri", "GetCustomerContract", "Setup", new { taskNo = item.TaskNo }, new { @class = "btn btn-info dropdown-item", @target = "_blank" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <div class="card card-custom">
             <div class="card-body py-7">
                 <div class="d-flex justify-content-between align-items-center flex-wrap">

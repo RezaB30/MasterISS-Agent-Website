@@ -3,11 +3,6 @@
 @model AddAndUpdateUserViewModel
 
 <div class="modal-content">
-    <div class="modal-header">
-        <div class="py-2">
-            <span class="text-dark-75 font-weight-bolder d-block font-size-h5">ABC</span>
-        </div>
-    </div>
     <div class="modal-body">
         @if (ViewBag.ErrorMessage == null)
         {
@@ -37,12 +32,20 @@
                 @Html.LabelFor(m => m.Password, new { @class = "text-info col-form-label" })
                 @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = Html.DisplayNameFor(m => m.Password), @autocomplete = "off" } })
 
-                @Html.LabelFor(m => m.IsEnabled, new { @class = "text-info col-form-label" })
-                @Html.CheckBoxFor(m => m.IsEnabled)
+                @*@Html.LabelFor(m => m.IsEnabled, new { @class = "text-info col-form-label" })
+                @Html.CheckBoxFor(m => m.IsEnabled)*@
+
+                <div class="mb-2">
+                    @Html.LabelFor(m => m.IsEnabled, new { @class = "text-info" })
+                    <label class="m-2">
+                        @Html.EditorFor(m => m.IsEnabled)
+                        <span></span>
+                    </label>
+                </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">@View.Close</button>
-                    <button type="submit" class="btn btn-info font-weight-bold">Kullanıcıyı KAydet</button>
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-bs-dismiss="modal">@View.Close</button>
+                    <button type="submit" class="btn btn-info font-weight-bold">Kullanıcıyı Kaydet</button>
                 </div> <!--end::Info-->
 
                 @Html.HiddenFor(m => m.UserId)

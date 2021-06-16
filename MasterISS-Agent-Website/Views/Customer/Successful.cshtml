@@ -3,6 +3,6 @@
     ViewBag.Title = "Başarılı";
 }
 
-<h1>Başarılı</h1>
+<h1 class="text-center">Başarılı</h1>
+@Html.ActionLink("Geri Dön", "GetAgentSubscriptions", "Customer", null, new { @class = "btn btn-info col-3 ml-3" })
 
-@Html.ActionLink("Geri Dön", "Index", "Home", null, new { @class = "btn btn-info" })

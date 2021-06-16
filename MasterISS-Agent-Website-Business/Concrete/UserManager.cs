@@ -23,23 +23,17 @@ namespace MasterISS_Agent_Website_Business.Concrete
 
         public IResult Add(User user)
         {
-            if (Enum.IsDefined(typeof(PermissionList), user.RoleId))
-            {
-                var result = _userdal.Get(u => u.Username == user.Username);
 
-                if (result == null)
-                {
-                    _userdal.Add(user);
-                    return new SuccessResult(MasterISS_Agent_Website_Localization.View.Successful);
-                }
-                else
-                {
-                    return new ErrorResult(MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified);
-                }
+            var result = _userdal.Get(u => u.Username == user.Username);
+
+            if (result == null)
+            {
+                _userdal.Add(user);
+                return new SuccessResult(MasterISS_Agent_Website_Localization.View.Successful);
             }
             else
             {
-                return new ErrorResult(MasterISS_Agent_Website_Localization.View.GenericErrorMessage);
+                return new ErrorResult(MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified);
             }
 
         }
@@ -47,7 +41,7 @@ namespace MasterISS_Agent_Website_Business.Concrete
         public IDataResult<User> Get(Expression<Func<User, bool>> filter)
         {
             var user = _userdal.Get(filter);
-            if (user !=null)
+            if (user != null)
             {
                 return new SuccessDataResult<User>(user, MasterISS_Agent_Website_Localization.View.Successful);
             }

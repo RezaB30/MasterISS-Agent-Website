@@ -525,24 +525,36 @@ namespace MasterISS_Agent_Website.Controllers
         [HttpPost]
         public ActionResult AddWorkOrder(AddWorkOrderViewModel addWorkOrderViewModel)
         {
-            if (ModelState.IsValid)
+            var responseServiceOperators = _wrapper.ServiceOperators(addWorkOrderViewModel.SubscriptionId);
+
+            if (responseServiceOperators.ResponseMessage.ErrorCode == 0)
             {
-                var wrapper = new WebServiceWrapper();
-                var response = wrapper.AddWorkOrder(addWorkOrderViewModel);
+                ViewBag.ServiceServiceOperators = ExtensionMethods.NameValuePairSelectList(responseServiceOperators.ServiceOperators.Select(so => new KeyValuePair<int, string>(so.Value, so.Name)), addWorkOrderViewModel.SetupUserId ?? null);
+                ViewBag.TaskTypes = ExtensionMethods.EnumSelectList<TaskTypes, RadiusR.Localization.Lists.CustomerSetup.TaskType>((int?)addWorkOrderViewModel.TaskTypes ?? null);
+                ViewBag.XDSLTypes = ExtensionMethods.EnumSelectList<XDSLTypes, RadiusR.Localization.Lists.CustomerSetup.XDSLTypes>((int?)addWorkOrderViewModel.XDSLTypes ?? null);
 
-                if (response.ResponseMessage.ErrorCode == 0)
+                if (ModelState.IsValid)
                 {
-                    return View("Successful");
-                }
-                else
-                {
-                    LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpPost) AddWorkOrder , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
+                    var wrapper = new WebServiceWrapper();
+                    var response = wrapper.AddWorkOrder(addWorkOrderViewModel);
 
-                    ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
-                    return View(addWorkOrderViewModel);
+                    if (response.ResponseMessage.ErrorCode == 0)
+                    {
+                        return View("Successful");
+                    }
+                    else
+                    {
+                        LoggerError.Fatal($"An error occurred while AddWorkOrder(HttpPost) AddWorkOrder , ErrorCode:{response.ResponseMessage.ErrorCode} ErrorMessage:{response.ResponseMessage.ErrorMessage} by:{AgentClaimInfo.SubUserMail()}");
+
+                        ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
+                        return View(addWorkOrderViewModel);
+                    }
                 }
+                return View(addWorkOrderViewModel);
             }
-            return View(addWorkOrderViewModel);
+
+            ViewBag.ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(responseServiceOperators.ResponseMessage.ErrorCode);
+            return View();
 
         }
 
