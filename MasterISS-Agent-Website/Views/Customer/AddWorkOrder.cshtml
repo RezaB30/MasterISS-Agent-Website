@@ -20,14 +20,14 @@
         <div class="mb-2">
             @Html.LabelFor(m => m.SetupUserId, new { @class = "form-label" })
             @Html.DropDownListFor(m => m.SetupUserId, (SelectList)ViewBag.ServiceServiceOperators, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.SetupUserId)
+            @Html.ValidationMessageFor(m => m.SetupUserId, null, new { @class = "form-text" })
         </div>
 
 
         <div class="mb-2">
             @Html.LabelFor(m => m.XDSLTypes, new { @class = "form-label" })
             @Html.DropDownListFor(m => m.XDSLTypes, (SelectList)ViewBag.XDSLTypes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.XDSLTypes)
+            @Html.ValidationMessageFor(m => m.XDSLTypes, null, new { @class = "form-text" })
         </div>
 
         <div class="mb-2">
