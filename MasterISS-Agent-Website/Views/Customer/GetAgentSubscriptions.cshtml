@@ -50,25 +50,33 @@
                                             Müşteri İşlemleri
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li>
-                                                <a class="dropdown-item" href="@Url.Action("AddWorkOrder","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
-                                                    İş Emri Ata
-                                                </a>
-                                            </li>
 
-                                            <li>
-                                                <a class="dropdown-item" href="@Url.Action("GetCustomerTasks","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
-                                                    İş Emirleri
-                                                </a>
-                                            </li>
-                                            
-                                            <li>
-                                                <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
-                                            </li>
+                                            @if (User.IsInRole("Admin") || User.IsInRole("AssignWorkOrder"))
+                                            {
+                                                <li>
+                                                    <a class="dropdown-item" href="@Url.Action("AddWorkOrder","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
+                                                        İş Emri Ata
+                                                    </a>
+                                                </li>
 
-                                            <li>
-                                                <input type="button"  data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-info add-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye Form Yükle" />
-                                            </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="@Url.Action("GetCustomerTasks","Customer", new { subscriptionId = item.SubscriptionId, subscriberName = item.CustomerName })">
+                                                        İş Emirleri
+                                                    </a>
+                                                </li>
+                                            }
+
+                                            @if (User.IsInRole("Admin") || User.IsInRole("SaleManager"))
+                                            {
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-success get-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye ait Formlar" />
+                                                </li>
+
+                                                <li>
+                                                    <input type="button" data-bs-target="#modalCenterGeneric" data-bs-toggle="modal" class="dropdown-item btn btn-info add-customer-forms" dataValue="@item.SubscriptionId" value="Müşteriye Form Yükle" />
+                                                </li>
+                                            }
+
                                         </ul>
                                     </div>
                                 </td>

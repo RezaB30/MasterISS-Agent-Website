@@ -74,7 +74,7 @@
                             </li>
                         }
 
-                        @if (User.IsInRole("Admin") || User.IsInRole("PaymentManager"))
+                        @if (User.IsInRole("Admin") || User.IsInRole("AssignWorkOrder"))
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("GetAgentSubscriptions", "Customer")" class="nav-link">
@@ -84,6 +84,11 @@
                                     </p>
                                 </a>
                             </li>
+
+                        }
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("PaymentManager"))
+                        {
 
                             <li class="nav-item">
                                 <a href="@Url.Action("GetAgentsPaidBills", "Home")" class="nav-link">

@@ -179,6 +179,10 @@ namespace MasterISS_Agent_Website.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if ((addTaskStatusUpdateViewModel.FaultCode != FaultCodes.RendezvousMade) && !string.IsNullOrEmpty(addTaskStatusUpdateViewModel.ReservationDate))
+                    {
+                        addTaskStatusUpdateViewModel.ReservationDate = null;
+                    }
                     if ((addTaskStatusUpdateViewModel.FaultCode == FaultCodes.RendezvousMade) && string.IsNullOrEmpty(addTaskStatusUpdateViewModel.ReservationDate))
                     {
                         return Json(new { status = "Failed", ErrorMessage = SetupView.CannotBeLeftBlankrReservationDate }, JsonRequestBehavior.AllowGet);

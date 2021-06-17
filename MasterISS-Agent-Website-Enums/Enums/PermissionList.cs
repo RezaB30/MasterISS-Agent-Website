@@ -10,6 +10,7 @@ namespace MasterISS_Agent_Website_Enums.Enums
     {
         SetupManager = 1,
         SaleManager = 2,
-        PaymentManager = 3
+        PaymentManager = 3,
+        AssignWorkOrder = 4
     }
 }

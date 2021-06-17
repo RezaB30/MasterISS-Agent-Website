@@ -583,7 +583,7 @@
                 </div>
 
                 <div class="row mb-2">
-                    <div class="col-6">
+                    <div class="col-12">
                         @Html.LabelFor(ci => ci.IDCard.PassportNo, new { @class = "form-label" })
                         @Html.EditorFor(ci => ci.IDCard.PassportNo, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.IDCard.PassportNo), @autocomplete = "off", @class = "form-control" } })
                         @Html.ValidationMessageFor(ci => ci.IDCard.PassportNo, null, new { @class = "form-text" })
@@ -661,13 +661,13 @@
                     <div class="row mb-2">
                         <div class="col-xl-6 col-md-6 col-sm-12">
                             @Html.LabelFor(ic => ic.IDCard.TCBirthCertificate.Province, new { @class = "form-label" })
-                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.Province, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.IDCard.TCBirthCertificate.Province), @autocomplete = "off", @class = "form-control" } })
+                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.Province, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                             @Html.ValidationMessageFor(ic => ic.IDCard.TCBirthCertificate.Province, null, new { @class = "form-text" })
                         </div>
 
                         <div class="col-xl-6 col-md-6 col-sm-12">
                             @Html.LabelFor(ic => ic.IDCard.TCBirthCertificate.District, new { @class = "form-label" })
-                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.District, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.IDCard.TCBirthCertificate.District), @autocomplete = "off", @class = "form-control" } })
+                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.District, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                             @Html.ValidationMessageFor(ic => ic.IDCard.TCBirthCertificate.District, null, new { @class = "form-text" })
                         </div>
                     </div>
@@ -675,28 +675,28 @@
                     <div class="row mb-2">
                         <div class="col-xl-6 col-md-6 col-sm-12">
                             @Html.LabelFor(ic => ic.IDCard.TCBirthCertificate.Neighbourhood, new { @class = "form-label" })
-                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.Neighbourhood, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.IDCard.TCBirthCertificate.Neighbourhood), @autocomplete = "off", @class = "form-control" } })
+                            @Html.EditorFor(ic => ic.IDCard.TCBirthCertificate.Neighbourhood, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                             @Html.ValidationMessageFor(ic => ic.IDCard.TCBirthCertificate.Neighbourhood, null, new { @class = "form-text" })
                         </div>
                     </div>
 
                     <div class="row mb-2">
                         <div class="col-xl-4 col-md-4 col-sm-12">
-                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, new { @class = "form-label" })
-                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, (SelectList)ViewBag.DayListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.IDCard.SelectedBirthDay, null, new { @class = "form-text" })
+                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssueDay, new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssueDay, (SelectList)ViewBag.DayListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.IDCard.TCBirthCertificate.DateOfIssueDay, null, new { @class = "form-text" })
                         </div>
 
                         <div class="col-xl-4 col-md-4 col-sm-12">
-                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, new { @class = "form-label" })
-                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, (SelectList)ViewBag.MonthListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, null, new { @class = "form-text" })
+                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssueMonth, new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssueMonth, (SelectList)ViewBag.MonthListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.IDCard.TCBirthCertificate.DateOfIssueMonth, null, new { @class = "form-text" })
                         </div>
 
                         <div class="col-xl-4 col-md-4 col-sm-12">
-                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, new { @class = "form-label" })
-                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, (SelectList)ViewBag.YearListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.IDCard.TCBirthCertificate.DateOfIssue, null, new { @class = "form-text" })
+                            @Html.LabelFor(m => m.IDCard.TCBirthCertificate.DateOfIssueYear, new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.IDCard.TCBirthCertificate.DateOfIssueYear, (SelectList)ViewBag.YearListByIssueDate, MasterISS_Agent_Website_Localization.Account.AccountView.Select, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.IDCard.TCBirthCertificate.DateOfIssueYear, null, new { @class = "form-text" })
                         </div>
                     </div>
 

@@ -149,7 +149,7 @@ namespace MasterISS_Agent_Website
                     TaskNo = (long)taskStatusUpdateViewModel.TaskNo,
                     Description = taskStatusUpdateViewModel.Description,
                     FaultCode = (short)taskStatusUpdateViewModel.FaultCode,
-                    ReservationDate = taskStatusUpdateViewModel.ReservationDate
+                    ReservationDate = DateParseOperations.ConvertDatetimeForFilter(taskStatusUpdateViewModel.ReservationDate)
                 },
             };
             var response = Client.AddTaskStatusUpdate(request);

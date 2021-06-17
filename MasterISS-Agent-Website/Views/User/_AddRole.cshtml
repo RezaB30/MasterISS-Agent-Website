@@ -3,9 +3,6 @@
 @model AddRoleViewModel
 
 <div class="modal-header">
-    <div class="py-2">
-        <span class="text-dark-75 font-weight-bolder d-block font-size-h5">ABC</span>
-    </div>
 </div>
 
 @using (Ajax.BeginForm("AddRole", "User", new AjaxOptions { HttpMethod = "POST", OnComplete = "GenericResultUserOperations" }))
@@ -35,6 +32,7 @@
                             <input class="checkbox" type="checkbox" value="@item.Value" name="Permissions" />
                             <span></span>@Html.DisplayFor(m => item.Text)
                         </label>
+                        <br />
                     }
                 }
             </div>

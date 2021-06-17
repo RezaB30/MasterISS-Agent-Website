@@ -18,7 +18,7 @@ using System.Web.Mvc;
 
 namespace MasterISS_Agent_Website.Controllers
 {
-    [Authorize(Roles = "Admin,SaleManager")]
+    [Authorize]
     public class CustomerController : BaseController
     {
         private static Logger Logger = LogManager.GetLogger("AppLogger");
@@ -31,6 +31,7 @@ namespace MasterISS_Agent_Website.Controllers
             _wrapper = new WebServiceWrapper();
         }
 
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult NewCustomer()
         {
             ViewBag.SubscriptionRegistrationType = SubscriptionRegistrationType(null);
@@ -112,6 +113,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult NewCustomer(NewCustomerViewModel addCustomerViewModel)
         {
             if (addCustomerViewModel.ExtraInfo.SubscriptionRegistrationTypeId.HasValue && addCustomerViewModel.IDCard.CardTypeId.HasValue && addCustomerViewModel.GeneralInfo.CustomerTypeId.HasValue && !string.IsNullOrEmpty(addCustomerViewModel.SubscriptionInfo.SetupAddress.Floor) && addCustomerViewModel.SubscriptionInfo.SetupAddress.PostalCode.HasValue && addCustomerViewModel.SubscriptionInfo.SetupAddress.ApartmentId.HasValue)
@@ -358,6 +360,7 @@ namespace MasterISS_Agent_Website.Controllers
             return View(addCustomerViewModel);
         }
 
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult SmsConfirmation()
         {
             return View();
@@ -365,6 +368,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult SmsConfirmation(string inputCode)
         {
             var serviceCode = Session["SMSCode"]?.ToString();
@@ -389,10 +393,8 @@ namespace MasterISS_Agent_Website.Controllers
                             //LOG
                             Logger.Info("Added Customer: " + customerApplicationInfo.IDCard.FirstName + customerApplicationInfo.IDCard.LastName + ", by: " + AgentClaimInfo.SubUserMail());
                             //LOG
-                            //TempData["SMSConfirmationSuccess"] = MasterISS_Agent_Website_Localization.View.Successful;
-                            return View("Successful");
 
-                            //return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
+                            return Json(new { status = "Success", message = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
                         }
                         else
                         {
@@ -404,22 +406,14 @@ namespace MasterISS_Agent_Website.Controllers
                             LoggerError.Fatal($"An error occurred while NewCustomerRegister, ErrorCode:  {response.ResponseMessage.ErrorCode}, ErrorMessage : {response.ResponseMessage.ErrorMessage}, NameValuePair :{string.Join(",", response.NewCustomerRegisterResponse)}  by: {AgentClaimInfo.SubUserMail()}");
                             //LOG
 
-                            TempData["SMSConfirmationError"] = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode);
-
-                            return RedirectToAction("NewCustomer", "Customer");
-
-                            //return Json(new { status = "Failed", ErrorMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(response.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture) }, JsonRequestBehavior.AllowGet);
+                            return Json(new { status = "Failed", ErrorMessage = ExtensionMethods.GetConvertedErrorMessage(response.ResponseMessage.ErrorCode) }, JsonRequestBehavior.AllowGet);
                         }
                     }
                     else
                     {
                         Session["Counter"] = Convert.ToInt32(Session["Counter"]) + 1;
 
-                        ViewBag.ErrorMessage = MasterISS_Agent_Website_Localization.Customer.CustomerView.WrongPassword;
-
-                        return View();
-
-                        //return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.NewCustomerView.WrongPassword }, JsonRequestBehavior.AllowGet);
+                        return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.CustomerView.WrongPassword }, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
@@ -428,23 +422,16 @@ namespace MasterISS_Agent_Website.Controllers
                     Session.Remove("CustomerApplicationInfo");
                     Session.Remove("SMSCode");
 
-                    TempData["SMSConfirmationError"] = MasterISS_Agent_Website_Localization.Customer.CustomerView.SMSCode3TimesIncorrectlyError;
-
-                    return RedirectToAction("NewCustomer", "Customer");
-
-                    //return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.NewCustomerView.SMSCode3TimesIncorrectlyError }, JsonRequestBehavior.AllowGet);
+                    return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.Customer.CustomerView.SMSCode3TimesIncorrectlyError }, JsonRequestBehavior.AllowGet);
 
                 }
             }
             Session.Remove("CustomerApplicationInfo");
 
-            TempData["SMSConfirmationError"] = MasterISS_Agent_Website_Localization.View.GenericErrorMessage;
-
-            return RedirectToAction("NewCustomer", "Customer");
-
-            //return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.Successful }, JsonRequestBehavior.AllowGet);
+            return Json(new { status = "FailedAndRedirect", ErrorMessage = MasterISS_Agent_Website_Localization.View.GenericErrorMessage }, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "Admin,AssignWorkOrder,SaleManager")]
         public ActionResult GetAgentSubscriptions(FilterAgentSubscriptionsViewModel filterSubsModel, int page = 1, int pageSize = 20)
         {
             filterSubsModel = filterSubsModel ?? new FilterAgentSubscriptionsViewModel();
@@ -480,6 +467,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult PaymentDayList(long? id)
         {
             var wrapper = new WebServiceWrapper();
@@ -496,6 +484,7 @@ namespace MasterISS_Agent_Website.Controllers
         }
 
 
+        [Authorize(Roles = "Admin,AssignWorkOrder")]
         public ActionResult AddWorkOrder(long subscriptionId, string subscriberName)
         {
             var response = _wrapper.ServiceOperators(subscriptionId);
@@ -523,6 +512,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin,AssignWorkOrder")]
         public ActionResult AddWorkOrder(AddWorkOrderViewModel addWorkOrderViewModel)
         {
             var responseServiceOperators = _wrapper.ServiceOperators(addWorkOrderViewModel.SubscriptionId);
@@ -558,6 +548,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult GetAgentClientForms(long subscriptionId)
         {
             var getPartnerClientFormsViewModel = new GetPartnerClientFormsViewModel
@@ -568,6 +559,7 @@ namespace MasterISS_Agent_Website.Controllers
             return PartialView("_GetAgentClientForms", getPartnerClientFormsViewModel);
         }
 
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult GetSelectedPartnerClientForms(int FormTypeId, long SubscriptionId)
         {
             var response = _wrapper.GetAgentClientForms(FormTypeId, SubscriptionId);
@@ -584,6 +576,7 @@ namespace MasterISS_Agent_Website.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult UploadDocumentCustomer(long subscriptionId)
         {
             var addClientAttachmentViewModel = new AddClientAttachmentViewModel
@@ -598,6 +591,7 @@ namespace MasterISS_Agent_Website.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin,SaleManager")]
         public ActionResult UploadDocumentCustomer(AddClientAttachmentViewModel addClientAttachmentViewModel, IEnumerable<HttpPostedFileBase> uploadingFiles)
         {
             if (ModelState.IsValid)
@@ -652,6 +646,7 @@ namespace MasterISS_Agent_Website.Controllers
             return Json(new { status = "Failed", ErrorMessage = errorMessage }, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize(Roles = "Admin,AssignWorkOrder")]
         public ActionResult GetCustomerTasks(long subscriptionId, string subscriberName)
         {
             var response = _wrapper.GetCustomerTasks(subscriptionId);
@@ -680,6 +675,7 @@ namespace MasterISS_Agent_Website.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin,AssignWorkOrder")]
         public ActionResult GetCustomerTaskDetails(long subscriptionId, long taskId)
         {
             var response = _wrapper.GetCustomerTasks(subscriptionId);

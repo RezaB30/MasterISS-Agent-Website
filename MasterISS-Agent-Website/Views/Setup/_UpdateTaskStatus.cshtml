@@ -21,7 +21,7 @@
             @Html.DropDownListFor(m => m.FaultCode, (SelectList)ViewBag.FaultCodes, MasterISS_Agent_Website_Localization.View.Select, new { @class = "form-control" })
         </div>
 
-        <div class="mb-3 display-none reservation-date-container">
+        <div class="mb-3 reservation-date-container" style="display:none">
             @Html.LabelFor(m => m.ReservationDate, new { @class = "col-form-label" })
             @Html.EditorFor(m => m.ReservationDate, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control", @placeholder = DateTime.Now.ToString("dd.MM.yyyy HH:mm") } })
         </div>

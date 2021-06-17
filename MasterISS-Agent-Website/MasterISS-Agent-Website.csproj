@@ -469,7 +469,6 @@
     <Content Include="Views\User\_UpdateUser.cshtml" />
     <Content Include="Views\User\_RoleList.cshtml" />
     <Content Include="Views\Account\SubUserSignIn.cshtml" />
-    <Content Include="Views\Shared\AssLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

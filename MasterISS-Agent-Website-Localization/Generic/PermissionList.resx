@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AssignWorkOrder" xml:space="preserve">
+    <value>İş Emri Atama</value>
+  </data>
   <data name="PaymentManager" xml:space="preserve">
     <value>Ödeme Temsilcisi</value>
   </data>

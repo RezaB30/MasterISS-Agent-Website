@@ -19,13 +19,16 @@ namespace MasterISS_Agent_Website
             return convertedValue;
         }
 
-        private static string ConvertDatetimeForFilter(string convertedDateTime)
+        public static string ConvertDatetimeForFilter(string convertedDateTime)
         {
             DateTime date;
-            var convertedValue = DateTime.TryParseExact(convertedDateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
-            if (convertedValue)
+            if (!string.IsNullOrEmpty(convertedDateTime))
             {
-                return date.ToString("yyyy-MM-dd HH:mm:ss");
+                var convertedValue = DateTime.TryParseExact(convertedDateTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+                if (convertedValue)
+                {
+                    return date.ToString("yyyy-MM-dd HH:mm:ss");
+                }
             }
             return null;
         }

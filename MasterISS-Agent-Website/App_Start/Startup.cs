@@ -40,14 +40,14 @@ namespace MasterISS_Agent_Website.App_Start
                 routeValues.Add(context.Options.ReturnUrlParameter, returnUrl);
 
                 //Overwrite the redirection uri
-                context.RedirectUri = url.Action("SignIn", "Account", routeValues);
+                context.RedirectUri = url.Action("SubUserSignIn", "Account", routeValues);
                 originalHandler.Invoke(context);
             };
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString(value: "/Account/SignIn"),
+                LoginPath = new PathString(value: "/SubUserSignIn/SignIn"),
                 //Set the Provider
                 CookieName = "MasterISSAgentWebsite",
                 Provider = provider,

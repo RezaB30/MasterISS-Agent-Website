@@ -11,29 +11,28 @@
 
 @using (Html.BeginForm("Index", "Setup", FormMethod.Get, new { @class = "pt-5 search-form" }))
 {
-    <div class="row ml-2">
-
-        <div class="col-2">
+    <div class="row ml-1">
+        <div class="col-md-6 col-xl-2 col-sm-12">
             @Html.LabelFor(m => search.StartDate)
             @Html.TextBox("StartDate", search.StartDate, new { @class = "form-control" })
         </div>
 
-        <div class="col-2">
+        <div class="col-md-6 col-xl-2 col-sm-12">
             @Html.LabelFor(m => search.EndDate)
             @Html.TextBox("EndDate", search.EndDate, new { @class = "form-control" })
         </div>
 
-        <div class="col-2">
+        <div class="col-md-6 col-xl-2 col-sm-12">
             @Html.LabelFor(m => search.TaskStatus)
             @Html.DropDownList("TaskStatus", (SelectList)ViewBag.TaskStatus, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
         </div>
 
-        <div class="col-2">
+        <div class="col-md-6 col-xl-2 col-sm-12">
             @Html.LabelFor(m => search.TaskType)
             @Html.DropDownList("TaskType", (SelectList)ViewBag.TaskTypes, View.Select, new { @class = "form-control datatable-input", @data_col_index = "2" })
         </div>
 
-        <div class="col-3">
+        <div class="col-md-6 col-xl-2 col-sm-12">
             <input type="submit" value="Filtrele" class="btn btn-primary mt-4" />
             @Html.ActionLink("Filtreyi Sıfırla", "Index", "Setup", new { @class = "btn btn-secondary mt-4" })
         </div>

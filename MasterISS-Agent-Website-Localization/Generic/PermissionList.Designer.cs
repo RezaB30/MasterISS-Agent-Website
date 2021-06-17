@@ -61,6 +61,15 @@ namespace MasterISS_Agent_Website_Localization.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to İş Emri Atama.
+        /// </summary>
+        public static string AssignWorkOrder {
+            get {
+                return ResourceManager.GetString("AssignWorkOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ödeme Temsilcisi.
         /// </summary>
         public static string PaymentManager {

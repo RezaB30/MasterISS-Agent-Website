@@ -122,10 +122,10 @@ else
                         var data = data.responseJSON.list;
                         $.each(data, function (i, item) {
                             if (data[i].IsSelected==null) {
-                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions"/><span></span>' + data[i].PermissionName + ' </label>');
+                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions"/><span></span>' + data[i].PermissionName + ' </label><br />');
                             }
                             else {
-                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions" checked="' + data[i].IsSelected + '" /><span></span>' + data[i].PermissionName + ' </label>');
+                                area.append('<label class="checkbox"><input class="checkbox" type="checkbox" value=' + data[i].PermissionId + ' name="SelectedPermissions" checked="' + data[i].IsSelected + '" /><span></span>' + data[i].PermissionName + ' </label><br />');
                             }
                         });
                     }
