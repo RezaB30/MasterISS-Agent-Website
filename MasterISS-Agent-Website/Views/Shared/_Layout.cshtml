@@ -17,7 +17,10 @@
     <link href="~/Content/css/summernote-bs4.min.css" rel="stylesheet" />
     <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
 </head>
-
+@{
+    string action = ViewContext.RouteData.Values["action"] as string;
+    string controller = ViewContext.RouteData.Values["controller"] as string;
+}
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
@@ -53,7 +56,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("Index","Home")" class="nav-link">
+                                <a href="@Url.Action("Index","Home")" class="@Html.Raw(controller == "Home" && action == "Index" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>
                                         Anasayfa
@@ -65,7 +68,7 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("SaleManager"))
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("NewCustomer", "Customer")" class="nav-link">
+                                <a href="@Url.Action("NewCustomer", "Customer")" class="@Html.Raw(controller == "Customer" && action == "NewCustomer" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-user-plus"></i>
                                     <p>
                                         Yeni Müşteri
@@ -77,7 +80,7 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("AssignWorkOrder") || User.IsInRole("SaleManager"))
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("GetAgentSubscriptions", "Customer")" class="nav-link">
+                                <a href="@Url.Action("GetAgentSubscriptions", "Customer")" class="@Html.Raw(controller == "Customer" && action == "GetAgentSubscriptions" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-user-check"></i>
                                     <p>
                                         Abone Listesi
@@ -91,7 +94,7 @@
                         {
 
                             <li class="nav-item">
-                                <a href="@Url.Action("GetAgentsPaidBills", "Home")" class="nav-link">
+                                <a href="@Url.Action("GetAgentsPaidBills", "Home")" class="@Html.Raw(controller == "Home" && action == "GetAgentsPaidBills" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                     <p>
                                         Ödenmiş Fatura Listesi
@@ -103,7 +106,7 @@
                         @if (User.IsInRole("Admin") || User.IsInRole("SetupManager"))
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("Index", "Setup")" class="nav-link">
+                                <a href="@Url.Action("Index", "Setup")" class="@Html.Raw(controller == "Setup" && action == "Index" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-business-time"></i>
                                     <p>
                                         Kurulum
@@ -115,7 +118,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("Index","User")" class="nav-link">
+                                <a href="@Url.Action("Index","User")" class="@Html.Raw(controller == "User" && action == "Index" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-user-friends"></i>
                                     <p>
                                         Kullanıcılar
@@ -125,7 +128,7 @@
 
 
                             <li class="nav-item">
-                                <a href="@Url.Action("Index","Report")" class="nav-link">
+                                <a href="@Url.Action("Index","Report")" class="@Html.Raw(controller == "Report" && action == "Index" ? "nav-link active" : "nav-link")">
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Hakedişler
@@ -138,7 +141,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("SignOut","Account")" class="nav-link">
+                                <a href="@Url.Action("SignOut","Account")" class="nav-link btn btn-danger">
                                     <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Çıkış Yap
@@ -175,7 +178,7 @@
     <script src="~/Scripts/AllPages/ajax-operations.js"></script>
     <script src="~/Scripts/AllPages/Chart.min.js"></script>
     <script src="~/Scripts/AllPages/daterangepicker.js"></script>
-    <script src="~/Scripts/AllPages/dashboard.js"></script>
+    @*<script src="~/Scripts/AllPages/dashboard.js"></script>*@
     <script src="~/Scripts/AllPages/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/sweetalert2.min.js"></script>
     <script src="~/Scripts/AllPages/demo.js"></script>
@@ -197,15 +200,3 @@
 
 </body>
 </html>
-<script>
-    $(function () {
-        $('.nav-item a').filter(function () {
-            return this.href == location.href
-        }).addClass('nav-item active').siblings().removeClass('nav-item active');
-
-        $('.nav-item a').click(function () {
-            $(this).parent().addClass('nav-item active').siblings().removeClass('nav-item active')
-        });
-    });
-
-</script>
