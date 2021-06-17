@@ -200,27 +200,35 @@ namespace MasterISS_Agent_Website.Controllers
 
                 if (resultUser.IsSuccess)
                 {
-                    resultUser.Data.IsEnabled = addAndUpdateUserViewModel.IsEnabled;
-                    resultUser.Data.NameSurname = addAndUpdateUserViewModel.UserNameSurname;
+                    var agentId = AgentClaimInfo.AgentId();
 
-                    if (!string.IsNullOrEmpty(addAndUpdateUserViewModel.Password))
+                    var userControlResult = _userService.Get(u => u.AgentId == agentId && u.Id != resultUser.Data.Id && u.Username == addAndUpdateUserViewModel.UserEmail);
+                    if (userControlResult.Data == null)
                     {
-                        resultUser.Data.Password = _wrapper.CalculateHash<SHA256>(addAndUpdateUserViewModel.Password);
+                        resultUser.Data.IsEnabled = addAndUpdateUserViewModel.IsEnabled;
+                        resultUser.Data.NameSurname = addAndUpdateUserViewModel.UserNameSurname;
+
+                        if (!string.IsNullOrEmpty(addAndUpdateUserViewModel.Password))
+                        {
+                            resultUser.Data.Password = _wrapper.CalculateHash<SHA256>(addAndUpdateUserViewModel.Password);
+                        }
+
+                        resultUser.Data.PhoneNumber = addAndUpdateUserViewModel.PhoneNumber;
+                        resultUser.Data.RoleId = addAndUpdateUserViewModel.RoleId;
+                        resultUser.Data.Username = addAndUpdateUserViewModel.UserEmail;
+
+                        var resultUpdateUser = _userService.Update(resultUser.Data);
+
+                        if (resultUpdateUser.IsSuccess)
+                        {
+                            return Json(new { status = "Success", message = resultUpdateUser.Message }, JsonRequestBehavior.AllowGet);
+                        }
+
+                        LoggerError.Fatal($"An error occurred while UpdateUser(Post) resultUpdateUser : {resultUpdateUser.Message} by:{AgentClaimInfo.UserEmail()}");
+                        return Json(new { status = "Failed", ErrorMessage = resultUpdateUser.Message }, JsonRequestBehavior.AllowGet);
                     }
 
-                    resultUser.Data.PhoneNumber = addAndUpdateUserViewModel.PhoneNumber;
-                    resultUser.Data.RoleId = addAndUpdateUserViewModel.RoleId;
-                    resultUser.Data.Username = addAndUpdateUserViewModel.UserEmail;
-
-                    var resultUpdateUser = _userService.Update(resultUser.Data);
-
-                    if (resultUpdateUser.IsSuccess)
-                    {
-                        return Json(new { status = "Success", message = resultUpdateUser.Message }, JsonRequestBehavior.AllowGet);
-                    }
-
-                    LoggerError.Fatal($"An error occurred while UpdateUser(Post) resultUpdateUser : {resultUpdateUser.Message} by:{AgentClaimInfo.UserEmail()}");
-                    return Json(new { status = "Failed", ErrorMessage = resultUpdateUser.Message }, JsonRequestBehavior.AllowGet);
+                    return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified }, JsonRequestBehavior.AllowGet);
 
                 }
 
@@ -322,17 +330,24 @@ namespace MasterISS_Agent_Website.Controllers
                 var resultRole = _roleService.Get(r => r.Id == addUserViewModel.RoleId);
                 if (resultRole.Data != null)
                 {
-                    var result = _userService.Add(user);
 
-                    if (result.IsSuccess)
+                    var userControlResult = _userService.Get(u => u.AgentId == agentId && u.Username == addUserViewModel.UserEmail);
+                    if (userControlResult.Data == null)
                     {
-                        return Json(new { status = "Success", message = result.Message }, JsonRequestBehavior.AllowGet);
+                        var result = _userService.Add(user);
+
+                        if (result.IsSuccess)
+                        {
+                            return Json(new { status = "Success", message = result.Message }, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            LoggerError.Fatal($"An error occurred while AddUser(Post) result : {result.Message} by:{AgentClaimInfo.UserEmail()}");
+                            return Json(new { status = "Failed", ErrorMessage = result.Message }, JsonRequestBehavior.AllowGet);
+                        }
                     }
-                    else
-                    {
-                        LoggerError.Fatal($"An error occurred while AddUser(Post) result : {result.Message} by:{AgentClaimInfo.UserEmail()}");
-                        return Json(new { status = "Failed", ErrorMessage = result.Message }, JsonRequestBehavior.AllowGet);
-                    }
+
+                    return Json(new { status = "Failed", ErrorMessage = MasterISS_Agent_Website_Localization.User.UserView.EmailCouldNotBeVerified }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {

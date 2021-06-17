@@ -289,6 +289,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QueryInfrastructureController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DateParseOperations.cs" />
@@ -325,6 +326,7 @@
     <Compile Include="ViewModels\Home\FilterAgentPaidBillsViewModel.cs" />
     <Compile Include="ViewModels\Home\GetSubcriberBillsViewModel.cs" />
     <Compile Include="ViewModels\Home\ListAgentPaidBillsViewModel.cs" />
+    <Compile Include="ViewModels\Report\ListAgentAllowenceViewModel.cs" />
     <Compile Include="ViewModels\Setup\AddCustomerAttachmentViewModel.cs" />
     <Compile Include="ViewModels\Setup\AddTaskStatusUpdateViewModel.cs" />
     <Compile Include="ViewModels\Setup\GetTaskDetailsViewModel.cs" />
@@ -469,6 +471,8 @@
     <Content Include="Views\User\_UpdateUser.cshtml" />
     <Content Include="Views\User\_RoleList.cshtml" />
     <Content Include="Views\Account\SubUserSignIn.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PaymentStatusFormat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

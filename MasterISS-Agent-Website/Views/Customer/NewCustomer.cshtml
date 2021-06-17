@@ -19,7 +19,6 @@
         @Html.AntiForgeryToken()
 
         <div>
-
             <div class="row mb-2">
                 <div class="col-xl-6 col-md-6 col-sm-12">
                     @Html.LabelFor(ic => ic.IDCard.FirstName, new { @class = "form-label" })
@@ -292,7 +291,7 @@
                 <div class="row mb-2">
                     <div class="col-xl-6 col-md-6 col-sm-12">
                         @Html.LabelFor(ci => ci.CorporateInfo.Title, new { @class = "form-label" })
-                        @Html.EditorFor(ci => ci.CorporateInfo.Title, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(m => m.CorporateInfo.Title), @autocomplete = "off", @class = "form-control" } })
+                        @Html.EditorFor(ci => ci.CorporateInfo.Title, new { htmlAttributes = new { @autocomplete = "off", @class = "form-control" } })
                         @Html.ValidationMessageFor(ci => ci.CorporateInfo.Title, null, new { @class = "form-text" })
                     </div>
 

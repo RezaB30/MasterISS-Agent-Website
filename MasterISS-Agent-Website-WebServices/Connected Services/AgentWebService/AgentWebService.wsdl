@@ -222,6 +222,12 @@
   <wsdl:message name="IAgentWebService_GetAgentInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAgentInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetAgentAllowances_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAllowances" />
+  </wsdl:message>
+  <wsdl:message name="IAgentWebService_GetAgentAllowances_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentAllowancesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAgentWebService">
     <wsdl:operation name="GetProvinces">
       <wsdl:input wsaw:Action="http://tempuri.org/ITelekomInfrastructureService/GetProvinces" message="tns:IAgentWebService_GetProvinces_InputMessage" />
@@ -358,6 +364,10 @@
     <wsdl:operation name="GetAgentInfo">
       <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentInfo" message="tns:IAgentWebService_GetAgentInfo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentInfoResponse" message="tns:IAgentWebService_GetAgentInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAllowances">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentAllowances" message="tns:IAgentWebService_GetAgentAllowances_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAgentWebService/GetAgentAllowancesResponse" message="tns:IAgentWebService_GetAgentAllowances_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IAgentWebService" type="tns:IAgentWebService">
@@ -662,6 +672,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAgentInfo">
       <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetAgentInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentAllowances">
+      <soap12:operation soapAction="http://tempuri.org/IAgentWebService/GetAgentAllowances" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

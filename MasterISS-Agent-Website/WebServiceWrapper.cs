@@ -10,6 +10,7 @@ using MasterISS_Agent_Website.ViewModels;
 using MasterISS_Agent_Website.ViewModels.Customer;
 using RadiusR.DB.Enums;
 using MasterISS_Agent_Website_Enums.Enums;
+using System.Threading;
 
 namespace MasterISS_Agent_Website
 {
@@ -30,7 +31,7 @@ namespace MasterISS_Agent_Website
         public WebServiceWrapper()
         {
             Client = new AgentWebServiceClient();
-            Culture = CultureInfo.CurrentCulture.ToString();
+            Culture = Thread.CurrentThread.CurrentUICulture.Name;
             Username = Properties.Settings.Default.Username;
             Rand = Guid.NewGuid().ToString("N");
             Password = Properties.Settings.Default.Password;
@@ -658,6 +659,30 @@ namespace MasterISS_Agent_Website
             };
 
             return request;
+        }
+
+        public AgentServiceAllowanceResponse GetAgentAllowances(int pageNo, int pageSize)
+        {
+            var request = new AgentServiceAllowanceRequest
+            {
+                Culture = Culture,
+                Hash = Hash<SHA256>(),
+                Rand = Rand,
+                Username = Username,
+                AllowanceParameters = new AgentAllowanceRequest
+                {
+                    UserEmail = AgentClaimInfo.UserEmail(),
+                    Pagination = new PaginationRequest
+                    {
+                        PageNo = pageNo - 1,
+                        ItemPerPage = pageSize
+                    }
+                }
+            };
+
+            var response = Client.GetAgentAllowances(request);
+
+            return response;
         }
 
         public AgentServiceNewCustomerRegisterResponse NewCustomerRegister()

@@ -479,4 +479,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAgentAllowances">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.AgentRequests" minOccurs="0" name="request" nillable="true" type="q67:AgentServiceAllowanceRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgentAllowancesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses.AgentResponses" minOccurs="0" name="GetAgentAllowancesResult" nillable="true" type="q68:AgentServiceAllowanceResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

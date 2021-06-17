@@ -85,6 +85,9 @@
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAddWorkOrderResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAllowanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\AgentWebService\MasterISS_Agent_Website_WebServices.AgentWebService.AgentServiceAuthenticationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -364,4 +364,41 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RelatedPaymentsResponse.RelatedPayments" nillable="true" type="tns:RelatedPaymentsResponse.RelatedPayments" />
+  <xs:complexType name="AgentServiceAllowanceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q19:BaseResponseOfAgentAllowanceResponseSHA2568F1FUdyT">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AgentAllowances" nillable="true" type="tns:AgentAllowanceResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentServiceAllowanceResponse" nillable="true" type="tns:AgentServiceAllowanceResponse" />
+  <xs:complexType name="AgentAllowanceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PaginationResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Collections" nillable="true" type="tns:ArrayOfAgentAllowanceResponse.Collection" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentAllowanceResponse" nillable="true" type="tns:AgentAllowanceResponse" />
+  <xs:complexType name="ArrayOfAgentAllowanceResponse.Collection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AgentAllowanceResponse.Collection" nillable="true" type="tns:AgentAllowanceResponse.Collection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAgentAllowanceResponse.Collection" nillable="true" type="tns:ArrayOfAgentAllowanceResponse.Collection" />
+  <xs:complexType name="AgentAllowanceResponse.Collection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowanceAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CollectionID" type="xs:long" />
+      <xs:element minOccurs="0" name="CompanyTitle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreationDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentStatus" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AgentAllowanceResponse.Collection" nillable="true" type="tns:AgentAllowanceResponse.Collection" />
 </xs:schema>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Web;
 
 namespace MasterISS_Agent_Website
@@ -26,7 +27,7 @@ namespace MasterISS_Agent_Website
         public SetupServiceWrapper()
         {
             Username = AgentClaimInfo.SetupServiceUser();
-            Culture = CultureInfo.CurrentCulture.ToString();
+            Culture = Thread.CurrentThread.CurrentUICulture.Name;
             KeyFragment = new CustomerSetupServiceClient().GetKeyFragment(AgentClaimInfo.SetupServiceUser());
             Rand = Guid.NewGuid().ToString("N");
             Password = AgentClaimInfo.SetupServiceHash();

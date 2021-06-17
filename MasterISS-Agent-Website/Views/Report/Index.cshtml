@@ -1,0 +1,68 @@
+﻿@using PagedList.Mvc
+@using MasterISS_Agent_Website.ViewModels.Report
+@model PagedList.StaticPagedList<ListAgentAllowenceViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.ErrorMessage == null)
+{
+    <section data-info="table section" class="content mt-3">
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().AllowanceAmount)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().CreationDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PaymentDate)</th>
+                            <th>@Html.DisplayNameFor(m => m.FirstOrDefault().PaymentStatus)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.AllowanceAmount)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CreationDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaymentDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+
+    if (Model != null && Model.TotalItemCount > 0)
+    {
+        <div class="card card-custom">
+            <div class="card-body py-7">
+                <!--begin::Pagination-->
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="d-flex flex-wrap mr-3">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", "Report", new
+                   {
+                       page = page,
+                   }),
+                   new PagedListRenderOptions
+                   {
+                   })
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="text-muted"> Toplam @Model.TotalItemCount kayıt bulundu. Bu sayfada @Model.FirstItemOnPage ile  @Model.LastItemOnPage gösteriliyor</span>
+                    </div>
+                </div>
+                <!--end:: Pagination-->
+            </div>
+        </div>
+    }
+}
+else
+{
+    <span class="text-danger">@ViewBag.ErrorMessage</span>
+}

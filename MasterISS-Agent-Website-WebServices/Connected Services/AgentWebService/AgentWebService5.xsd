@@ -656,4 +656,36 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="BaseResponseOfRelatedPaymentsResponseSHA2568F1FUdyT" nillable="true" type="tns:BaseResponseOfRelatedPaymentsResponseSHA2568F1FUdyT" />
+  <xs:complexType name="BaseRequestOfAgentAllowanceRequestSHA256_S6Bq0k7I">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseRequestOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="AgentAllowanceRequest" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Requests.AgentRequests" />
+          <GenericParameter Name="SHA256" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequestOfSHA256o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseRequestOfAgentAllowanceRequestSHA256_S6Bq0k7I" nillable="true" type="tns:BaseRequestOfAgentAllowanceRequestSHA256_S6Bq0k7I" />
+  <xs:complexType name="BaseResponseOfAgentAllowanceResponseSHA2568F1FUdyT">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="BaseResponseOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="AgentAllowanceResponse" Namespace="http://schemas.datacontract.org/2004/07/RadiusR.API.CustomerWebService.Responses.AgentResponses" />
+          <GenericParameter Name="SHA256" Namespace="http://schemas.datacontract.org/2004/07/System.Security.Cryptography" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponseOfSHA256o_Pr6u_PMh">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BaseResponseOfAgentAllowanceResponseSHA2568F1FUdyT" nillable="true" type="tns:BaseResponseOfAgentAllowanceResponseSHA2568F1FUdyT" />
 </xs:schema>

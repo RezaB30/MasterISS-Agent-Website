@@ -483,7 +483,6 @@ namespace MasterISS_Agent_Website.Controllers
             return Json(new { errorMessage = new LocalizedList<ErrorCodes, MasterISS_Agent_Website_Localization.Generic.ErrorCodeList>().GetDisplayText(paymentDayListResponse.ResponseMessage.ErrorCode, CultureInfo.CurrentCulture) }, JsonRequestBehavior.AllowGet);
         }
 
-
         [Authorize(Roles = "Admin,AssignWorkOrder")]
         public ActionResult AddWorkOrder(long subscriptionId, string subscriberName)
         {

@@ -491,4 +491,24 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="RelatedPaymentsRequest" nillable="true" type="tns:RelatedPaymentsRequest" />
+  <xs:complexType name="AgentServiceAllowanceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/RezaB.API.WebService" base="q19:BaseRequestOfAgentAllowanceRequestSHA256_S6Bq0k7I">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AllowanceParameters" nillable="true" type="tns:AgentAllowanceRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentServiceAllowanceRequest" nillable="true" type="tns:AgentServiceAllowanceRequest" />
+  <xs:complexType name="AgentAllowanceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Pagination" nillable="true" type="tns:PaginationRequest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentAllowanceRequest" nillable="true" type="tns:AgentAllowanceRequest" />
 </xs:schema>

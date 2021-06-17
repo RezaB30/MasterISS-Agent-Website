@@ -31,7 +31,7 @@
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-            <a href="index.html" class="brand-link">
+            <a href="@Url.Action("Index","Home")" class="brand-link">
                 <img src="~/Content/images/logo/logo.svg" alt="Logo" class="brand-image" style="opacity: .8">
                 <span class="brand-text font-weight-light">MasterISS Agent</span>
             </a>
@@ -53,8 +53,8 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a href="@Url.Action("Index","Home")" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <a href="@Url.Action("Index","Home")" class="nav-link">
+                                    <i class="nav-icon fas fa-home"></i>
                                     <p>
                                         Anasayfa
                                     </p>
@@ -66,7 +66,7 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("NewCustomer", "Customer")" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="nav-icon fas fa-user-plus"></i>
                                     <p>
                                         Yeni Müşteri
                                     </p>
@@ -74,11 +74,11 @@
                             </li>
                         }
 
-                        @if (User.IsInRole("Admin") || User.IsInRole("AssignWorkOrder"))
+                        @if (User.IsInRole("Admin") || User.IsInRole("AssignWorkOrder") || User.IsInRole("SaleManager"))
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("GetAgentSubscriptions", "Customer")" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="nav-icon fas fa-user-check"></i>
                                     <p>
                                         Abone Listesi
                                     </p>
@@ -92,7 +92,7 @@
 
                             <li class="nav-item">
                                 <a href="@Url.Action("GetAgentsPaidBills", "Home")" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="nav-icon fas fa-file-invoice-dollar"></i>
                                     <p>
                                         Ödenmiş Fatura Listesi
                                     </p>
@@ -104,7 +104,7 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("Index", "Setup")" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="nav-icon fas fa-business-time"></i>
                                     <p>
                                         Kurulum
                                     </p>
@@ -116,15 +116,36 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("Index","User")" class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                                    <i class="nav-icon fas fa-user-friends"></i>
                                     <p>
                                         Kullanıcılar
                                     </p>
                                 </a>
                             </li>
+
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index","Report")" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>
+                                        Hakedişler
+                                    </p>
+                                </a>
+                            </li>
+
                         }
 
-
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("SignOut","Account")" class="nav-link">
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                                    <p>
+                                        Çıkış Yap
+                                    </p>
+                                </a>
+                            </li>
+                        }
 
                     </ul>
                 </nav>
@@ -176,4 +197,15 @@
 
 </body>
 </html>
+<script>
+    $(function () {
+        $('.nav-item a').filter(function () {
+            return this.href == location.href
+        }).addClass('nav-item active').siblings().removeClass('nav-item active');
 
+        $('.nav-item a').click(function () {
+            $(this).parent().addClass('nav-item active').siblings().removeClass('nav-item active')
+        });
+    });
+
+</script>

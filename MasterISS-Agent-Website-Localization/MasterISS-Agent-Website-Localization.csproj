@@ -161,6 +161,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeView.en-us.resx</DependentUpon>
     </Compile>
+    <Compile Include="Report\ReportModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportModel.en-us.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportModel.en-us.resx</DependentUpon>
+    </Compile>
     <Compile Include="Setup\SetupModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -320,6 +330,14 @@
     <EmbeddedResource Include="Home\HomeView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportModel.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportModel.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Setup\SetupModel.en-us.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
